@@ -4,7 +4,7 @@
  * Progetto: casa domotica
  */
 
-package bookrecommender;
+package bookrecommender.struttura;
 
 import bookrecommender.struttura.menu.MenuIniziale;
 import bookrecommender.struttura.menu.MenuPrincipale;

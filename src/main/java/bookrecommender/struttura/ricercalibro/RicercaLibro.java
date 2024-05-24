@@ -4,18 +4,13 @@
  * Progetto: casa domotica
  */
 
-package bookrecommender.sezioni.ricercalibro;
+package bookrecommender.struttura.ricercalibro;
 
 import bookrecommender.elaborazione.entities.Libro;
-import bookrecommender.elaborazione.entities.Utente;
 import bookrecommender.interfaccia.NuovaSchermata;
-import bookrecommender.interfaccia.menu.MenuPrincipaleMessaggi;
 import bookrecommender.interfaccia.menu.SceltaMenuMessaggi;
 import bookrecommender.interfaccia.ricercalibro.RicercaLibroMessaggi;
-import bookrecommender.sezioni.lavatrici.MenuLavatrici;
-import bookrecommender.sezioni.luci.MenuLuci;
-import bookrecommender.sezioni.menu.SceltaMenu;
-import bookrecommender.sezioni.notifiche.GestioneNotifiche;
+import bookrecommender.struttura.menu.SceltaMenu;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVRecord;
 
@@ -33,8 +28,6 @@ public class RicercaLibro {
     public static Integer MAX_RISULTATI_PAGINA=7;
 
     private int scelta;
-
-    private Utente utente;
 
     private Libro libro;
 
@@ -61,39 +54,6 @@ public class RicercaLibro {
     private String autoreSelezionato;
 
     private Integer annoSelezionato;
-
-    public RicercaLibro(Utente utente) {
-
-        this.utente=utente;
-
-        var controllo = true;
-
-        do {
-
-            NuovaSchermata.nuovaSchermata();
-            MenuPrincipaleMessaggi.menu(utente.getUsername());
-
-            scelta = SceltaMenu.sceltaMenu(5);
-
-            if(scelta==1) {
-                controllo=luci();
-            }
-
-            if(scelta==2) {
-                controllo=lavatrici();
-            }
-
-            if(scelta==3) {
-                controllo=notifiche();
-            }
-
-            if(scelta==4) {
-                //log out
-                NuovaSchermata.nuovaSchermata();
-            }
-
-        } while(!controllo);
-    }
 
     public RicercaLibro(int continuaSenzaRegistrazione) {
 
@@ -129,73 +89,6 @@ public class RicercaLibro {
             }
 
         } while(!controllo);
-    }
-
-    private boolean luci() {
-
-        var controllo=true;
-
-        var menuLuci = new MenuLuci(utente);
-
-        if(menuLuci.getScelta()==4) {
-            controllo=false;
-        }
-
-        if(menuLuci.getScelta()==5) {
-            //log out
-            scelta=4;
-        }
-
-        if(menuLuci.getScelta()==6) {
-            //esci dal programma
-            scelta=5;
-        }
-
-        return controllo;
-    }
-
-    private boolean lavatrici() {
-
-        var controllo=true;
-
-        var menuLavatrici=new MenuLavatrici(utente);
-
-        if(menuLavatrici.getScelta()==4) {
-            controllo=false;
-        }
-
-        if(menuLavatrici.getScelta()==5) {
-            //log out
-            scelta=4;
-        }
-
-        if(menuLavatrici.getScelta()==6) {
-            //esci dal programma
-            scelta=5;
-        }
-
-        return controllo;
-    }
-
-    private boolean notifiche() {
-
-        var controllo=true;
-
-        var notifiche=new GestioneNotifiche(utente);      //notifiche
-
-        if(notifiche.getScelta()==1) {
-            controllo=false;
-        }
-
-        if(notifiche.getScelta()==2) {
-            scelta=4;
-        }
-
-        if(notifiche.getScelta()==3) {
-            scelta=5;
-        }
-
-        return controllo;
     }
 
     private void caricamentoLibri() throws IOException {

@@ -7,7 +7,7 @@
 package bookrecommender.interfaccia.ricercalibro;
 
 import bookrecommender.elaborazione.entities.Libro;
-import bookrecommender.sezioni.ricercalibro.RicercaLibro;
+import bookrecommender.struttura.ricercalibro.RicercaLibro;
 
 import java.util.List;
 

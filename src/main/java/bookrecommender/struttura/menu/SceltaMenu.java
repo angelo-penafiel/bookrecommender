@@ -4,7 +4,7 @@
  * Progetto: casa domotica
  */
 
-package bookrecommender.sezioni.menu;
+package bookrecommender.struttura.menu;
 
 import bookrecommender.interfaccia.menu.SceltaMenuMessaggi;
 
