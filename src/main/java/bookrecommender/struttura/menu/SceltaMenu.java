@@ -1,4 +1,3 @@
-
 /*
  * Autore: Penafiel Angelo.
  * Progetto: casa domotica
@@ -7,7 +6,6 @@
 package bookrecommender.struttura.menu;
 
 import bookrecommender.interfaccia.menu.SceltaMenuMessaggi;
-
 import java.util.Scanner;
 
 public final class SceltaMenu {

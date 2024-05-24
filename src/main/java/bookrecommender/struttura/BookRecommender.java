@@ -1,9 +1,3 @@
-
-/*
- * Autore: Penafiel Angelo.
- * Progetto: casa domotica
- */
-
 package bookrecommender.struttura;
 
 import bookrecommender.struttura.menu.MenuIniziale;
@@ -17,11 +11,8 @@ public class BookRecommender {
 
         do {
             controllo=true;
-
             controllo=menuIniziale(controllo);
-
         } while (!controllo);
-
     }
 
     private static boolean menuIniziale(boolean controllo) {
@@ -29,23 +20,17 @@ public class BookRecommender {
         var menuIniziale=new MenuIniziale();
 
         if(menuIniziale.getScelta()==1) {
-
             //accesso utente
         }
 
         if(menuIniziale.getScelta()==2) {
-
             //registrazione
-
         }
 
         if(menuIniziale.getScelta()==3) {
 
             var menuPrincipale=new MenuPrincipale(0);
-
         }
-
         return controllo;
     }
-
 }

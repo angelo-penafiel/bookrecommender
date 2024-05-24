@@ -8,10 +8,6 @@ package bookrecommender.interfaccia.menu;
 
 public final class MenuInizialeMessaggi {
 
-    private MenuInizialeMessaggi() {
-
-    }
-
     public static void menu() {
 
         System.out.println("-----------Menu iniziale-----------");
