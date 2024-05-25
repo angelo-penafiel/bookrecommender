@@ -2,6 +2,7 @@ package bookrecommender.struttura;
 
 import bookrecommender.struttura.menu.MenuIniziale;
 import bookrecommender.struttura.menu.MenuPrincipale;
+import bookrecommender.elaborazione.entities.user.User;
 
 public class BookRecommender {
 
@@ -17,14 +18,14 @@ public class BookRecommender {
 
     private static boolean menuIniziale(boolean controllo) {
 
-        var menuIniziale=new MenuIniziale();
+        var menuIniziale = new MenuIniziale();
 
         if(menuIniziale.getScelta()==1) {
-            //accesso utente
+            User.login();
         }
 
         if(menuIniziale.getScelta()==2) {
-            //registrazione
+            User.register();
         }
 
         if(menuIniziale.getScelta()==3) {

@@ -4,9 +4,10 @@ import java.util.Scanner;
 
 public class RegistrazioneMessaggi {
 
-    public static String[] inserisci(){
+    public static String[] in(){
         Scanner in = new Scanner(System.in);
         String[] user = new String[6];
+
         System.out.print("Inserisci il tuo nome: ");
         user[0] = in.nextLine();
 
@@ -31,7 +32,7 @@ public class RegistrazioneMessaggi {
         } else {
             System.out.println("Le due password non corrispondono, vuoi riprovare (Y/N)? ");
             if (in.nextLine().equalsIgnoreCase("Y")) {
-                inserisci();
+                in();
             }
         }
         return null;
