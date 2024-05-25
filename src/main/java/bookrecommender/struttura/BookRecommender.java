@@ -10,27 +10,25 @@ public class BookRecommender {
 
         boolean controllo;
 
-        do {
-            controllo=true;
-            controllo=menuIniziale(controllo);
-        } while (!controllo);
+        controllo = true;
+        controllo = menuIniziale(controllo);
     }
 
     private static boolean menuIniziale(boolean controllo) {
 
         var menuIniziale = new MenuIniziale();
 
-        if(menuIniziale.getScelta()==1) {
+        if (menuIniziale.getScelta() == 1) {
             User.login();
         }
 
-        if(menuIniziale.getScelta()==2) {
+        if (menuIniziale.getScelta() == 2) {
             User.register();
         }
 
-        if(menuIniziale.getScelta()==3) {
+        if (menuIniziale.getScelta() == 3) {
 
-            var menuPrincipale=new MenuPrincipale(0);
+            var menuPrincipale = new MenuPrincipale(0);
         }
         return controllo;
     }
