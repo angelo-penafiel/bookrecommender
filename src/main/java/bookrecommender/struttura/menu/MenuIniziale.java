@@ -7,6 +7,7 @@
 package bookrecommender.struttura.menu;
 
 import bookrecommender.interfaccia.menu.MenuInizialeMessaggi;
+import bookrecommender.interfaccia.menu.SceltaMenuMessaggi;
 
 public class MenuIniziale {
 
@@ -15,7 +16,7 @@ public class MenuIniziale {
     public MenuIniziale() {
 
         MenuInizialeMessaggi.menu();
-        scelta = SceltaMenu.sceltaMenu(3);
+        scelta = SceltaMenuMessaggi.inserimentoSceltaMenu(3);
     }
 
     public int getScelta() {

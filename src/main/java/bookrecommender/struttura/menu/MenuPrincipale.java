@@ -8,9 +8,8 @@ package bookrecommender.struttura.menu;
 
 import bookrecommender.interfaccia.NuovaSchermata;
 import bookrecommender.interfaccia.menu.MenuPrincipaleMessaggi;
+import bookrecommender.interfaccia.menu.SceltaMenuMessaggi;
 import bookrecommender.struttura.ricercalibro.RicercaLibro;
-
-import java.io.IOException;
 
 public class MenuPrincipale {
 
@@ -25,14 +24,10 @@ public class MenuPrincipale {
             NuovaSchermata.nuovaSchermata();
             MenuPrincipaleMessaggi.menuSenzaRegistrazione();
 
-            scelta = SceltaMenu.sceltaMenu(4);
+            scelta = SceltaMenuMessaggi.inserimentoSceltaMenu(4);
 
             if(scelta==1) {
-                try {
-                    controllo= cercaLibri();
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
+                controllo = cercaLibri();
             }
 
             if(scelta==2) {
@@ -46,7 +41,7 @@ public class MenuPrincipale {
         } while(!controllo);
     }
 
-    private boolean cercaLibri() throws IOException {
+    private boolean cercaLibri() {
 
         var controllo=true;
 

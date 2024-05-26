@@ -10,15 +10,15 @@ import java.util.List;
 
 public class Libro {
 
-    public static Integer MAX_TITOLO=200;
+    public static final Integer MAX_TITOLO=200;
 
-    public static Integer MIN_TITOLO=3;
+    public static final Integer MIN_TITOLO=3;
 
-    public static Integer MAX_AUTORE_CARATTERI=50;
+    public static final Integer MAX_AUTORE_CARATTERI=50;
 
-    public static Integer MIN_AUTORE_CARATTERI=2;
+    public static final Integer MIN_AUTORE_CARATTERI=2;
 
-    public static Integer MIN_ANNO_PUBBLICAZIONE=1755;
+    public static final Integer MIN_ANNO_PUBBLICAZIONE=1755;
 
     private String titolo;
 
