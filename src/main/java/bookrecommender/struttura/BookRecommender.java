@@ -1,15 +1,22 @@
-
-/*
- * Autore: Penafiel Angelo.
- * Progetto: casa domotica
- */
-
 package bookrecommender.struttura;
 
 import bookrecommender.struttura.menu.MenuIniziale;
 import bookrecommender.struttura.menu.MenuPrincipale;
 
+/**
+ * Classe principale che contiene il metodo main.
+ *
+ * @author Angelo Penafiel
+ * @version 1.0
+ */
+
 public class BookRecommender {
+
+    //METODI
+
+    /**
+     * Main che dirige il flusso del programma
+     */
 
     public static void main(String[] args) {
 
@@ -23,6 +30,15 @@ public class BookRecommender {
         } while (!controllo);
 
     }
+
+    /**
+     * Stampa il menu iniziale e dirige il flusso del
+     * programma.
+     *
+     * @param controllo flag che indica se ripetere la
+     *                  stampa del menu iniziale
+     * @return flag controllo modificato
+     */
 
     private static boolean menuIniziale(boolean controllo) {
 

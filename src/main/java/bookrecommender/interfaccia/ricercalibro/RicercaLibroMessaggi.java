@@ -1,20 +1,35 @@
-
-/*
- * Autore: Penafiel Angelo.
- * Progetto: casa domotica
- */
-
 package bookrecommender.interfaccia.ricercalibro;
 
+/**
+ * Classe che ha la funzione di stampare i
+ * messaggi della sezione di selezione di
+ * ricerca dei libri.
+ *
+ * @author Angelo Penafiel
+ * @version 1.0
+ */
+
 public final class RicercaLibroMessaggi {
+
+    //COSTRUTTORE
 
     private RicercaLibroMessaggi() {
 
     }
 
-    public static void menu(String username) {
+    //METODI
 
-        System.out.println("-----Menu principale/Utente: "+username+"-----");
+    /**
+     * Stampa il menu della sezione di scelta
+     * della modalità di ricerca dei libri nel
+     * caso in cui l'utente è loggato.
+     *
+     * @param userId rappresenta l'userId
+     */
+
+    public static void menu(String userId) {
+
+        System.out.println("-----Menu principale/Utente: "+userId+"-----");
         System.out.println("| 1) Luci ");
         System.out.println("| 2) Lavatrici ");
         System.out.println("| 3) Notifiche ");
@@ -22,6 +37,13 @@ public final class RicercaLibroMessaggi {
         System.out.println("| 5) Esci dal programma ");
         System.out.println("----------------------------------------------------");
     }
+
+    /**
+     * Stampa il menu della sezione di scelta
+     * della modalità di ricerca dei libri nel
+     * caso in cui l'utente non ha effettuato
+     * il login.
+     */
 
     public static void menuSenzaRegistrazione() {
 
@@ -33,14 +55,6 @@ public final class RicercaLibroMessaggi {
         System.out.println("| 5) Registrati                              |");
         System.out.println("| 6) Esci dal programma                      |");
         System.out.println("----------------------------------------------");
-    }
-
-    public static void erroreScelte(int sceltaMinore, int sceltaMaggiore) {
-        System.out.println("      Errore! La voce deve essere tra "+sceltaMinore+" e "+sceltaMaggiore+"\n");
-    }
-
-    public static void erroreStringa() {
-        System.out.println("      Errore!\n");
     }
 
 }

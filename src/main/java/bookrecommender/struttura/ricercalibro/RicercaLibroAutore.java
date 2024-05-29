@@ -1,46 +1,77 @@
-
-/*
- * Autore: Penafiel Angelo.
- * Progetto: casa domotica
- */
-
 package bookrecommender.struttura.ricercalibro;
 
+import bookrecommender.elaborazione.dao.LibroDao;
+import bookrecommender.elaborazione.dao.daoimpl.LibroDaoImpl;
 import bookrecommender.elaborazione.entities.Libro;
 import bookrecommender.interfaccia.NuovaSchermata;
 import bookrecommender.interfaccia.menu.SceltaMenuMessaggi;
 import bookrecommender.interfaccia.ricercalibro.RicercaLibroAutoreMessaggi;
-import bookrecommender.interfaccia.ricercalibro.RicercaLibroTitoloMessaggi;
-import java.io.FileReader;
 import java.io.IOException;
-import java.io.Reader;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import org.apache.commons.csv.CSVFormat;
-import org.apache.commons.csv.CSVRecord;
+
+/**
+ * Classe che ha la funzione di gestire la
+ * sezione di ricerca del libro in base all'
+ * autore inserito.
+ *
+ * @author Angelo Penafiel
+ * @version 1.0
+ */
 
 public class RicercaLibroAutore {
 
+    //CAMPI
+
+    /**
+     * Campo che indica il libro trovato.
+     */
+
     private Libro libro;
+
+    /**
+     * Campo che indica l'autore inserito dall'
+     * utente.
+     */
 
     private String autore;
 
+    /**
+     * Campo che indica la lista di autori
+     * correlati all'autore inserito.
+     */
+
     private List<String> autoriTrovati;
+
+    /**
+     * Campo che indica l'id del libro selezionato
+     * dall'utente tra i risultati di ricerca.
+     */
 
     private Integer libroSelezionato;
 
+    /**
+     * Campo che indica l'autore selezionato
+     * dall'utente tra i risultati di ricerca.
+     */
+
     private String autoreSelezionato;
 
+    /**
+     * Campo che indica se tornare indietro
+     */
+
+    private boolean tornaIndietro;
+
+    //COSTRUTTORE
+
+    /**
+     * Restituisce l'oggetto di tipo
+     * RicercaLibroAutore e gestisce la logica
+     * di ricerca del libro per autore.
+     */
+
     public RicercaLibroAutore() {
-
-        HashMap<String, Integer> autori;
-
-        try {
-            autori=caricamentoAutori();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
 
         NuovaSchermata.nuovaSchermata();
         RicercaLibroAutoreMessaggi.intestazioneInserimentoAutore();
@@ -49,275 +80,97 @@ public class RicercaLibroAutore {
 
         autoriTrovati=new ArrayList<>();
         try {
-            autoriTrovati=cercaAutore(autori,autore);
+            LibroDao libroDao=new LibroDaoImpl();
+            autoriTrovati=libroDao.getAutoriByAutore(autore);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
 
-        Integer autoreSelezionatoInt;
-        NuovaSchermata.nuovaSchermata();
+        if(!autoriTrovati.isEmpty()) {
 
-        if(autoriTrovati.size()>RicercaLibro.MAX_RISULTATI_PAGINA) {
+            tornaIndietro=false;
 
-            int paginaCorrente=0;
-            boolean controllo;
-
-            do {
-                controllo=true;
-
-                RicercaLibroAutoreMessaggi.stampaOpzioniAutorePagina(autoriTrovati,paginaCorrente);
-                autoreSelezionatoInt=SceltaMenuMessaggi.inserimentoSceltaOpzioniPagina(paginaCorrente,
-                    autoriTrovati.size()/RicercaLibro.MAX_RISULTATI_PAGINA+1,autoriTrovati.size());
-
-                if(autoreSelezionatoInt==-1||autoreSelezionatoInt==-2) {
-                    controllo=false;
-                }
-
-                if(autoreSelezionatoInt==-1) {
-                    paginaCorrente=paginaCorrente+1;
-                }
-
-                if(autoreSelezionatoInt==-2) {
-                    paginaCorrente=paginaCorrente-1;
-                }
-                NuovaSchermata.nuovaSchermata();
-
-            } while (!controllo);
-        }
-
-        else {
-            RicercaLibroAutoreMessaggi.stampaOpzioniAutore(autoriTrovati);
-            autoreSelezionatoInt= SceltaMenuMessaggi.inserimentoSceltaMenu(autoriTrovati.size());
+            Integer autoreSelezionatoInt;
             NuovaSchermata.nuovaSchermata();
-        }
 
-        autoreSelezionato=autoriTrovati.get(autoreSelezionatoInt-1);
+            if(autoriTrovati.size()>RicercaLibro.MAX_RISULTATI_PAGINA) {
 
-        List<Integer> libriTrovati;
+                int paginaCorrente=0;
+                boolean controllo;
 
-        try {
-            libriTrovati = RicercaLibroAutore.cercaLibroAutore(autoreSelezionato);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+                do {
+                    controllo=true;
 
-        libroSelezionato=ricercaSelezioneLibroTitolo(libriTrovati);
+                    RicercaLibroAutoreMessaggi.stampaOpzioniAutorePagina(autoriTrovati,paginaCorrente);
+                    autoreSelezionatoInt=SceltaMenuMessaggi.inserimentoSceltaOpzioniPagina(paginaCorrente,
+                        autoriTrovati.size()/RicercaLibro.MAX_RISULTATI_PAGINA+1,autoriTrovati.size());
 
-        try {
-            libro=RicercaLibro.caricamentoLibro(libroSelezionato);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-
-        System.out.println(libro.getTitolo());
-        System.out.println(libro.getAutori());
-        System.out.println(libro.getAnnoPubblicazione());
-        System.out.println(libro.getEditore());
-        System.out.println(libro.getCategorie());
-    }
-
-    public static List<Integer> cercaLibroAutore(String autoreSelezionato) throws IOException {
-
-        //se seleziona angela shelf i risultati saranno solo angela shelf e non rientrerà angela shelf and walker
-
-        List<Integer> libriTrovati=new ArrayList<>();
-
-        Reader in = new FileReader("data/Libri.dati.csv");
-
-
-        String[] HEADERS = {"Title","Authors","Description","Category","Publisher","Price Starting With ($)",
-                "Publish Date (Month)","Publish Date (Year)"};
-
-        CSVFormat csvFormat = CSVFormat.DEFAULT.builder()
-                .setHeader(HEADERS)
-                .setSkipHeaderRecord(true)
-                .build();
-
-        List<CSVRecord> records = csvFormat.parse(in).getRecords();
-
-        int cont=0;
-
-        for (CSVRecord record : records) {
-
-            String authors=record.get("Authors").toLowerCase();
-            authors=authors.trim();
-
-            int j=3;
-
-            for(int i=0;i<authors.length();i++) {
-                if(',' == authors.charAt(i)&&i-j>2) {
-                    if(authors.substring(j,i).equals(autoreSelezionato)){
-                        libriTrovati.add(cont);
-                    }
-                    j=i+2;
-                }
-
-                if(',' == authors.charAt(i)&&i-j<=2) {
-                    j=i+2;
-                }
-
-                //per rimuovere l'and di: autore1, and autore2
-                if(j<i-1&& "and ".equals(authors.substring(j, i))) {
-                    j=i;
-                }
-
-                //per rimuovere and interni: autore1, autore2 and autore3, autore4
-//                if(i>6&&i>j+6&&" and ".equals(authors.substring(i-6,i-1))) {
-//                    autori.add(authors.substring(j,i-6));
-//                    j=i-1;
-//                }
-
-            }
-
-            if(authors.length()-j>1) {
-                if(authors.substring(j).equals(autoreSelezionato)){
-                    libriTrovati.add(cont);
-                }
-            }
-
-            cont++;
-        }
-
-        return libriTrovati;
-    }
-
-    public static HashMap<String, Integer> caricamentoAutori() throws IOException {
-
-        HashMap<String, Integer> autori = new HashMap<>();
-
-        Reader in = new FileReader("data/Libri.dati.csv");
-
-        String[] HEADERS = {"Title","Authors","Description","Category","Publisher","Price Starting With ($)",
-                "Publish Date (Month)","Publish Date (Year)"};
-
-        CSVFormat csvFormat = CSVFormat.DEFAULT.builder()
-                .setHeader(HEADERS)
-                .setSkipHeaderRecord(true)
-                .build();
-
-        List<CSVRecord> records = csvFormat.parse(in).getRecords();
-
-        for (CSVRecord record : records) {
-
-            String authors=record.get("Authors").toLowerCase();
-            authors=authors.trim();
-
-            int j=3;
-
-            for(int i=0;i<authors.length();i++) {
-                if(',' == authors.charAt(i)&&i-j>2) {
-
-                    //caricamento lista globale autori
-                    boolean controllo=true;
-
-                    if(autori.containsKey(authors.substring(j,i))){
+                    if(autoreSelezionatoInt==-1||autoreSelezionatoInt==-2) {
                         controllo=false;
                     }
 
-                    if(controllo) {
-                        autori.put(authors.substring(j,i),0);
+                    if(autoreSelezionatoInt==-1) {
+                        paginaCorrente=paginaCorrente+1;
                     }
 
-                    j=i+2;
-                }
+                    if(autoreSelezionatoInt==-2) {
+                        paginaCorrente=paginaCorrente-1;
+                    }
+                    NuovaSchermata.nuovaSchermata();
 
-                if(',' == authors.charAt(i)&&i-j<=2) {
-                    j=i+2;
-                }
-
-                //per rimuovere l'and di: autore1, and autore2
-                if(j<i-1&& "and ".equals(authors.substring(j, i))) {
-                    j=i;
-                }
-
-                //per rimuovere and interni: autore1, autore2 and autore3, autore4
-//                if(i>6&&i>j+6&&" and ".equals(authors.substring(i-6,i-1))) {
-//                    autori.add(authors.substring(j,i-6));
-//                    j=i-1;
-//                }
-
+                } while (!controllo);
             }
 
-            if(authors.length()-j>1) {
-
-                //caricamento lista globale autori
-                boolean controllo=true;
-
-                if(autori.containsKey(authors.substring(j))){
-                    controllo=false;
-                }
-
-                if(controllo) {
-                    autori.put(authors.substring(j),0);
-                }
-            }
-        }
-
-        return autori;
-    }
-
-    public static List<String> cercaAutore(HashMap<String, Integer> autori, String autore) throws IOException {
-
-        List<String> autoriTrovati = new ArrayList<>();
-
-        for (String autore2 : autori.keySet()) {
-            if (autore2.contains(autore)) {
-                autoriTrovati.add(autore2);
-            }
-        }
-
-        return autoriTrovati;
-    }
-
-    public static Integer ricercaSelezioneLibroTitolo(List<Integer> libriTrovati) {
-
-        List<List<Object>> opzioniTitolo;
-
-        Integer libroSelezionato;
-
-        try {
-            opzioniTitolo = RicercaLibroTitolo.caricamentoOpzioniTitolo(libriTrovati);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-
-        NuovaSchermata.nuovaSchermata();
-
-        if (opzioniTitolo.size() > RicercaLibro.MAX_RISULTATI_PAGINA) {
-
-            int paginaCorrente = 0;
-            boolean controllo;
-
-            do {
-                controllo = true;
-
-                RicercaLibroTitoloMessaggi.stampaOpzioniTitoloPagina(opzioniTitolo, paginaCorrente);
-                libroSelezionato = SceltaMenuMessaggi.inserimentoSceltaOpzioniPagina(paginaCorrente,
-                    opzioniTitolo.size() / RicercaLibro.MAX_RISULTATI_PAGINA + 1, opzioniTitolo.size());
-
-                if (libroSelezionato == -1 || libroSelezionato == -2) {
-                    controllo = false;
-                }
-
-                if (libroSelezionato == -1) {
-                    paginaCorrente = paginaCorrente + 1;
-                }
-
-                if (libroSelezionato == -2) {
-                    paginaCorrente = paginaCorrente - 1;
-                }
-
+            else {
+                RicercaLibroAutoreMessaggi.stampaOpzioniAutore(autoriTrovati);
+                autoreSelezionatoInt= SceltaMenuMessaggi.inserimentoSceltaMenu(autoriTrovati.size());
                 NuovaSchermata.nuovaSchermata();
+            }
 
-            } while (!controllo);
-        } else {
-            RicercaLibroTitoloMessaggi.stampaOpzioniTitolo(opzioniTitolo);
-            libroSelezionato = SceltaMenuMessaggi.inserimentoSceltaMenu(opzioniTitolo.size());
-            NuovaSchermata.nuovaSchermata();
+            autoreSelezionato=autoriTrovati.get(autoreSelezionatoInt-1);
+
+            List<Integer> libriTrovati;
+
+            try {
+                LibroDao libroDao=new LibroDaoImpl();
+                libriTrovati=libroDao.getIdsByAutore(autoreSelezionato);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+
+            libroSelezionato=RicercaLibroTitolo.selezioneLibroTitolo(libriTrovati);
+
+            try {
+                LibroDao libroDao=new LibroDaoImpl();
+                libro=libroDao.getById(libroSelezionato);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+
+            System.out.println(libro.getTitolo());
+            System.out.println(libro.getAutori());
+            System.out.println(libro.getAnnoPubblicazione());
+            System.out.println(libro.getEditore());
+            System.out.println(libro.getCategorie());
         }
 
-        libroSelezionato = libriTrovati.get(libroSelezionato - 1);
+        else {
+            RicercaLibroAutoreMessaggi.valoriNonTrovati();
+            tornaIndietro=true;
+        }
 
-        return libroSelezionato;
+    }
+
+    //METODO
+
+    /**
+     * Restituisce il boolean che indica se
+     * tornare indietro.
+     *
+     * @return il boolean se tornare indietro
+     */
+
+    public boolean isTornaIndietro() {
+        return tornaIndietro;
     }
 }

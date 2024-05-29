@@ -1,28 +1,53 @@
-
-/*
- * Autore: Penafiel Angelo.
- * Progetto: casa domotica
- */
-
 package bookrecommender.struttura.ricercalibro;
 
+import bookrecommender.elaborazione.dao.LibroDao;
+import bookrecommender.elaborazione.dao.daoimpl.LibroDaoImpl;
 import bookrecommender.elaborazione.entities.Libro;
 import bookrecommender.interfaccia.NuovaSchermata;
 import bookrecommender.interfaccia.menu.SceltaMenuMessaggi;
 import bookrecommender.interfaccia.ricercalibro.RicercaLibroTitoloMessaggi;
-import java.io.FileReader;
 import java.io.IOException;
-import java.io.Reader;
-import java.util.ArrayList;
 import java.util.List;
-import org.apache.commons.csv.CSVFormat;
-import org.apache.commons.csv.CSVRecord;
+
+/**
+ * Classe che ha la funzione di gestire la
+ * sezione di ricerca del libro in base al
+ * titolo inserito.
+ *
+ * @author Angelo Penafiel
+ * @version 1.0
+ */
 
 public class RicercaLibroTitolo {
 
+    //CAMPI
+
+    /**
+     * Campo che indica il libro trovato.
+     */
+
     private Libro libro;
 
+    /**
+     * Campo che indica il titolo inserito dall'
+     * utente.
+     */
+
     private String titolo;
+
+    /**
+     * Campo che indica se tornare indietro
+     */
+
+    private boolean tornaIndietro;
+
+    //COSTRUTTORE
+
+    /**
+     * Restituisce l'oggetto di tipo RicercaLibroTitolo
+     * e gestisce la logica di ricerca del libro per
+     * titolo.
+     */
 
     public RicercaLibroTitolo() {
 
@@ -33,41 +58,66 @@ public class RicercaLibroTitolo {
 
         List<Integer> libriTrovati;
         try {
-            libriTrovati=RicercaLibroTitolo.cercaLibroTitolo(titolo);
+            LibroDao libroDao=new LibroDaoImpl();
+            libriTrovati=libroDao.getIdsByTitolo(titolo);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
 
-        Integer libroSelezionato=ricercaSelezioneLibroTitolo(libriTrovati);
+        if(!libriTrovati.isEmpty()) {
 
-        try {
-            libro=RicercaLibro.caricamentoLibro(libroSelezionato);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+            tornaIndietro=false;
+
+            Integer libroSelezionato= selezioneLibroTitolo(libriTrovati);
+
+            try {
+                LibroDao libroDao=new LibroDaoImpl();
+                libro=libroDao.getById(libroSelezionato);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+
+            System.out.println(libro.getTitolo());
+            System.out.println(libro.getAutori());
+            System.out.println(libro.getAnnoPubblicazione());
+            System.out.println(libro.getEditore());
+            System.out.println(libro.getCategorie());
         }
 
-        System.out.println(libro.getTitolo());
-        System.out.println(libro.getAutori());
-        System.out.println(libro.getAnnoPubblicazione());
-        System.out.println(libro.getEditore());
-        System.out.println(libro.getCategorie());
+        else {
+            RicercaLibroTitoloMessaggi.valoriNonTrovati();
+            tornaIndietro=true;
+        }
     }
 
-    public static Integer ricercaSelezioneLibroTitolo(List<Integer> libriTrovati) {
+    //METODI
 
-        List<List<Object>> opzioniTitolo;
+    /**
+     * Restituiscel'id del libro selezionato dall'utente
+     * tra i risultati di ricerca ed effettua la selezione
+     * da parte dell'utente del libro tra i risultati
+     * trovati.
+     *
+     * @return l'id del libro selezionato dall'utente
+     *         tra i risultati di ricerca
+     */
+
+    public static Integer selezioneLibroTitolo(List<Integer> libriTrovati) {
+
+        List<Libro> opzioniTitoloAnno;
 
         Integer libroSelezionato;
 
         try {
-            opzioniTitolo=caricamentoOpzioniTitolo(libriTrovati);
+            LibroDao libroDao=new LibroDaoImpl();
+            opzioniTitoloAnno=libroDao.getTitoloAndAnnoByIds(libriTrovati);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
 
         NuovaSchermata.nuovaSchermata();
 
-        if(opzioniTitolo.size()>RicercaLibro.MAX_RISULTATI_PAGINA) {
+        if(opzioniTitoloAnno.size()>RicercaLibro.MAX_RISULTATI_PAGINA) {
 
             int paginaCorrente=0;
             boolean controllo;
@@ -75,9 +125,9 @@ public class RicercaLibroTitolo {
             do {
                 controllo=true;
 
-                RicercaLibroTitoloMessaggi.stampaOpzioniTitoloPagina(opzioniTitolo,paginaCorrente);
+                RicercaLibroTitoloMessaggi.stampaOpzioniTitoloAnnoPagina(opzioniTitoloAnno,paginaCorrente);
                 libroSelezionato=SceltaMenuMessaggi.inserimentoSceltaOpzioniPagina(paginaCorrente,
-                    opzioniTitolo.size()/RicercaLibro.MAX_RISULTATI_PAGINA+1,opzioniTitolo.size());
+                    opzioniTitoloAnno.size()/RicercaLibro.MAX_RISULTATI_PAGINA+1,opzioniTitoloAnno.size());
 
                 if(libroSelezionato==-1||libroSelezionato==-2) {
                     controllo=false;
@@ -97,8 +147,8 @@ public class RicercaLibroTitolo {
         }
 
         else {
-            RicercaLibroTitoloMessaggi.stampaOpzioniTitolo(opzioniTitolo);
-            libroSelezionato= SceltaMenuMessaggi.inserimentoSceltaMenu(opzioniTitolo.size());
+            RicercaLibroTitoloMessaggi.stampaOpzioniTitoloAnno(opzioniTitoloAnno);
+            libroSelezionato= SceltaMenuMessaggi.inserimentoSceltaMenu(opzioniTitoloAnno.size());
             NuovaSchermata.nuovaSchermata();
         }
 
@@ -107,79 +157,14 @@ public class RicercaLibroTitolo {
         return libroSelezionato;
     }
 
-    public static List<List<Object>> caricamentoOpzioniTitolo(List<Integer> libriTrovati) throws IOException {
+    /**
+     * Restituisce il boolean che indica se
+     * tornare indietro.
+     *
+     * @return il boolean se tornare indietro
+     */
 
-        List<List<Object>> opzioniTitolo = new ArrayList<>();
-
-        Reader in = new FileReader("data/Libri.dati.csv");
-
-
-        String[] HEADERS = {"Title","Authors","Description","Category","Publisher","Price Starting With ($)",
-                "Publish Date (Month)","Publish Date (Year)"};
-
-        CSVFormat csvFormat = CSVFormat.DEFAULT.builder()
-                .setHeader(HEADERS)
-                .setSkipHeaderRecord(true)
-                .build();
-
-        List<CSVRecord> records = csvFormat.parse(in).getRecords();
-
-        int i=0;
-
-        for (CSVRecord record : records) {
-
-            String titolo=record.get("Title").toLowerCase();
-            Integer annoPubblicazione=Integer.parseInt(record.get("Publish Date (Year)"));;
-
-            for(Integer libroTrovato:libriTrovati) {
-                if(libroTrovato==i) {
-
-                    List<Object> oggetti=new ArrayList<>();
-                    oggetti.add(titolo);
-                    oggetti.add(annoPubblicazione);
-
-                    opzioniTitolo.add(oggetti);
-                }
-            }
-
-            i++;
-
-        }
-
-        return opzioniTitolo;
+    public boolean isTornaIndietro() {
+        return tornaIndietro;
     }
-
-    public static List<Integer> cercaLibroTitolo(String titoloInserito) throws IOException {
-
-        List<Integer> libriTrovati=new ArrayList<>();
-
-        Reader in = new FileReader("data/Libri.dati.csv");
-
-
-        String[] HEADERS = {"Title","Authors","Description","Category","Publisher","Price Starting With ($)",
-                "Publish Date (Month)","Publish Date (Year)"};
-
-        CSVFormat csvFormat = CSVFormat.DEFAULT.builder()
-                .setHeader(HEADERS)
-                .setSkipHeaderRecord(true)
-                .build();
-
-        List<CSVRecord> records = csvFormat.parse(in).getRecords();
-
-        int i=0;
-
-        for (CSVRecord record : records) {
-
-            String titolo=record.get("Title").toLowerCase();
-
-            if(titolo.contains(titoloInserito)) {
-                libriTrovati.add(i);
-            }
-
-            i++;
-        }
-
-        return libriTrovati;
-    }
-
 }

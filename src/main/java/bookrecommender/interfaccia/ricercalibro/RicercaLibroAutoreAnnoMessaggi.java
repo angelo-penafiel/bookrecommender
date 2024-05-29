@@ -1,31 +1,54 @@
-
-/*
- * Autore: Penafiel Angelo.
- * Progetto: casa domotica
- */
-
 package bookrecommender.interfaccia.ricercalibro;
 
 import bookrecommender.elaborazione.entities.Libro;
 import bookrecommender.interfaccia.menu.SceltaMenuMessaggi;
 import bookrecommender.struttura.ricercalibro.RicercaLibro;
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * Classe che ha la funzione di stampare i
+ * messaggi e gestire gli inserimenti della
+ * sezione di ricerca libro per autore e anno
+ * di pubblicazione.
+ *
+ * @author Angelo Penafiel
+ * @version 1.0
+ */
+
 public final class RicercaLibroAutoreAnnoMessaggi {
+
+    //COSTRUTTORE
 
     private RicercaLibroAutoreAnnoMessaggi() {
 
     }
 
-    public static void intestazioneInserimentoAutore() {
-        System.out.println("---------------------------------Autore-----------------------------------");
+    //METODI
+
+    /**
+     * Stampa l'intestazione della sezione di
+     * inserimento dell'autore e dell'anno di
+     * pubblicazione.
+     */
+
+    public static void intestazioneInserimentoAutoreAnno() {
+        System.out.println("------------------------------Autore e anno-------------------------------");
     }
+
+    /**
+     * Stampa il messaggio d'inserimento dell'
+     * anno di pubblicazione.
+     */
 
     public static void inserimentoAnnoPubblicazioneMessaggi() {
         System.out.print("| Inserisci l'anno di pubblicazione del libro da cercare -> ");
     }
+
+    /**
+     * Stampa l'intestazione della stampa di
+     * opzioni di autore e anno di pubblicazione.
+     */
 
     private static void intestazioneAutoreAnno() {
 
@@ -44,40 +67,72 @@ public final class RicercaLibroAutoreAnnoMessaggi {
         System.out.print("\n");
     }
 
-    public static void stampaOpzioniAutoreAnnoPagina(List<String> opzioniAutore, Integer opzioneAnno,
-                                                     List<String> opzioniTitoli, int paginaCorrente) {
+    /**
+     * Stampa le opzioni di autore e anno di
+     * pubblicazione divise per pagina.
+     *
+     * @param opzioniAutoreTitolo rappresenta una
+     *                            lista di oggetti
+     *                            di tipo libro
+     *                            contenenti solamen-
+     *                            -te autore e titolo
+     *
+     * @param opzioneAnno rappresenta l'anno di
+     *                    pubblicazione
+     *
+     * @param paginaCorrente rappresenta la pagina
+     *      *                corrente
+     */
+
+    public static void stampaOpzioniAutoreAnnoPagina(List<Libro> opzioniAutoreTitolo, Integer opzioneAnno,
+        int paginaCorrente) {
 
         int i=0;
 
         intestazioneAutoreAnno();
 
-        for(String opzioneAutore:opzioniAutore) {
+        for(Libro opzioneAutoreTitolo:opzioniAutoreTitolo) {
 
             if(i>=paginaCorrente*RicercaLibro.MAX_RISULTATI_PAGINA &&
                     i<(paginaCorrente*RicercaLibro.MAX_RISULTATI_PAGINA)+RicercaLibro.MAX_RISULTATI_PAGINA) {
-                stampaOpzioneAutoreAnno(opzioneAutore,opzioneAnno,opzioniTitoli.get(i),i);
+                stampaOpzioneAutoreAnno(opzioneAutoreTitolo.getAutori().get(0),
+                    opzioneAnno,opzioneAutoreTitolo.getTitolo(),i);
             }
 
             i++;
         }
 
         int pagina=paginaCorrente+1;
-        int pagineTotali=opzioniAutore.size()/RicercaLibro.MAX_RISULTATI_PAGINA+1;
+        int pagineTotali=opzioniAutoreTitolo.size()/RicercaLibro.MAX_RISULTATI_PAGINA+1;
 
         System.out.print("\n         "+pagina+" di "+pagineTotali+" pagine\n\n");
 
     }
 
-    public static void stampaOpzioniAutoreAnno(List<String> opzioniAutore, Integer opzioneAnno,
-        List<String> opzioniTitoli) {
+    /**
+     * Stampa le opzioni di autore e anno di
+     * pubblicazione.
+     *
+     * @param opzioniAutoreTitolo rappresenta una
+     *                            lista di oggetti
+     *                            di tipo libro
+     *                            contenenti solamen-
+     *                            -te autore e titolo
+     *
+     * @param opzioneAnno rappresenta l'anno di
+     *                    pubblicazione
+     */
+
+    public static void stampaOpzioniAutoreAnno(List<Libro> opzioniAutoreTitolo, Integer opzioneAnno) {
 
         int i=0;
 
         intestazioneAutoreAnno();
 
-        for(String opzioneAutore:opzioniAutore) {
+        for(Libro opzioneAutoreTitolo:opzioniAutoreTitolo) {
 
-            stampaOpzioneAutoreAnno(opzioneAutore,opzioneAnno,opzioniTitoli.get(i),i);
+            stampaOpzioneAutoreAnno(opzioneAutoreTitolo.getAutori().get(0),opzioneAnno,
+                opzioneAutoreTitolo.getTitolo(),i);
 
             i++;
         }
@@ -85,6 +140,22 @@ public final class RicercaLibroAutoreAnnoMessaggi {
         System.out.print("\n");
 
     }
+
+    /**
+     * Stampa l'opzione singola di autore e
+     * anno di pubblicazione.
+     *
+     * @param autore rappresenta l'autore
+     *
+     * @param annoPublicazione rappresenta
+     *                         l'anno di
+     *                         pubblicazione
+     *
+     * @param titolo rappresenta il titolo
+     *
+     * @param i rappresenta l'indice dell'
+     *          opzione
+     */
 
     public static void stampaOpzioneAutoreAnno(String autore, Integer annoPublicazione, String titolo,
         int i) {
@@ -147,10 +218,35 @@ public final class RicercaLibroAutoreAnnoMessaggi {
         System.out.print("\n");
     }
 
-    public static void erroreInserimentoAnnoPubblicazione(int annoCorrente) {
+    /**
+     * Stampa il messaggio di errore di
+     * inserimento dell'anno di pubblicazione.
+     */
+
+    public static void erroreInserimentoAnnoPubblicazione() {
         System.out.println("  Errore! L'anno deve essere tra "+Libro.MIN_ANNO_PUBBLICAZIONE
-                +" e "+annoCorrente+"\n");
+                +" e "+Libro.MAX_ANNO_PUBBLICAZIONE+"\n");
     }
+
+    /**
+     * Stampa il messaggio di libro non
+     * trovato in base alla ricerca per
+     * autore e anno di pubblicazione.
+     */
+
+    public static void valoriNonTrovati() {
+        System.out.print("\n  Non sono presenti libri dall'autore e anno cercato! Inserisci qualsiasi tasto: ");
+        Scanner in=new Scanner(System.in);
+        in.nextLine();
+    }
+
+    /**
+     * Gestisce l'inserimento dell'anno di
+     * pubblicazione.
+     *
+     * @return  l'anno di pubblicazione
+     *          inserito dall'utente
+     */
 
     public static int inserimentoAnnoPubblicazione() {
 
@@ -158,9 +254,6 @@ public final class RicercaLibroAutoreAnnoMessaggi {
         boolean controllo;
         String voce;
         Scanner in=new Scanner(System.in);
-
-        LocalDateTime localDateTime=LocalDateTime.now();
-        int annoCorrente=localDateTime.getYear();
 
         do {
 
@@ -180,9 +273,10 @@ public final class RicercaLibroAutoreAnnoMessaggi {
 
             if(controllo) {
                 annoPubblicazione=Integer.parseInt(voce);
-                if(annoPubblicazione<Libro.MIN_ANNO_PUBBLICAZIONE||annoPubblicazione>annoCorrente) {
+                if(annoPubblicazione<Libro.MIN_ANNO_PUBBLICAZIONE||
+                    annoPubblicazione>Libro.MAX_ANNO_PUBBLICAZIONE) {
                     controllo=false;
-                    RicercaLibroAutoreAnnoMessaggi.erroreInserimentoAnnoPubblicazione(annoCorrente);
+                    RicercaLibroAutoreAnnoMessaggi.erroreInserimentoAnnoPubblicazione();
                 }
             }
 
