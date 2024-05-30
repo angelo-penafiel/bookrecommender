@@ -1,5 +1,6 @@
 package bookrecommender.struttura;
 
+import bookrecommender.elaborazione.entities.user.User;
 import bookrecommender.struttura.menu.MenuIniziale;
 import bookrecommender.struttura.menu.MenuPrincipale;
 
@@ -9,7 +10,6 @@ import bookrecommender.struttura.menu.MenuPrincipale;
  * @author Angelo Penafiel
  * @version 1.0
  */
-
 public class BookRecommender {
 
     //METODI
@@ -17,7 +17,6 @@ public class BookRecommender {
     /**
      * Main che dirige il flusso del programma
      */
-
     public static void main(String[] args) {
 
         boolean controllo;
@@ -39,26 +38,20 @@ public class BookRecommender {
      *                  stampa del menu iniziale
      * @return flag controllo modificato
      */
-
     private static boolean menuIniziale(boolean controllo) {
 
         var menuIniziale=new MenuIniziale();
 
         if(menuIniziale.getScelta()==1) {
-
-            //accesso utente
+            User.login();
         }
 
         if(menuIniziale.getScelta()==2) {
-
-            //registrazione
-
+            User.register();
         }
 
         if(menuIniziale.getScelta()==3) {
-
             var menuPrincipale=new MenuPrincipale(0);
-
         }
 
         return controllo;
