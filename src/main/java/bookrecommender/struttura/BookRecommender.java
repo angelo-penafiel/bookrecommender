@@ -1,5 +1,6 @@
 package bookrecommender.struttura;
 
+import bookrecommender.elaborazione.entities.user.User;
 import bookrecommender.struttura.menu.MenuIniziale;
 import bookrecommender.struttura.menu.MenuPrincipale;
 
@@ -46,12 +47,12 @@ public class BookRecommender {
 
         if(menuIniziale.getScelta()==1) {
 
-            //accesso utente
+            User.login();
         }
 
         if(menuIniziale.getScelta()==2) {
 
-            //registrazione
+            User.register();
 
         }
 
