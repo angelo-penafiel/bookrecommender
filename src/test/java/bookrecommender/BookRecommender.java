@@ -46,20 +46,15 @@ public class BookRecommender {
         var menuIniziale=new MenuIniziale();
 
         if(menuIniziale.getScelta()==1) {
-
             User.login();
         }
 
         if(menuIniziale.getScelta()==2) {
-
             User.register();
-
         }
 
         if(menuIniziale.getScelta()==3) {
-
             var menuPrincipale=new MenuPrincipale(0);
-
         }
 
         return controllo;
