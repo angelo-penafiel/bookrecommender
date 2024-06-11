@@ -1,12 +1,12 @@
 Nome,Cognome,UserID,Taxcode,Mail,Password,Library
 test,test,test,test,test,9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08
-Marco,Rossi,MRossi,vnsbru87594bbkvs,mariorossi@insubria.it,1234,IlParagrafo
-Giulia,Bianchi,GBianchi,fnv352vhvjv2524g,giuliabianchi@insubria.it,5678,LibriFranchi
- Luca,Verdi,LVerdi,cbesfw62637vgc2d,lucaverdi@insubria.it,9123,Prefelibro
-Sofia,Neri,SNeri,cbkh463ssgr663bs,sofianeri@insubria.it,4567,IlParagrafo
-Matteo,Giallo,MGiallo,cbah27574fdvjsvs,matteogiallo@insubria.it,8912,LibriFranchi
-Alessandro,Ferrari,AFerrari,nvsj5626vvjgv524,alessandroferrari@insubria.it,3456,IlParagrafo
-Chiara,Mancini,CMancini,cb452vghg245hc56,chiaramanciniòinsubria.it,7891,Volumid’Autore
-Roberto,Esposito,REsposito,vabskbi54352vjcv,robertoesposito@insubria.it,2345,Volumid’Autore
-Elena,Conti,EConti,vskb7t659amfonva,elenaconti@insubria.it,6789,LaDedica
-Paolo,Ricci,PRicci,ciw5626gwvapvma6,paoloricci@insubria.it,1234,Prefelibro
+Marco,Rossi,MRossi,vnsbru87594bbkvs,mariorossi@insubria.it,1234
+Giulia,Bianchi,GBianchi,fnv352vhvjv2524g,giuliabianchi@insubria.it,5678
+Luca,Verdi,LVerdi,cbesfw62637vgc2d,lucaverdi@insubria.it,9123
+Sofia,Neri,SNeri,cbkh463ssgr663bs,sofianeri@insubria.it,4567
+Matteo,Giallo,MGiallo,cbah27574fdvjsvs,matteogiallo@insubria.it,8912
+Alessandro,Ferrari,AFerrari,nvsj5626vvjgv524,alessandroferrari@insubria.it,3456
+Chiara,Mancini,CMancini,cb452vghg245hc56,chiaramancini@insubria.it,7891
+Roberto,Esposito,REsposito,vabskbi54352vjcv,robertoesposito@insubria.it,2345
+Elena,Conti,EConti,vskb7t659amfonva,elenaconti@insubria.it,6789
+Paolo,Ricci,PRicci,ciw5626gwvapvma6,paoloricci@insubria.it,1234
