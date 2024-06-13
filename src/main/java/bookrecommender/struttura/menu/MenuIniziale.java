@@ -34,7 +34,7 @@ public class MenuIniziale {
     public MenuIniziale() {
 
         MenuInizialeMessaggi.menu();
-        scelta = SceltaMenuMessaggi.inserimentoSceltaMenu(3);
+        scelta = SceltaMenuMessaggi.inserimentoSceltaMenu(4);
     }
 
     //METODO
