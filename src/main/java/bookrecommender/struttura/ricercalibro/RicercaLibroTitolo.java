@@ -76,12 +76,6 @@ public class RicercaLibroTitolo {
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-
-            System.out.println(libro.getTitolo());
-            System.out.println(libro.getAutori());
-            System.out.println(libro.getAnnoPubblicazione());
-            System.out.println(libro.getEditore());
-            System.out.println(libro.getCategorie());
         }
 
         else {
@@ -166,5 +160,9 @@ public class RicercaLibroTitolo {
 
     public boolean isTornaIndietro() {
         return tornaIndietro;
+    }
+
+    public Libro getLibro() {
+        return libro;
     }
 }

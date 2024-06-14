@@ -54,7 +54,7 @@ public class BookRecommender {
         }
 
         if(menuIniziale.getScelta()==3) {
-            var menuPrincipale=new MenuPrincipale(0);
+            var menuPrincipale=new MenuPrincipale();
         }
 
         return controllo;

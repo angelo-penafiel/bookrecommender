@@ -51,9 +51,7 @@ public final class RicercaLibroMessaggi {
         System.out.println("| 1) Cerca libro per titolo                  |");
         System.out.println("| 2) Cerca libro per autore                  |");
         System.out.println("| 3) Cerca libro per autore e anno pubbli.   |");
-        System.out.println("| 4) Accedi                                  |");
-        System.out.println("| 5) Registrati                              |");
-        System.out.println("| 6) Esci dal programma                      |");
+        System.out.println("| 4) Torna al menu principale                |");
         System.out.println("----------------------------------------------");
     }
 

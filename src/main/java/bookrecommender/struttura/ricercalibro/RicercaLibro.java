@@ -1,8 +1,10 @@
 package bookrecommender.struttura.ricercalibro;
 
+import bookrecommender.elaborazione.entities.Libro;
 import bookrecommender.interfaccia.NuovaSchermata;
 import bookrecommender.interfaccia.menu.SceltaMenuMessaggi;
 import bookrecommender.interfaccia.ricercalibro.RicercaLibroMessaggi;
+import bookrecommender.struttura.visualizzazionelibro.VisualizzazioneLibro;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVRecord;
 
@@ -38,6 +40,8 @@ public class RicercaLibro {
      */
 
     private int scelta;
+
+    private Libro libro;
 
 
     //COSTRUTTORE
@@ -97,9 +101,7 @@ public class RicercaLibro {
             NuovaSchermata.nuovaSchermata();
             RicercaLibroMessaggi.menuSenzaRegistrazione();
 
-            scelta = SceltaMenuMessaggi.inserimentoSceltaMenu(6);
-
-            int modalitaRicerca=scelta;
+            scelta = SceltaMenuMessaggi.inserimentoSceltaMenu(4);
 
             if(scelta==1) {
                 var ricercaLibroTitolo=new RicercaLibroTitolo();
@@ -107,28 +109,47 @@ public class RicercaLibro {
                 if(ricercaLibroTitolo.isTornaIndietro()) {
                     controllo=false;
                 }
+
+                else {
+                    libro=ricercaLibroTitolo.getLibro();
+                }
             }
 
             if(scelta==2) {
                 var ricercaLibroAutore=new RicercaLibroAutore();
+
                 if(ricercaLibroAutore.isTornaIndietro()) {
                     controllo=false;
+                }
+
+                else {
+                    libro=ricercaLibroAutore.getLibro();
                 }
             }
 
             if(scelta==3) {
                 var ricercaLibroAutoreAnnoPubblicazione=new RicercaLibroAutoreAnnoPubblicazione();
+
                 if(ricercaLibroAutoreAnnoPubblicazione.isTornaIndietro()) {
                     controllo=false;
                 }
+
+                else {
+                    libro=ricercaLibroAutoreAnnoPubblicazione.getLibro();
+                }
             }
 
-            if(scelta==4) {
+            if(controllo) {
 
-            }
+                var visualizzazioneLibro = new VisualizzazioneLibro(libro);
 
-            if(scelta==5) {
+                if(visualizzazioneLibro.getScelta()==1) {
+                    controllo=false;
+                }
 
+                if(visualizzazioneLibro.getScelta()==2) {
+                    scelta=4;
+                }
             }
 
         } while(!controllo);

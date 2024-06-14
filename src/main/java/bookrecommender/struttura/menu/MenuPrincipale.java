@@ -29,11 +29,13 @@ public class MenuPrincipale {
      * del programma in base alla scelta effettuata.
      */
 
-    public MenuPrincipale(int continuaSenzaRegistrazione) {
+    public MenuPrincipale() {
 
-        var controllo = true;
+        boolean controllo;
 
         do {
+
+            controllo = true;
 
             NuovaSchermata.nuovaSchermata();
             MenuPrincipaleMessaggi.menuSenzaRegistrazione();
@@ -41,7 +43,11 @@ public class MenuPrincipale {
             scelta = SceltaMenuMessaggi.inserimentoSceltaMenu(4);
 
             if(scelta==1) {
-                controllo = cercaLibri();
+                var ricercaLibro=new RicercaLibro(0);
+
+                if(ricercaLibro.getScelta()==4) {
+                    controllo=false;
+                }
             }
 
             if(scelta==2) {
@@ -56,22 +62,6 @@ public class MenuPrincipale {
     }
 
     //METODI
-
-    /**
-     * Restituisce il boolean che indica se
-     * bisogna tornare nel menu principale e
-     * indirizza il flusso del programma verso
-     * la sezione di ricerca del libro.
-     */
-
-    private boolean cercaLibri() {
-
-        var controllo=true;
-
-        var ricercaLibro=new RicercaLibro(0);
-
-        return controllo;
-    }
 
     /**
      * Restituisce la scelta effettuata
