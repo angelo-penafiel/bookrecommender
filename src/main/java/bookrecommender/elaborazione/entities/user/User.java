@@ -11,23 +11,24 @@ import org.apache.commons.csv.CSVRecord;
 /**
  * This class implements some useful methods for handling the user and its data
  * @author Leonardo Basso
- * @see bookrecommender.interfaccia.register.RegistrazioneMessaggi
- * @see bookrecommender.elaborazione.entities.user.PasswordManager
+ * @see RegistrazioneMessaggi
+ * @see PasswordManager
  */
 public class User {
     /**
      * This method registers a user into a {@code .csv} file
      * The parameters saved are: {@code Nome}, {@code Cognome}, {@code UserID}, {@code Taxcode}, {@code Mail}, {@code Password}
      */
-    public static void register() {
+    public static String register() {
         try {
             String[] user = RegistrazioneMessaggi.in();
             BufferedWriter writer = new BufferedWriter(new FileWriter("data/Database/UtentiRegistrati.csv", true));
-
             if (user != null) {
                 writer.write(user[0] + "," + user[1] + "," + user[2] + "," + user[3] + "," + user[4] + "," + user[5] + "\n");
                 writer.close();
+                return user[2];
             }
+            return null;
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -35,23 +36,26 @@ public class User {
 
     /**
      * This method logs a user into the app using <a href="https://commons.apache.org/proper/commons-csv/">common-csv</a> by Apache
+     * @return String[] with the UserID and the Password
      */
-    public static void login() {
+    public static String login() {
         try {
             FileReader reader = new FileReader("data/Database/UtentiRegistrati.csv");
             String[] LoginData = LoginMessaggi.in();
             CSVFormat csvFormat = CSVFormat.DEFAULT.builder()
-                    .setHeader("Nome", "Cognome", "UserID", "Taxcode", "Mail", "Password")
+                    .setHeader()
                     .setSkipHeaderRecord(true)
                     .build();
             CSVParser parser = new CSVParser(reader, csvFormat);
-
+            String out = "";
             for (CSVRecord record : parser) {
                 if (record.get("UserID").equals(LoginData[0]) && PasswordManager.compare(LoginData[1], record.get("Password"))) {
+                    out = LoginData[0];
                     System.out.println("SUCCESS!");
+                    return out;
                 }
             }
-
+            return null;
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

@@ -4,6 +4,8 @@ import bookrecommender.elaborazione.entities.user.User;
 import bookrecommender.struttura.menu.MenuIniziale;
 import bookrecommender.struttura.menu.MenuPrincipale;
 
+import java.io.PrintStream;
+
 /**
  * Classe principale che contiene il metodo main.
  *
@@ -43,12 +45,13 @@ public class BookRecommender {
         var menuIniziale=new MenuIniziale();
 
         if(menuIniziale.getScelta()==1) {
-            User.login();
+            String UserID = User.login();
+            if (UserID != null) System.out.println("Welcome " + UserID);
         }
 
         if(menuIniziale.getScelta()==2) {
-            User.register();
-            User.login();
+            String UserID = User.register();
+            if (UserID != null) System.out.println("Welcome " + UserID);
         }
 
         if(menuIniziale.getScelta()==3) {

@@ -2,8 +2,8 @@ package bookrecommender.interfaccia.register;
 
 import java.security.NoSuchAlgorithmException;
 import java.util.Scanner;
-
 import bookrecommender.elaborazione.entities.user.PasswordManager;
+import bookrecommender.elaborazione.entities.utils.CSVUtils;
 
 /**
  * A menu that asks user registration data and saves them into an array
@@ -24,10 +24,20 @@ public class RegistrazioneMessaggi {
         System.out.print("Inserisci il tuo nome: ");
         user[0] = in.nextLine();
 
-        System.out.print("Inserisci il tuo conome: ");
+        System.out.print("Inserisci il tuo cognome: ");
         user[1] = in.nextLine();
-        System.out.print("Inserisci il tuo UserID: ");
-        user[2] = in.nextLine();
+
+        // Validate UserID
+        while (true) {
+            System.out.print("Inserisci il tuo UserID: ");
+            String inUserID = in.nextLine();
+            if (CSVUtils.find(inUserID, "UserID", "data/Database/UtentiRegistrati.csv") == null) {
+                user[2] = inUserID;
+                break;
+            } else {
+                System.out.println("UserID già esistente. Inserisci un altro UserID.");
+            }
+        }
 
         System.out.print("Inserisci il tuo codice fiscale: ");
         user[3] = in.nextLine();
@@ -35,19 +45,20 @@ public class RegistrazioneMessaggi {
         System.out.print("Inserisci la tua mail: ");
         user[4] = in.nextLine();
 
-        System.out.print("Inserisci la tua password: ");
-        String pass = in.nextLine();
+        // Validate Password
+        while (true) {
+            System.out.print("Inserisci la tua password: ");
+            String pass = in.nextLine();
 
-        System.out.print("Ripeti la tua password: ");
-        if (in.nextLine().equals(pass)) {
-            user[5] = PasswordManager.encrypt(pass);
-            return user;
-        } else {
-            System.out.println("Le due password non corrispondono, vuoi riprovare (Y/N)? ");
-            if (in.nextLine().equalsIgnoreCase("Y")) {
-                in();
+            System.out.print("Ripeti la tua password: ");
+            String confirmPass = in.nextLine();
+            if (pass.equals(confirmPass)) {
+                user[5] = PasswordManager.encrypt(pass);
+                break;
+            } else {
+                System.out.println("Le due password non corrispondono, riprova.\n");
             }
         }
-        return null;
+        return user;
     }
 }
