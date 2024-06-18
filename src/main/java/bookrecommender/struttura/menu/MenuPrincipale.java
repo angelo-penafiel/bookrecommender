@@ -3,6 +3,7 @@ package bookrecommender.struttura.menu;
 import bookrecommender.interfaccia.NuovaSchermata;
 import bookrecommender.interfaccia.menu.MenuPrincipaleMessaggi;
 import bookrecommender.interfaccia.menu.SceltaMenuMessaggi;
+import bookrecommender.struttura.libreria.MenuLibreria;
 import bookrecommender.struttura.ricercalibro.RicercaLibro;
 
 /**
@@ -55,6 +56,47 @@ public class MenuPrincipale {
             }
 
             if(scelta==3) {
+
+            }
+
+        } while(!controllo);
+    }
+
+    public MenuPrincipale(String userId) {
+
+        boolean controllo;
+
+        do {
+
+            controllo = true;
+
+            NuovaSchermata.nuovaSchermata();
+            MenuPrincipaleMessaggi.menuRegistrazione();
+
+            scelta = SceltaMenuMessaggi.inserimentoSceltaMenu(4);
+
+            if(scelta==1) {
+                var ricercaLibro=new RicercaLibro(1);
+
+                if(ricercaLibro.getScelta()==4) {
+                    controllo=false;
+                }
+
+                if(ricercaLibro.getScelta()==5) {
+                    scelta=3;
+                }
+            }
+
+            if(scelta==2) {
+                var menuLibreria=new MenuLibreria();
+
+                if(menuLibreria.getScelta()==3) {
+                    controllo=false;
+                }
+
+                if(menuLibreria.getScelta()==4) {
+                    scelta=3;
+                }
 
             }
 

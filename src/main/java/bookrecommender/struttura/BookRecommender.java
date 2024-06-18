@@ -46,12 +46,20 @@ public class BookRecommender {
 
         if(menuIniziale.getScelta()==1) {
             String UserID = User.login();
-            if (UserID != null) System.out.println("Welcome " + UserID);
+            if (UserID != null) {
+                System.out.println("Welcome " + UserID);
+                var menuPrincipale=new MenuPrincipale(UserID);
+                if(menuPrincipale.getScelta()==3) controllo=false;
+            }
         }
 
         if(menuIniziale.getScelta()==2) {
             String UserID = User.register();
-            if (UserID != null) System.out.println("Welcome " + UserID);
+            if (UserID != null) {
+                System.out.println("Welcome " + UserID);
+                var menuPrincipale=new MenuPrincipale(UserID);
+                if(menuPrincipale.getScelta()==3) controllo=false;
+            }
         }
 
         if(menuIniziale.getScelta()==3) {

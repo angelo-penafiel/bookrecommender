@@ -2,7 +2,7 @@ package bookrecommender.struttura.visualizzazionelibro;
 
 import bookrecommender.elaborazione.entities.Libro;
 import bookrecommender.interfaccia.NuovaSchermata;
-import bookrecommender.interfaccia.VisualizzazioneLibro.VisualizzazioneLIbroMessaggi;
+import bookrecommender.interfaccia.visualizzazioneLibro.VisualizzazioneLIbroMessaggi;
 import bookrecommender.interfaccia.menu.SceltaMenuMessaggi;
 
 public class VisualizzazioneLibro {
@@ -11,7 +11,7 @@ public class VisualizzazioneLibro {
 
   private int scelta;
 
-  public VisualizzazioneLibro(Libro libro) {
+  public VisualizzazioneLibro(int menuProvenienza, Libro libro) {
 
     this.libro=libro;
 
@@ -23,8 +23,20 @@ public class VisualizzazioneLibro {
     System.out.println(libro.getEditore());
     System.out.println(libro.getCategorie());
 
-    VisualizzazioneLIbroMessaggi.menuScelta();
-    scelta = SceltaMenuMessaggi.inserimentoSceltaMenu(3);
+    if(menuProvenienza==0) {
+      VisualizzazioneLIbroMessaggi.menuSceltaSenzaRegistrazione();
+      scelta = SceltaMenuMessaggi.inserimentoSceltaMenu(3);
+    }
+
+    if(menuProvenienza==1) {
+      VisualizzazioneLIbroMessaggi.menuSceltaUtenteRegistrato();
+      scelta = SceltaMenuMessaggi.inserimentoSceltaMenu(4);
+    }
+
+    if(menuProvenienza==2) {
+      VisualizzazioneLIbroMessaggi.menuSceltaConsigliati();
+      scelta = SceltaMenuMessaggi.inserimentoSceltaMenu(6);
+    }
 
   }
 

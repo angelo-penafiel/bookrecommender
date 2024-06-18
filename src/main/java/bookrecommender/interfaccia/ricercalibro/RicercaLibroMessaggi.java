@@ -23,19 +23,25 @@ public final class RicercaLibroMessaggi {
      * Stampa il menu della sezione di scelta
      * della modalità di ricerca dei libri nel
      * caso in cui l'utente è loggato.
-     *
-     * @param userId rappresenta l'userId
      */
 
-    public static void menu(String userId) {
+    public static void menuUtenteRegistratoConsigli() {
 
-        System.out.println("-----Menu principale/Utente: "+userId+"-----");
-        System.out.println("| 1) Luci ");
-        System.out.println("| 2) Lavatrici ");
-        System.out.println("| 3) Notifiche ");
-        System.out.println("| 4) Log out ");
-        System.out.println("| 5) Esci dal programma ");
-        System.out.println("----------------------------------------------------");
+        System.out.println("----------------Ricerca libro-----------------");
+        System.out.println("| 1) Cerca libro per titolo                  |");
+        System.out.println("| 2) Cerca libro per autore                  |");
+        System.out.println("| 3) Cerca libro per autore e anno pubbli.   |");
+        System.out.println("----------------------------------------------");
+    }
+
+    public static void menuUtenteRegistrato() {
+
+        System.out.println("----------------Ricerca libro-----------------");
+        System.out.println("| 1) Cerca libro per titolo                  |");
+        System.out.println("| 2) Cerca libro per autore                  |");
+        System.out.println("| 3) Cerca libro per autore e anno pubbli.   |");
+        System.out.println("| 4) Torna al menu principale                |");
+        System.out.println("----------------------------------------------");
     }
 
     /**

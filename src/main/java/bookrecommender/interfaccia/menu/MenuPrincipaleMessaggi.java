@@ -49,4 +49,14 @@ public final class MenuPrincipaleMessaggi {
         System.out.println("| 4) Esci dal programma   |");
         System.out.println("---------------------------");
     }
+
+    public static void menuRegistrazione() {
+
+        System.out.println("------Menu principale------");
+        System.out.println("| 1) Cerca libro          |");
+        System.out.println("| 2) Librerie             |");
+        System.out.println("| 3) Log out              |");
+        System.out.println("| 4) Esci dal programma   |");
+        System.out.println("---------------------------");
+    }
 }

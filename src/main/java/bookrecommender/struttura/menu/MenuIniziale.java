@@ -1,5 +1,6 @@
 package bookrecommender.struttura.menu;
 
+import bookrecommender.interfaccia.NuovaSchermata;
 import bookrecommender.interfaccia.menu.MenuInizialeMessaggi;
 import bookrecommender.interfaccia.menu.SceltaMenuMessaggi;
 
@@ -33,6 +34,7 @@ public class MenuIniziale {
 
     public MenuIniziale() {
 
+        NuovaSchermata.nuovaSchermata();
         MenuInizialeMessaggi.menu();
         scelta = SceltaMenuMessaggi.inserimentoSceltaMenu(3);
     }

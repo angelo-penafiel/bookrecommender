@@ -53,8 +53,8 @@ public class RicercaLibro {
      * non ha effettuato il login.
      */
 
-    public RicercaLibro(int continuaSenzaRegistrazione) {
-        cercaLibro();
+    public RicercaLibro(int menuProvenienza) {
+        cercaLibro(menuProvenienza);
     }
 
     //METODI
@@ -90,7 +90,7 @@ public class RicercaLibro {
      * di ricerca dei libri.
      */
 
-    private void cercaLibro() {
+    private void cercaLibro(int menuProvenienza) {
 
         boolean controllo;
 
@@ -98,61 +98,201 @@ public class RicercaLibro {
 
             controllo=true;
 
-            NuovaSchermata.nuovaSchermata();
-            RicercaLibroMessaggi.menuSenzaRegistrazione();
-
-            scelta = SceltaMenuMessaggi.inserimentoSceltaMenu(4);
-
-            if(scelta==1) {
-                var ricercaLibroTitolo=new RicercaLibroTitolo();
-
-                if(ricercaLibroTitolo.isTornaIndietro()) {
-                    controllo=false;
-                }
-
-                else {
-                    libro=ricercaLibroTitolo.getLibro();
-                }
+            if(menuProvenienza==0) {
+                controllo=cercaLibroSenzaRegistrazione(controllo, menuProvenienza);
             }
 
-            if(scelta==2) {
-                var ricercaLibroAutore=new RicercaLibroAutore();
-
-                if(ricercaLibroAutore.isTornaIndietro()) {
-                    controllo=false;
-                }
-
-                else {
-                    libro=ricercaLibroAutore.getLibro();
-                }
+            if(menuProvenienza==1) {
+                controllo=cercaLibroUtenteRegistrato(controllo, menuProvenienza);
             }
 
-            if(scelta==3) {
-                var ricercaLibroAutoreAnnoPubblicazione=new RicercaLibroAutoreAnnoPubblicazione();
-
-                if(ricercaLibroAutoreAnnoPubblicazione.isTornaIndietro()) {
-                    controllo=false;
-                }
-
-                else {
-                    libro=ricercaLibroAutoreAnnoPubblicazione.getLibro();
-                }
+            if(menuProvenienza==2) {
+                controllo=cercaLibroUtenteRegistratoConsigli(controllo, menuProvenienza);
             }
 
-            if(controllo) {
 
-                var visualizzazioneLibro = new VisualizzazioneLibro(libro);
-
-                if(visualizzazioneLibro.getScelta()==1) {
-                    controllo=false;
-                }
-
-                if(visualizzazioneLibro.getScelta()==2) {
-                    scelta=4;
-                }
-            }
 
         } while(!controllo);
+    }
+
+    private boolean cercaLibroSenzaRegistrazione(boolean controllo, int menuProvenienza) {
+
+        NuovaSchermata.nuovaSchermata();
+        RicercaLibroMessaggi.menuSenzaRegistrazione();
+
+        scelta = SceltaMenuMessaggi.inserimentoSceltaMenu(4);
+
+        if(scelta==1) {
+            var ricercaLibroTitolo=new RicercaLibroTitolo();
+
+            if(ricercaLibroTitolo.isTornaIndietro()) {
+                controllo=false;
+            }
+
+            else {
+                libro=ricercaLibroTitolo.getLibro();
+            }
+        }
+
+        if(scelta==2) {
+            var ricercaLibroAutore=new RicercaLibroAutore();
+
+            if(ricercaLibroAutore.isTornaIndietro()) {
+                controllo=false;
+            }
+
+            else {
+                libro=ricercaLibroAutore.getLibro();
+            }
+        }
+
+        if(scelta==3) {
+            var ricercaLibroAutoreAnnoPubblicazione=new RicercaLibroAutoreAnnoPubblicazione();
+
+            if(ricercaLibroAutoreAnnoPubblicazione.isTornaIndietro()) {
+                controllo=false;
+            }
+
+            else {
+                libro=ricercaLibroAutoreAnnoPubblicazione.getLibro();
+            }
+        }
+
+        if(controllo&&scelta!=4) {
+
+            var visualizzazioneLibro = new VisualizzazioneLibro(menuProvenienza,libro);
+
+            if(visualizzazioneLibro.getScelta()==1) {
+                controllo=false;
+            }
+
+            if(visualizzazioneLibro.getScelta()==2) {
+                scelta=4;
+            }
+
+        }
+
+        return controllo;
+    }
+
+    private boolean cercaLibroUtenteRegistrato(boolean controllo, int menuProvenienza) {
+
+        NuovaSchermata.nuovaSchermata();
+        RicercaLibroMessaggi.menuUtenteRegistrato();
+
+        scelta = SceltaMenuMessaggi.inserimentoSceltaMenu(4);
+
+        if(scelta==1) {
+            var ricercaLibroTitolo=new RicercaLibroTitolo();
+
+            if(ricercaLibroTitolo.isTornaIndietro()) {
+                controllo=false;
+            }
+
+            else {
+                libro=ricercaLibroTitolo.getLibro();
+            }
+        }
+
+        if(scelta==2) {
+            var ricercaLibroAutore=new RicercaLibroAutore();
+
+            if(ricercaLibroAutore.isTornaIndietro()) {
+                controllo=false;
+            }
+
+            else {
+                libro=ricercaLibroAutore.getLibro();
+            }
+        }
+
+        if(scelta==3) {
+            var ricercaLibroAutoreAnnoPubblicazione=new RicercaLibroAutoreAnnoPubblicazione();
+
+            if(ricercaLibroAutoreAnnoPubblicazione.isTornaIndietro()) {
+                controllo=false;
+            }
+
+            else {
+                libro=ricercaLibroAutoreAnnoPubblicazione.getLibro();
+            }
+        }
+
+        if(controllo&&scelta!=4) {
+
+            var visualizzazioneLibro = new VisualizzazioneLibro(menuProvenienza,libro);
+            scelta = visualizzazioneLibro.getScelta();
+
+            if(visualizzazioneLibro.getScelta()==1) {
+                controllo=false;
+            }
+
+            if(visualizzazioneLibro.getScelta()==2) {
+                scelta=4;
+            }
+
+            if(visualizzazioneLibro.getScelta()==3) {
+                scelta=5;
+            }
+
+            if(visualizzazioneLibro.getScelta()==4) {
+                scelta=6;
+            }
+        }
+
+        return controllo;
+    }
+
+    private boolean cercaLibroUtenteRegistratoConsigli(boolean controllo, int menuProvenienza) {
+
+        NuovaSchermata.nuovaSchermata();
+        RicercaLibroMessaggi.menuUtenteRegistratoConsigli();
+
+        scelta = SceltaMenuMessaggi.inserimentoSceltaMenu(3);
+
+        if(scelta==1) {
+            var ricercaLibroTitolo=new RicercaLibroTitolo();
+
+            if(ricercaLibroTitolo.isTornaIndietro()) {
+                controllo=false;
+            }
+
+            else {
+                libro=ricercaLibroTitolo.getLibro();
+            }
+        }
+
+        if(scelta==2) {
+            var ricercaLibroAutore=new RicercaLibroAutore();
+
+            if(ricercaLibroAutore.isTornaIndietro()) {
+                controllo=false;
+            }
+
+            else {
+                libro=ricercaLibroAutore.getLibro();
+            }
+        }
+
+        if(scelta==3) {
+            var ricercaLibroAutoreAnnoPubblicazione=new RicercaLibroAutoreAnnoPubblicazione();
+
+            if(ricercaLibroAutoreAnnoPubblicazione.isTornaIndietro()) {
+                controllo=false;
+            }
+
+            else {
+                libro=ricercaLibroAutoreAnnoPubblicazione.getLibro();
+            }
+        }
+
+        if(controllo) {
+
+            var visualizzazioneLibro = new VisualizzazioneLibro(menuProvenienza,libro);
+            scelta = visualizzazioneLibro.getScelta();
+        }
+
+        return controllo;
     }
 
     /**
@@ -165,4 +305,7 @@ public class RicercaLibro {
         return scelta;
     }
 
+    public Libro getLibro() {
+        return libro;
+    }
 }
