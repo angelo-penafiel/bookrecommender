@@ -286,12 +286,6 @@ public class RicercaLibro {
             }
         }
 
-        if(controllo) {
-
-            var visualizzazioneLibro = new VisualizzazioneLibro(menuProvenienza,libro);
-            scelta = visualizzazioneLibro.getScelta();
-        }
-
         return controllo;
     }
 

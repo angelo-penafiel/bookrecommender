@@ -1,10 +1,10 @@
 package bookrecommender.interfaccia.consigliati;
 
-public final class InserimentoConsigliMessaggi {
+public final class SelezioneConsigliatiMessaggi {
 
     //COSTRUTTORE
 
-    private InserimentoConsigliMessaggi() {
+    private SelezioneConsigliatiMessaggi() {
 
     }
 

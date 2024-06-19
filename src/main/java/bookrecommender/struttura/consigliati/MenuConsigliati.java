@@ -24,19 +24,13 @@ public class MenuConsigliati {
       if(true) {
 
         MenuConsigliatiMessaggi.menuConsigliatiPresenti();
-        scelta = SceltaMenuMessaggi.inserimentoSceltaMenu(5);
+        scelta = SceltaMenuMessaggi.inserimentoSceltaMenu(7);
 
         if(scelta==1) {
 
           var inserimentoConsigliati=new InserimentoConsigliati();
 
-          if(inserimentoConsigliati.getScelta()==1) {
-            controllo=false;
-          }
-
-          if(inserimentoConsigliati.getScelta()>=2) {
-            scelta=inserimentoConsigliati.getScelta()+1;
-          }
+          controllo=false;
 
         }
 
@@ -46,13 +40,7 @@ public class MenuConsigliati {
 
           var inserimentoConsigliati=new InserimentoConsigliati();
 
-          if(inserimentoConsigliati.getScelta()==1) {
-            controllo=false;
-          }
-
-          if(inserimentoConsigliati.getScelta()>=2) {
-            scelta=inserimentoConsigliati.getScelta()+1;
-          }
+          controllo=false;
 
         }
 
@@ -61,19 +49,13 @@ public class MenuConsigliati {
       else {
 
         MenuConsigliatiMessaggi.menuConsigliatiAssenti();
-        scelta = SceltaMenuMessaggi.inserimentoSceltaMenu(4);
+        scelta = SceltaMenuMessaggi.inserimentoSceltaMenu(6);
 
         if(scelta==1) {
 
           var inserimentoConsigliati=new InserimentoConsigliati();
 
-          if(inserimentoConsigliati.getScelta()==1) {
-            controllo=false;
-          }
-
-          if(inserimentoConsigliati.getScelta()>=2) {
-            scelta=inserimentoConsigliati.getScelta()+1;
-          }
+          controllo=false;
 
         }
 

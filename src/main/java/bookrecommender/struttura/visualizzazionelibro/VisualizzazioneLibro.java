@@ -33,11 +33,6 @@ public class VisualizzazioneLibro {
       scelta = SceltaMenuMessaggi.inserimentoSceltaMenu(4);
     }
 
-    if(menuProvenienza==2) {
-      VisualizzazioneLIbroMessaggi.menuSceltaConsigliati();
-      scelta = SceltaMenuMessaggi.inserimentoSceltaMenu(6);
-    }
-
   }
 
   /**
