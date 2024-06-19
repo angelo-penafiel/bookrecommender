@@ -5,14 +5,14 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 /**
- * This class handles with password management and cryptography
+ * Questa classe gestisce la gestione delle password e la crittografia
  * @author Leonardo Basso
  */
 public class PasswordManager {
     /**
-     * This method hashes the password using {@code SHA-256} as algorithm
-     * @param password The un-hashed password
-     * @return The hashed password as a String
+     * Questo metodo esegue l'hashing della password utilizzando {@code SHA-256} come algoritmo
+     * @param password La password senza hash
+     * @return la password con hash come stringa
      */
     public static String encrypt(String password) throws NoSuchAlgorithmException {
         MessageDigest md = MessageDigest.getInstance("SHA-256");
@@ -23,10 +23,10 @@ public class PasswordManager {
     }
 
     /**
-     * This method compares two passwords
-     * @param inputPass  The password that is not hashed
-     * @param hashedPass The password that is hashed
-     * @return {@code true} if the two password matches
+     * Questo metodo confronta due password
+     * @param inputPass  La password che non è sottoposta a hashing
+     * @param hashedPass La password con hash
+     * @return {@code true} se le due password corrispondono
      */
     public static boolean compare(String inputPass, String hashedPass) throws NoSuchAlgorithmException {
         return encrypt(inputPass).equals(hashedPass);

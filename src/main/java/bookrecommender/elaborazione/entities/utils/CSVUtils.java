@@ -6,17 +6,17 @@ import org.apache.commons.csv.CSVRecord;
 import java.io.FileReader;
 
 /**
- * This class contains utils for the CSVReader, made in order not to repeat code
+ * Questa classe contiene le utilità per il CSVReader, create per non ripetere il codice
  *
  * @author Leonardo Basso
  */
 public class CSVUtils {
     /**
-     * This method, given an input, returns the input if it exists in a given header, else returns null
-     * @param toFind The string to find
-     * @param header The header where the string should be searched
-     * @param path the location of the .csv file
-     * @return toFind if it matches in the file, else returns null
+     * Questo metodo, dato un input, restituisce l'input se esiste in una data intestazione, altrimenti restituisce null
+     * @param toFind La stringa da trovare
+     * @param header Intestazione in cui deve essere eseguita la ricerca della stringa
+     * @param path la posizione del file .csv
+     * @return toFind se corrisponde nel file, altrimenti restituisce null
      */
     public static String find(String toFind, String header, String path) {
         try {
