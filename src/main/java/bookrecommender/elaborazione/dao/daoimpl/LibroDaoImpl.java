@@ -487,7 +487,7 @@ public class LibroDaoImpl implements LibroDao {
       categorie.add(categories.substring(j));
     }
 
-    libro=new Libro(titolo,autori,annoPubblicazione,editore,categorie);
+    libro=new Libro(id,titolo,autori,annoPubblicazione,editore,categorie);
 
     return libro;
   }

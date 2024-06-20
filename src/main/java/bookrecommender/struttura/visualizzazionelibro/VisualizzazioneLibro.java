@@ -17,6 +17,7 @@ public class VisualizzazioneLibro {
 
     NuovaSchermata.nuovaSchermata();
 
+    System.out.println(libro.getId());
     System.out.println(libro.getTitolo());
     System.out.println(libro.getAutori());
     System.out.println(libro.getAnnoPubblicazione());

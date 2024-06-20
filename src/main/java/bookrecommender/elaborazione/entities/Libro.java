@@ -61,6 +61,8 @@ public class Libro {
 
     public static final Integer MIN_ANNO_PUBBLICAZIONE=1755;
 
+    private Integer id;
+
     /**
      * Campo che rappresenta il titolo.
      */
@@ -129,9 +131,10 @@ public class Libro {
         this.autori= Collections.singletonList(autore);
     }
 
-    public Libro(String titolo, List<String> autori, Integer annoPubblicazione, String editore,
+    public Libro(Integer id, String titolo, List<String> autori, Integer annoPubblicazione, String editore,
                  List<String> categorie) {
-        this.titolo =titolo;
+        this.id=id;
+        this.titolo=titolo;
         this.autori=autori;
         this.annoPubblicazione=annoPubblicazione;
         this.editore =editore;
@@ -139,6 +142,15 @@ public class Libro {
     }
 
     //METODI
+
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     /**
      * Restituisce il titolo
