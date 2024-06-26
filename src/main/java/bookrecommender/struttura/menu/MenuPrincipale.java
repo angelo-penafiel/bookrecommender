@@ -88,13 +88,13 @@ public class MenuPrincipale {
             }
 
             if(scelta==2) {
-                var menuLibreria=new MenuLibreria();
+                var menuLibreria=new MenuLibreria(userId);
 
-                if(menuLibreria.getScelta()==3) {
+                if(menuLibreria.getScelta()==4) {
                     controllo=false;
                 }
 
-                if(menuLibreria.getScelta()==4) {
+                if(menuLibreria.getScelta()==5) {
                     scelta=3;
                 }
 

@@ -34,6 +34,15 @@ public final class RicercaLibroMessaggi {
         System.out.println("----------------------------------------------");
     }
 
+    public static void menuUtenteRegistratoLibroLibreria() {
+
+        System.out.println("----------------Ricerca libro-----------------");
+        System.out.println("| 1) Cerca libro per titolo                  |");
+        System.out.println("| 2) Cerca libro per autore                  |");
+        System.out.println("| 3) Cerca libro per autore e anno pubbli.   |");
+        System.out.println("----------------------------------------------");
+    }
+
     public static void menuUtenteRegistrato() {
 
         System.out.println("----------------Ricerca libro-----------------");

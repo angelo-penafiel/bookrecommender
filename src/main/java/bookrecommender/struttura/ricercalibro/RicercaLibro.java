@@ -110,6 +110,10 @@ public class RicercaLibro {
                 controllo=cercaLibroUtenteRegistratoConsigli(controllo, menuProvenienza);
             }
 
+            if(menuProvenienza==3) {
+                controllo=cercaLibroUtenteRegistratoLibroLibreria(controllo, menuProvenienza);
+            }
+
 
 
         } while(!controllo);
@@ -289,6 +293,52 @@ public class RicercaLibro {
         return controllo;
     }
 
+    private boolean cercaLibroUtenteRegistratoLibroLibreria(boolean controllo, int menuProvenienza) {
+
+        NuovaSchermata.nuovaSchermata();
+        RicercaLibroMessaggi.menuUtenteRegistratoLibroLibreria();
+
+        scelta = SceltaMenuMessaggi.inserimentoSceltaMenu(3);
+
+        if(scelta==1) {
+            var ricercaLibroTitolo=new RicercaLibroTitolo();
+
+            if(ricercaLibroTitolo.isTornaIndietro()) {
+                controllo=false;
+            }
+
+            else {
+                libro=ricercaLibroTitolo.getLibro();
+            }
+        }
+
+        if(scelta==2) {
+            var ricercaLibroAutore=new RicercaLibroAutore();
+
+            if(ricercaLibroAutore.isTornaIndietro()) {
+                controllo=false;
+            }
+
+            else {
+                libro=ricercaLibroAutore.getLibro();
+            }
+        }
+
+        if(scelta==3) {
+            var ricercaLibroAutoreAnnoPubblicazione=new RicercaLibroAutoreAnnoPubblicazione();
+
+            if(ricercaLibroAutoreAnnoPubblicazione.isTornaIndietro()) {
+                controllo=false;
+            }
+
+            else {
+                libro=ricercaLibroAutoreAnnoPubblicazione.getLibro();
+            }
+        }
+
+        return controllo;
+    }
+
     /**
      * Restituisce la scelta effettuata
      * del menu di selezione della modalità
@@ -302,4 +352,5 @@ public class RicercaLibro {
     public Libro getLibro() {
         return libro;
     }
+
 }

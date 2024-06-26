@@ -142,7 +142,7 @@ public class RicercaLibroTitolo {
 
         else {
             RicercaLibroTitoloMessaggi.stampaOpzioniTitoloAnno(opzioniTitoloAnno);
-            libroSelezionato= SceltaMenuMessaggi.inserimentoSceltaMenu(opzioniTitoloAnno.size());
+            libroSelezionato = SceltaMenuMessaggi.inserimentoSceltaMenu(opzioniTitoloAnno.size());
             NuovaSchermata.nuovaSchermata();
         }
 
