@@ -41,6 +41,11 @@ public class RicercaLibro {
 
     private int scelta;
 
+    /**
+     * Campo che indica il libro di scelto
+     * dall'utente correlato alla ricerca.
+     */
+
     private Libro libro;
 
 
@@ -86,8 +91,8 @@ public class RicercaLibro {
 
     /**
      * Gestisce l'indirizzamento del flusso del
-     * programma in base alla scelta della modalità
-     * di ricerca dei libri.
+     * programma in base al menu di provenieza
+     * (menu precedente).
      */
 
     private void cercaLibro(int menuProvenienza) {
@@ -114,10 +119,15 @@ public class RicercaLibro {
                 controllo=cercaLibroUtenteRegistratoLibroLibreria(controllo, menuProvenienza);
             }
 
-
-
         } while(!controllo);
     }
+
+    /**
+     * Gestisce l'indirizzamento del flusso del
+     * programma in base alla scelta della modalità
+     * di ricerca dei libri per la sezione di
+     * ricerca libro per gli utenti non registrati.
+     */
 
     private boolean cercaLibroSenzaRegistrazione(boolean controllo, int menuProvenienza) {
 
@@ -178,6 +188,13 @@ public class RicercaLibro {
 
         return controllo;
     }
+
+    /**
+     * Gestisce l'indirizzamento del flusso del
+     * programma in base alla scelta della modalità
+     * di ricerca dei libri per la sezione di
+     * ricerca libro per gli utenti registrati.
+     */
 
     private boolean cercaLibroUtenteRegistrato(boolean controllo, int menuProvenienza) {
 
@@ -247,6 +264,14 @@ public class RicercaLibro {
         return controllo;
     }
 
+    /**
+     * Gestisce l'indirizzamento del flusso del
+     * programma in base alla scelta della modalità
+     * di ricerca dei libri per la sezione di
+     * selezione/ricerca libro (dei libri consigliati)
+     * per gli utenti registrati.
+     */
+
     private boolean cercaLibroUtenteRegistratoConsigli(boolean controllo, int menuProvenienza) {
 
         NuovaSchermata.nuovaSchermata();
@@ -292,6 +317,14 @@ public class RicercaLibro {
 
         return controllo;
     }
+
+    /**
+     * Gestisce l'indirizzamento del flusso del
+     * programma in base alla scelta della modalità
+     * di ricerca dei libri per la sezione di
+     * selezione/ricerca libro (dei libri della libreria)
+     * per gli utenti registrati.
+     */
 
     private boolean cercaLibroUtenteRegistratoLibroLibreria(boolean controllo, int menuProvenienza) {
 
@@ -343,11 +376,20 @@ public class RicercaLibro {
      * Restituisce la scelta effettuata
      * del menu di selezione della modalità
      * di ricerca dei libri.
+     *
+     * @return la scelta
      */
 
     public int getScelta() {
         return scelta;
     }
+
+    /**
+     * Restituisce il libro selezionato
+     * dell'utente correlato alla ricerca.
+     *
+     * @return il libro
+     */
 
     public Libro getLibro() {
         return libro;

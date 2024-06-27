@@ -82,7 +82,7 @@ public class Libreria {
 
     /**
      * Setta l'id
-     * @param id rappresenta l'iid
+     * @param id rappresenta l'id
      */
 
     public void setId(Integer id) {

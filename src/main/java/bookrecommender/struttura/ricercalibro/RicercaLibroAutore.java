@@ -168,6 +168,13 @@ public class RicercaLibroAutore {
         return tornaIndietro;
     }
 
+    /**
+     * Restituisce il libro selezionato
+     * dell'utente correlato alla ricerca.
+     *
+     * @return il libro
+     */
+
     public Libro getLibro() {
         return libro;
     }

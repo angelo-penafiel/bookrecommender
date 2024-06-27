@@ -1,5 +1,13 @@
 package bookrecommender.interfaccia.libreria;
 
+/**
+ * Classe che ha la funzione di stampare i
+ * messaggi della sezione del menu libreria.
+ *
+ * @author Angelo Penafiel
+ * @version 1.0
+ */
+
 public final class MenuLibreriaMessaggi {
 
     //COSTRUTTORE
@@ -11,7 +19,9 @@ public final class MenuLibreriaMessaggi {
     //METODO
 
     /**
-     * Stampa il menu iniziale.
+     * Stampa il menu libreria nel caso in
+     * cui è presente una libreria dell'utente
+     * loggato.
      */
 
     public static void menuLibreriaPresente() {
@@ -23,6 +33,12 @@ public final class MenuLibreriaMessaggi {
         System.out.println("| 4) Torna al menu principale            |");
         System.out.println("------------------------------------------");
     }
+
+    /**
+     * Stampa il menu libreria nel caso in
+     * cui non è presente una libreria
+     * dell'utente loggato.
+     */
 
     public static void menuLibreriaAssente() {
 

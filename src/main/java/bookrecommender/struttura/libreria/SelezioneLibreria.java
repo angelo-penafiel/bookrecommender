@@ -9,7 +9,17 @@ import bookrecommender.interfaccia.menu.SceltaMenuMessaggi;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * Classe che ha la funzione di gestire la
+ * sezione di selezione della libreria.
+ *
+ * @author Angelo Penafiel
+ * @version 1.0
+ */
+
 public class SelezioneLibreria {
+
+  //CAMPI
 
   /**
    * Costante che indica il numero massimo
@@ -18,7 +28,26 @@ public class SelezioneLibreria {
 
   public static final Integer MAX_RISULTATI_PAGINA=7;
 
+  /**
+   * Campo che indica la libreria
+   * selezionata dall'utente.
+   */
+
   private Libreria libreria;
+
+  //COSTRUTTORE
+
+  /**
+   * Restituisce l'oggetto di tipo SelezioneLibreria
+   * e all'interno viene effettuata la stampa
+   * delle librerie, dati gli id delle librerie trovate,
+   * e l'inserimento della scelta della libreria da
+   * selezionare.
+   *
+   * @param idsLibrerieTrovate indica la lista di id delle
+   *                           librerie trovate dell'utente
+   *                           loggato
+   */
 
   public SelezioneLibreria(List<Integer> idsLibrerieTrovate) {
 
@@ -78,6 +107,15 @@ public class SelezioneLibreria {
       throw new RuntimeException(e);
     }
   }
+
+  //METODO
+
+  /**
+   * Restituisce la libreria
+   * selezionata dell'utente.
+   *
+   * @return la libreria
+   */
 
   public Libreria getLibreria() {
     return libreria;

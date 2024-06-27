@@ -61,6 +61,10 @@ public class Libro {
 
     public static final Integer MIN_ANNO_PUBBLICAZIONE=1755;
 
+    /**
+     * Campo che rappresenta l'id.
+     */
+
     private Integer id;
 
     /**
@@ -144,9 +148,19 @@ public class Libro {
     //METODI
 
 
+    /**
+     * Restituisce l'id
+     * @return l'id
+     */
+
     public Integer getId() {
         return id;
     }
+
+    /**
+     * Setta l'id
+     * @param id rappresenta l'id
+     */
 
     public void setId(Integer id) {
         this.id = id;

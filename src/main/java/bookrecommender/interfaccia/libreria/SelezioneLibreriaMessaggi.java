@@ -3,6 +3,15 @@ package bookrecommender.interfaccia.libreria;
 import bookrecommender.struttura.libreria.SelezioneLibreria;
 import java.util.List;
 
+/**
+ * Classe che ha la funzione di stampare i
+ * messaggi e gestire gli inserimenti della
+ * sezione di selezione di una libreria.
+ *
+ * @author Angelo Penafiel
+ * @version 1.0
+ */
+
 public final class SelezioneLibreriaMessaggi {
 
     //COSTRUTTORE

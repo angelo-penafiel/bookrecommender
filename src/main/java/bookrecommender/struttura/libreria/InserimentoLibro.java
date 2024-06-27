@@ -8,7 +8,25 @@ import bookrecommender.interfaccia.libreria.InserimentoLibroMessaggi;
 import bookrecommender.struttura.ricercalibro.RicercaLibro;
 import java.io.IOException;
 
+/**
+ * Classe che ha la funzione di gestire la
+ * sezione di inserimento del libro nella libreria.
+ *
+ * @author Angelo Penafiel
+ * @version 1.0
+ */
+
 public class InserimentoLibro {
+
+  //COSTRUTTORE
+
+  /**
+   * Restituisce l'oggetto di tipo  InserimentoLibro
+   * e all'interno viene effettuata la selezione
+   * del libro da aggiungere alla libreria data.
+   *
+   * @param libreria indica la libreria
+   */
 
   public InserimentoLibro(Libreria libreria) {
 

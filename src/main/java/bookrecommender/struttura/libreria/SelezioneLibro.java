@@ -11,11 +11,41 @@ import bookrecommender.struttura.ricercalibro.RicercaLibroTitolo;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * Classe che ha la funzione di gestire la
+ * sezione di selezione del libro della libreria.
+ *
+ * @author Angelo Penafiel
+ * @version 1.0
+ */
+
 public class SelezioneLibro {
+
+  //CAMPI
+
+  /**
+   * Campo che indica il libro della libreria
+   * selezionato dall'utente.
+   */
 
   private Libro libro;
 
+  /**
+   * Campo che indica se tornare indietro
+   */
+
   private boolean tornaIndietro;
+
+  //COSTRUTTORE
+
+  /**
+   * Restituisce l'oggetto di tipo SelezioneLibro
+   * e all'interno viene effettuata la stampa
+   * dei libri della libreria data e l'inserimento
+   * della scelta del libro da selezionare.
+   *
+   * @param libreria indica la libreria
+   */
 
   public SelezioneLibro(Libreria libreria) {
 
@@ -43,14 +73,30 @@ public class SelezioneLibro {
 
     else {
       tornaIndietro=true;
-      SelezioneLibroMessaggi.valoriNonTrovati();
+      SelezioneLibroMessaggi.valoriNonPresenti();
     }
 
   }
 
+  //METODI
+
+  /**
+   * Restituisce il libro della libreria
+   * selezionato dell'utente.
+   *
+   * @return il libro
+   */
+
   public Libro getLibro() {
     return libro;
   }
+
+  /**
+   * Restituisce il boolean che indica se
+   * tornare indietro.
+   *
+   * @return il boolean se tornare indietro
+   */
 
   public boolean isTornaIndietro() {
     return tornaIndietro;

@@ -9,9 +9,38 @@ import bookrecommender.struttura.menu.MenuAzioniLibro;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * Classe che ha la funzione di gestire la
+ * sezione del menu della libreria.
+ *
+ * @author Angelo Penafiel
+ * @version 1.0
+ */
+
 public class MenuLibreria {
 
+  //CAMPO
+
+  /**
+   * Campo che indica il numero di scelta
+   * effettuata del menu libreria.
+   */
+
   private int scelta;
+
+  //COSTRUTTORE
+
+  /**
+   * Restituisce l'oggetto di tipo MenuLibreria
+   * e all'interno viene effettuata la stampa
+   * del menu e l'inserimento della scelta del
+   * menu libreria. Successivamente viene gestito
+   * il flusso del programma in base alla scelta
+   * effettuata.
+   *
+   * @param userId indica lo userId dell'utente
+   *               loggato
+   */
 
   public MenuLibreria(String userId) {
 
@@ -98,6 +127,15 @@ public class MenuLibreria {
     } while (!controllo);
 
   }
+
+  //METODO
+
+  /**
+   * Restituisce la scelta effettuata
+   * del menu libreria.
+   *
+   * @return la scelta
+   */
 
   public int getScelta() {
     return scelta;

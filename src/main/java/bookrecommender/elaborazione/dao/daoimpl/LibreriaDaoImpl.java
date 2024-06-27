@@ -48,9 +48,12 @@ public class LibreriaDaoImpl implements LibreriaDao {
 
   /**
    * Restituisce un valore boolean che indica la
-   * presenza di una libreria con il nome dato.
+   * presenza di una libreria con il nome dato di
+   * un utente.
    *
    * @param nome indica il nome
+   *
+   * @param userId indica lo userId
    *
    * @return se esiste la libreria
    */
