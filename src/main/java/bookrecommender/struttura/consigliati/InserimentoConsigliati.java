@@ -14,6 +14,9 @@ public class InserimentoConsigliati {
     int scelta = ricercaLibro.getScelta();
 
     NuovaSchermata.nuovaSchermata();
+
+
+
     InserimentoConsigliatiMessaggi.cosigliatoAggiunto();
 
   }
