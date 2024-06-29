@@ -2,20 +2,23 @@ package bookrecommender.elaborazione.entities.user;
 
 import java.io.*;
 
+import bookrecommender.elaborazione.entities.utils.CSVToHashMap;
 import bookrecommender.interfaccia.register.RegistrazioneMessaggi;
 import bookrecommender.interfaccia.register.LoginMessaggi;
-import org.apache.commons.csv.CSVFormat;
-import org.apache.commons.csv.CSVParser;
-import org.apache.commons.csv.CSVRecord;
+
 /**
- * Questa classe implementa alcuni metodi utili per la gestione dell'utente e dei suoi dati
+ * Implementa alcuni metodi utili per la gestione dell'utente e dei suoi dati
+ *
  * @author Leonardo Basso
  * @see RegistrazioneMessaggi
+ * @see RegistrazioneMessaggi
+ * @see LoginMessaggi
  * @see PasswordManager
  */
 public class User {
     /**
-     * Questo metodo registra un'utente in un file {@code .csv}
+     * Registra un'utente in un file {@code .csv}
+     *
      * I parametri salvati sono: {@code Nome}, {@code Cognome}, {@code UserID}, {@code Taxcode}, {@code Mail}, {@code Password}
      */
     public static String register() {
@@ -34,30 +37,34 @@ public class User {
     }
 
     /**
-     * Questo metodo consente a un utente di accedere all'app usando:
+     * Consente a un utente di accedere all'app usando:
      * <a href="https://commons.apache.org/proper/commons-csv/">common-csv</a> by Apache
-     * @return String[] with the UserID and the Password
+     *
+     * @return String[] con l'{@code UserID} a [0] e la {@code Password} a [1]
      */
     public static String login() {
         try {
-            FileReader reader = new FileReader("data/Database/UtentiRegistrati.csv");
-            String[] LoginData = LoginMessaggi.in();
-            CSVFormat csvFormat = CSVFormat.DEFAULT.builder()
-                    .setHeader()
-                    .setSkipHeaderRecord(true)
-                    .build();
-            CSVParser parser = new CSVParser(reader, csvFormat);
-            String out = " ";
-            for (CSVRecord record : parser) {
-                if (record.get("UserID").equals(LoginData[0]) && PasswordManager.compare(LoginData[1], record.get("Password"))) {
-                    out = LoginData[0];
-                    System.out.println("SUCCESS!");
-                    return out;
-                }
+            // Init o recall dell'HashMap
+            CSVToHashMap users = CSVToHashMap.getInstance();
+            String[] headers = {"Nome", "Cognome", "UserID", "Taxcode", "Mail", "Password"};
+            if (!users.hasKey("UserID")) {
+                users.hashCsv("UserID", headers, "data/Database/UtentiRegistrati.csv");
             }
-            return null;
+
+            String[] LoginData = LoginMessaggi.in();
+            String[] userData = users.getValues(LoginData[0]);
+
+            if (userData != null && PasswordManager.compare(LoginData[1], userData[5])) {
+                System.out.println("Login SUCCESS!");
+                return LoginData[0]; // Ritorna il UserID dell'utente loggato
+            } else {
+                System.out.println("UserID o Password non validi.");
+                return null;
+            }
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
+
+
 }
