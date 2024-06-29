@@ -1,6 +1,7 @@
 package bookrecommender.interfaccia.register;
 
 import java.security.NoSuchAlgorithmException;
+import java.util.HashMap;
 import java.util.Scanner;
 import bookrecommender.elaborazione.entities.user.PasswordManager;
 import bookrecommender.elaborazione.entities.utils.CSVUtils;
@@ -8,8 +9,8 @@ import bookrecommender.elaborazione.entities.utils.CSVUtils;
 /**
  * A menu that asks user registration data and saves them into an array
  *
- * @author Leonardo Basso
  * @see bookrecommender.elaborazione.entities.user.User
+ * @author Leonardo Basso
  */
 public class RegistrazioneMessaggi {
     /**
@@ -27,15 +28,20 @@ public class RegistrazioneMessaggi {
         System.out.print("Inserisci il tuo cognome: ");
         user[1] = in.nextLine();
 
+        String keyColumn = "UserID";
+        String[] headers = {"Nome", "Cognome", "UserID", "Taxcode", "Mail", "Password"};
+        String path = "data/Database/UtentiRegistrati.csv";
+        HashMap<String, String[]> loginHashMap = CSVUtils.hashCsv(keyColumn, headers, path);
+
         // Validate UserID
         while (true) {
             System.out.print("Inserisci il tuo UserID: ");
             String inUserID = in.nextLine();
-            if (CSVUtils.find(inUserID, "UserID", "data/Database/UtentiRegistrati.csv") == null) {
+            if (loginHashMap.containsKey(inUserID)) {
+                System.out.println("UserID già esistente. Inserisci un altro UserID.");
+            } else {
                 user[2] = inUserID;
                 break;
-            } else {
-                System.out.println("UserID già esistente. Inserisci un altro UserID.");
             }
         }
 
