@@ -9,65 +9,65 @@ import bookrecommender.struttura.valutazione.MenuValutazione;
 
 public class MenuAzioniLibro {
 
-  private int scelta;
+    private int scelta;
 
-  public MenuAzioniLibro(String userID, Libro l ) {
+    public MenuAzioniLibro(String userID, Libro l) {
 
-    boolean controllo;
+        boolean controllo;
 
-    do {
+        do {
 
-      controllo=true;
+            controllo = true;
 
-      NuovaSchermata.nuovaSchermata();
-      MenuAzioniLibroMessaggi.menu();
-      scelta = SceltaMenuMessaggi.inserimentoSceltaMenu(4);
+            NuovaSchermata.nuovaSchermata();
+            MenuAzioniLibroMessaggi.menu();
+            scelta = SceltaMenuMessaggi.inserimentoSceltaMenu(4);
 
-      if(scelta==1) {
+            if (scelta == 1) {
 
-        var menuValutazione=new MenuValutazione();
+                var menuValutazione = new MenuValutazione(userID, l);
 
-        if(menuValutazione.getScelta()==3) {
-          controllo=false;
-        }
+                if (menuValutazione.getScelta() == 3) {
+                    controllo = false;
+                }
 
-        if(menuValutazione.getScelta()==4) {
-          scelta=3;
-        }
+                if (menuValutazione.getScelta() == 4) {
+                    scelta = 3;
+                }
 
-        if(menuValutazione.getScelta()==5) {
-          scelta=4;
-        }
+                if (menuValutazione.getScelta() == 5) {
+                    scelta = 4;
+                }
 
 
-      }
+            }
 
-      if(scelta==2) {
+            if (scelta == 2) {
 
-        var menuConsigliati=new MenuConsigliati(userID, l);
+                var menuConsigliati = new MenuConsigliati(userID, l);
 
-        if(menuConsigliati.getScelta()==3) {
-          controllo=false;
-        }
+                if (menuConsigliati.getScelta() == 3) {
+                    controllo = false;
+                }
 
-        if(menuConsigliati.getScelta()==4) {
-          scelta=3;
-        }
+                if (menuConsigliati.getScelta() == 4) {
+                    scelta = 3;
+                }
 
-        if(menuConsigliati.getScelta()==5) {
-          scelta=4;
-        }
+                if (menuConsigliati.getScelta() == 5) {
+                    scelta = 4;
+                }
 
-        if(menuConsigliati.getScelta()==6) {
-          scelta=5;
-        }
-      }
+                if (menuConsigliati.getScelta() == 6) {
+                    scelta = 5;
+                }
+            }
 
-    } while (!controllo);
+        } while (!controllo);
 
-  }
+    }
 
-  public int getScelta() {
-    return scelta;
-  }
+    public int getScelta() {
+        return scelta;
+    }
 }

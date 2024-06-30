@@ -3,8 +3,8 @@ package bookrecommender.elaborazione.entities.user;
 import java.io.*;
 
 import bookrecommender.elaborazione.entities.utils.singleton.UserHashMap;
-import bookrecommender.interfaccia.register.RegistrazioneMessaggi;
-import bookrecommender.interfaccia.register.LoginMessaggi;
+import bookrecommender.struttura.registrazione.RegistrazioneMessaggi;
+import bookrecommender.struttura.registrazione.LoginMessaggi;
 
 /**
  * Implementa alcuni metodi utili per la gestione dell'utente e dei suoi dati
