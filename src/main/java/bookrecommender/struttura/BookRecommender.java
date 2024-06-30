@@ -24,9 +24,9 @@ public class BookRecommender {
         boolean controllo;
 
         do {
-            controllo=true;
+            controllo = true;
 
-            controllo=menuIniziale(controllo);
+            controllo = menuIniziale(controllo);
 
         } while (!controllo);
 
@@ -42,28 +42,28 @@ public class BookRecommender {
      */
     private static boolean menuIniziale(boolean controllo) {
 
-        var menuIniziale=new MenuIniziale();
+        var menuIniziale = new MenuIniziale();
 
-        if(menuIniziale.getScelta()==1) {
+        if (menuIniziale.getScelta() == 1) {
             String UserID = User.login();
             if (UserID != null) {
                 System.out.println("Welcome " + UserID);
-                var menuPrincipale=new MenuPrincipale(UserID);
-                if(menuPrincipale.getScelta()==3) controllo=false;
+                var menuPrincipale = new MenuPrincipale(UserID);
+                if (menuPrincipale.getScelta() == 3) controllo = false;
             }
         }
 
-        if(menuIniziale.getScelta()==2) {
+        if (menuIniziale.getScelta() == 2) {
             String UserID = User.register();
             if (UserID != null) {
                 System.out.println("Welcome " + UserID);
-                var menuPrincipale=new MenuPrincipale(UserID);
-                if(menuPrincipale.getScelta()==3) controllo=false;
+                var menuPrincipale = new MenuPrincipale(UserID);
+                if (menuPrincipale.getScelta() == 3) controllo = false;
             }
         }
 
-        if(menuIniziale.getScelta()==3) {
-            var menuPrincipale=new MenuPrincipale();
+        if (menuIniziale.getScelta() == 3) {
+            var menuPrincipale = new MenuPrincipale();
         }
 
         return controllo;

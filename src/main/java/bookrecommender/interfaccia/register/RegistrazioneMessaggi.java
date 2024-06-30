@@ -4,7 +4,7 @@ import java.security.NoSuchAlgorithmException;
 import java.util.Scanner;
 
 import bookrecommender.elaborazione.entities.user.PasswordManager;
-import bookrecommender.elaborazione.entities.utils.CSVToHashMap;
+import bookrecommender.elaborazione.entities.utils.singleton.UserHashMap;
 
 import java.util.regex.*;
 
@@ -26,11 +26,7 @@ public class RegistrazioneMessaggi {
         String[] user = new String[6];
 
         // Init o recall dell'HashMap
-        CSVToHashMap users = CSVToHashMap.getInstance();
-        String[] headers = {"Nome", "Cognome", "UserID", "Taxcode", "Mail", "Password"};
-        if (!users.hasKey("UserID")) { // Controlla che l'HashMap esista o meno
-            users.hashCsv("UserID", headers, "data/Database/UtentiRegistrati.csv");
-        }
+        UserHashMap users = UserHashMap.getInstance();
 
         // Nome
         System.out.print("Inserisci il tuo nome: ");
@@ -43,7 +39,7 @@ public class RegistrazioneMessaggi {
         while (true) {
             System.out.print("Inserisci il tuo UserID: ");
             String UserID = in.nextLine();
-            if (users.hasKey(UserID)) {
+            if (users.hasUser(UserID)) {
                 System.out.println("UserID già esistente, inserisci un altro UserID");
             } else {
                 user[2] = UserID;
@@ -96,7 +92,7 @@ public class RegistrazioneMessaggi {
             }
         }
 
-        users.add(user[2], user); // Aggiorno l'HashMap "globale"
+        users.add(user[2], user); // Aggiorno l'HashMap
         return user;
     }
 }

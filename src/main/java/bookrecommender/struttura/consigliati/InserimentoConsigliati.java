@@ -4,7 +4,6 @@ import bookrecommender.elaborazione.entities.Libro;
 import bookrecommender.interfaccia.NuovaSchermata;
 import bookrecommender.interfaccia.consigliati.InserimentoConsigliatiMessaggi;
 import bookrecommender.struttura.ricercalibro.RicercaLibro;
-import
 
 public class InserimentoConsigliati {
 

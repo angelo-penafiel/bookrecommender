@@ -2,7 +2,7 @@ package bookrecommender.elaborazione.entities.user;
 
 import java.io.*;
 
-import bookrecommender.elaborazione.entities.utils.CSVToHashMap;
+import bookrecommender.elaborazione.entities.utils.singleton.UserHashMap;
 import bookrecommender.interfaccia.register.RegistrazioneMessaggi;
 import bookrecommender.interfaccia.register.LoginMessaggi;
 
@@ -24,7 +24,7 @@ public class User {
     public static String register() {
         try {
             String[] user = RegistrazioneMessaggi.in();
-            BufferedWriter writer = new BufferedWriter(new FileWriter("data/Database/UtentiRegistrati.csv", true));
+            BufferedWriter writer = new BufferedWriter(new FileWriter("data/Database/UtentiRegistrati.dati.csv", true));
             if (user != null) {
                 writer.write(user[0] + "," + user[1] + "," + user[2] + "," + user[3] + "," + user[4] + "," + user[5] + "\n");
                 writer.close();
@@ -45,16 +45,12 @@ public class User {
     public static String login() {
         try {
             // Init o recall dell'HashMap
-            CSVToHashMap users = CSVToHashMap.getInstance();
-            String[] headers = {"Nome", "Cognome", "UserID", "Taxcode", "Mail", "Password"};
-            if (!users.hasKey("UserID")) {
-                users.hashCsv("UserID", headers, "data/Database/UtentiRegistrati.csv");
-            }
+            UserHashMap users = UserHashMap.getInstance();
 
             String[] LoginData = LoginMessaggi.in();
-            String[] userData = users.getValues(LoginData[0]);
+            String comparePass = users.getPassword(LoginData[0]);
 
-            if (userData != null && PasswordManager.compare(LoginData[1], userData[5])) {
+            if (PasswordManager.compare(LoginData[1], comparePass)) {
                 System.out.println("Login SUCCESS!");
                 return LoginData[0]; // Ritorna il UserID dell'utente loggato
             } else {

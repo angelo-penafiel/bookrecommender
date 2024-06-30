@@ -1,92 +1,65 @@
 package bookrecommender.struttura.consigliati;
 
 import bookrecommender.elaborazione.entities.Libro;
+import bookrecommender.elaborazione.entities.utils.singleton.ConsigliatiHashMap;
 import bookrecommender.interfaccia.NuovaSchermata;
 import bookrecommender.interfaccia.consigliati.MenuConsigliatiMessaggi;
 import bookrecommender.interfaccia.menu.SceltaMenuMessaggi;
-import bookrecommender.interfaccia.valutazione.MenuValutazioneMessaggi;
-import bookrecommender.struttura.valutazione.InserimentoValutazione;
-import bookrecommender.struttura.valutazione.ModificaValutazione;
-import org.apache.commons.csv.CSVFormat;
-import org.apache.commons.csv.CSVParser;
-import org.apache.commons.csv.CSVRecord;
-import bookrecommender.elaborazione.entities.utils.CSVToHashMap;
 
-
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.Reader;
 import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-
-
 
 public class MenuConsigliati {
 
-  private int scelta;
+    private int scelta;
 
-  public MenuConsigliati(String userID, Libro l) {
+    public MenuConsigliati(String userID, Libro l) {
 
-    boolean controllo;
-    String[] HEADERS = {"UserID","id libro consigliato 1","id libro consigliato 2","id libro consigliato 3"};
+        boolean controllo;
 
+        do {
 
+            //find(userID, HEADERS,"data/ConsigliLibri.dati.csv");
 
+            ConsigliatiHashMap cons = ConsigliatiHashMap.getInstance();
 
-    do {
+            String[] utenti = cons.getValues(userID);
+            System.out.println(Arrays.toString(utenti));
+            controllo = true;
 
-        //find(userID, HEADERS,"data/ConsigliLibri.dati.csv");
+            //verifica se sono presenti libri consigliati
 
-      CSVToHashMap cons = CSVToHashMap.getInstance();
+            NuovaSchermata.nuovaSchermata();
+            if (true) {
 
-       // Controlla che l'HashMap esista o meno
-        cons.hashCsv("UserID", HEADERS, "data/ConsigliLibri.dati.csv");
+                MenuConsigliatiMessaggi.menuConsigliati();
+                scelta = SceltaMenuMessaggi.inserimentoSceltaMenu(7);
 
+                if (scelta == 1) {
 
-   String[] utenti=cons.getValues(userID);
-      System.out.println(Arrays.toString(utenti));
-      controllo=true;
+                    var inserimentoConsigliati = new InserimentoConsigliati(userID, l);
 
-      //verifica se sono presenti libri consigliati
+                    controllo = false;
 
+                } else if (scelta == 2) {
 
+                    var selezioneConsigliati = new SelezioneConsigliati();
 
+                    var inserimentoConsigliati = new InserimentoConsigliati(userID, l);
 
+                    controllo = false;
 
+                }
 
-      NuovaSchermata.nuovaSchermata();
-      if(true) {
-
-        MenuConsigliatiMessaggi.menuConsigliati();
-        scelta = SceltaMenuMessaggi.inserimentoSceltaMenu(7);
-
-        if(scelta==1) {
-
-          var inserimentoConsigliati=new InserimentoConsigliati(userID,l);
-
-          controllo=false;
-
-        }
-
-        else if(scelta==2) {
-
-          var inserimentoConsigliati=new InserimentoConsigliati(userID,l);
-
-          controllo=false;
-
-        }
-
-      }
+            }
 
 
-    } while (!controllo);
+        } while (!controllo);
 
-  }
+    }
 
-  public int getScelta() {
-    return scelta;
-  }
+    public int getScelta() {
+        return scelta;
+    }
 /*
   public static String find(String toFind, String[] header, String path) {
     try {
@@ -109,7 +82,7 @@ public class MenuConsigliati {
 */
 
 
-  }
+}
 
 
 
