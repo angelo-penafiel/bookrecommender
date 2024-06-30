@@ -9,13 +9,16 @@ import bookrecommender.struttura.valutazione.ModificaValutazione;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
-import bookrecommender.elaborazione.entities.utils.CSVUtils;
+//import bookrecommender.elaborazione.entities.utils.CSVUtils;
+
 
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
 import java.util.HashMap;
 import java.util.List;
+
+import static bookrecommender.elaborazione.entities.utils.CSVUtils.find;
 
 public class MenuConsigliati {
 
@@ -24,10 +27,10 @@ public class MenuConsigliati {
   public MenuConsigliati(String userID) {
 
     boolean controllo;
-
+    String[] HEADERS = {"id libro 1","id libro 2","id libro 3"};
     do {
 
-        find(userID, header,"data/ConsigliLibri.dati.csv");
+        //find(userID, HEADERS,"data/ConsigliLibri.dati.csv");
 
 
       controllo=true;
@@ -73,8 +76,8 @@ public class MenuConsigliati {
   public int getScelta() {
     return scelta;
   }
-
-  public static String find(String toFind, String header, String path) {
+/*
+  public static String find(String toFind, String[] header, String path) {
     try {
       FileReader reader = new FileReader(path);
       CSVFormat csvFormat = CSVFormat.DEFAULT.builder()
@@ -90,18 +93,8 @@ public class MenuConsigliati {
       throw new RuntimeException(e);
     }
   }
-/*
-  private void caricamentoLibriConsigliati() throws IOException {
-
-    Reader in = new FileReader("data/ConsigliLibri.dati.csv");
 
 
-    String[] HEADERS = {"id libro 1","id libro 2","id libro 3"};
-
-    HashMap preferiti =CSVUtils.hashCsv("id Utente",HEADERS, "data/ConsigliLibri.dati.csv" );
-
-
-    }
 */
 
 
