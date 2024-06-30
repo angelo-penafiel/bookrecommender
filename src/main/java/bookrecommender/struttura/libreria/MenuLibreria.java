@@ -2,6 +2,7 @@ package bookrecommender.struttura.libreria;
 
 import bookrecommender.elaborazione.dao.LibreriaDao;
 import bookrecommender.elaborazione.dao.daoimpl.LibreriaDaoImpl;
+import bookrecommender.elaborazione.entities.Libro;
 import bookrecommender.interfaccia.NuovaSchermata;
 import bookrecommender.interfaccia.libreria.MenuLibreriaMessaggi;
 import bookrecommender.interfaccia.menu.SceltaMenuMessaggi;
@@ -74,14 +75,14 @@ public class MenuLibreria {
         if(scelta==2) {
           var selezioneLibreria=new SelezioneLibreria(idsLibrerieTrovate, userId);
           var selezioneLibro=new SelezioneLibro(selezioneLibreria.getLibreria());
-
+          Libro l=selezioneLibro.getLibro();
           if(selezioneLibro.isTornaIndietro()) {
             controllo=false;
           }
 
           else {
 
-            var menuAzioniLibro=new MenuAzioniLibro(userId);
+            var menuAzioniLibro=new MenuAzioniLibro(userId, l);
 
             if(menuAzioniLibro.getScelta()==3) {
               controllo=false;

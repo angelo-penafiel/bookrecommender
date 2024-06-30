@@ -1,5 +1,6 @@
 package bookrecommender.struttura.consigliati;
 
+import bookrecommender.elaborazione.entities.Libro;
 import bookrecommender.interfaccia.NuovaSchermata;
 import bookrecommender.interfaccia.consigliati.MenuConsigliatiMessaggi;
 import bookrecommender.interfaccia.menu.SceltaMenuMessaggi;
@@ -25,7 +26,7 @@ public class MenuConsigliati {
 
   private int scelta;
 
-  public MenuConsigliati(String userID) {
+  public MenuConsigliati(String userID, Libro l) {
 
     boolean controllo;
     String[] HEADERS = {"UserID","id libro consigliato 1","id libro consigliato 2","id libro consigliato 3"};
@@ -62,7 +63,7 @@ public class MenuConsigliati {
 
         if(scelta==1) {
 
-          var inserimentoConsigliati=new InserimentoConsigliati();
+          var inserimentoConsigliati=new InserimentoConsigliati(userID,l);
 
           controllo=false;
 
@@ -70,9 +71,7 @@ public class MenuConsigliati {
 
         else if(scelta==2) {
 
-          var selezioneConsigliati=new SelezioneConsigliati();
-
-          var inserimentoConsigliati=new InserimentoConsigliati();
+          var inserimentoConsigliati=new InserimentoConsigliati(userID,l);
 
           controllo=false;
 

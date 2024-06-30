@@ -1,5 +1,6 @@
 package bookrecommender.struttura.menu;
 
+import bookrecommender.elaborazione.entities.Libro;
 import bookrecommender.interfaccia.NuovaSchermata;
 import bookrecommender.interfaccia.menu.MenuAzioniLibroMessaggi;
 import bookrecommender.interfaccia.menu.SceltaMenuMessaggi;
@@ -10,7 +11,7 @@ public class MenuAzioniLibro {
 
   private int scelta;
 
-  public MenuAzioniLibro(String userID ) {
+  public MenuAzioniLibro(String userID, Libro l ) {
 
     boolean controllo;
 
@@ -43,7 +44,7 @@ public class MenuAzioniLibro {
 
       if(scelta==2) {
 
-        var menuConsigliati=new MenuConsigliati(userID);
+        var menuConsigliati=new MenuConsigliati(userID, l);
 
         if(menuConsigliati.getScelta()==3) {
           controllo=false;
