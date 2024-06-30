@@ -49,7 +49,7 @@ public class SelezioneLibreria {
    *                           loggato
    */
 
-  public SelezioneLibreria(List<Integer> idsLibrerieTrovate) {
+  public SelezioneLibreria(List<Integer> idsLibrerieTrovate, String userID ) {
 
     List<String> nomiLibrerieTrovate;
 

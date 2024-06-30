@@ -10,7 +10,7 @@ public class MenuAzioniLibro {
 
   private int scelta;
 
-  public MenuAzioniLibro() {
+  public MenuAzioniLibro(String userID ) {
 
     boolean controllo;
 
@@ -43,7 +43,7 @@ public class MenuAzioniLibro {
 
       if(scelta==2) {
 
-        var menuConsigliati=new MenuConsigliati();
+        var menuConsigliati=new MenuConsigliati(userID);
 
         if(menuConsigliati.getScelta()==3) {
           controllo=false;

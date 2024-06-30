@@ -17,7 +17,7 @@ public class InserimentoConsigliati {
 
 
 
-    InserimentoConsigliatiMessaggi.cosigliatoAggiunto();
+    InserimentoConsigliatiMessaggi.consigliatoAggiunto();
 
   }
 

@@ -72,7 +72,7 @@ public class MenuLibreria {
         }
 
         if(scelta==2) {
-          var selezioneLibreria=new SelezioneLibreria(idsLibrerieTrovate);
+          var selezioneLibreria=new SelezioneLibreria(idsLibrerieTrovate, userId);
           var selezioneLibro=new SelezioneLibro(selezioneLibreria.getLibreria());
 
           if(selezioneLibro.isTornaIndietro()) {
@@ -81,7 +81,7 @@ public class MenuLibreria {
 
           else {
 
-            var menuAzioniLibro=new MenuAzioniLibro();
+            var menuAzioniLibro=new MenuAzioniLibro(userId);
 
             if(menuAzioniLibro.getScelta()==3) {
               controllo=false;
@@ -100,7 +100,7 @@ public class MenuLibreria {
         }
 
         if(scelta==3) {
-          var selezioneLibreria2 = new SelezioneLibreria(idsLibrerieTrovate);
+          var selezioneLibreria2 = new SelezioneLibreria(idsLibrerieTrovate, userId);
           var inserimentoLibro = new InserimentoLibro(selezioneLibreria2.getLibreria());
           controllo=false;
 

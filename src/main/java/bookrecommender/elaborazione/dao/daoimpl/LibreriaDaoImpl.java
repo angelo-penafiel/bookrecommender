@@ -75,7 +75,7 @@ public class LibreriaDaoImpl implements LibreriaDao {
     for (CSVRecord record : records) {
 
       String nomeLibreria=record.get("Nome").toLowerCase();
-      String userIdlibreria=record.get("UserId").toLowerCase();
+      String userIdlibreria=record.get("UserId");
 
       if(nomeLibreria.equals(nome)&&userIdlibreria.equals(userId)) {
         exists=true;
@@ -120,7 +120,7 @@ public class LibreriaDaoImpl implements LibreriaDao {
     for (CSVRecord record : records) {
 
       String nomeLibreria=record.get("Nome").toLowerCase();
-      String userIdlibreria=record.get("UserId").toLowerCase();
+      String userIdlibreria=record.get("UserId");
 
       if(nomeLibreria.equals(nome)&&userIdlibreria.equals(userId)) {
         libreria=new Libreria(i,nome,userId);
@@ -160,7 +160,7 @@ public class LibreriaDaoImpl implements LibreriaDao {
 
     for (CSVRecord record : records) {
 
-      String userIdlibreria=record.get("UserId").toLowerCase();
+      String userIdlibreria=record.get("UserId");
 
       if(userIdlibreria.equals(userId)) {
         ids.add(i);
@@ -243,7 +243,7 @@ public class LibreriaDaoImpl implements LibreriaDao {
     for (CSVRecord record : records) {
 
       String nomeLibreria=record.get("Nome").toLowerCase();
-      String userIdlibreria=record.get("UserId").toLowerCase();
+      String userIdlibreria=record.get("UserId");
       
       if(i==id) {
         libreria=new Libreria(id,nomeLibreria,userIdlibreria);

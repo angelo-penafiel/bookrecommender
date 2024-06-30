@@ -7,6 +7,7 @@ import bookrecommender.interfaccia.valutazione.MenuValutazioneMessaggi;
 import bookrecommender.struttura.valutazione.InserimentoValutazione;
 import bookrecommender.struttura.valutazione.ModificaValutazione;
 import org.apache.commons.csv.CSVFormat;
+import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
 import bookrecommender.elaborazione.entities.utils.CSVUtils;
 
@@ -20,13 +21,13 @@ public class MenuConsigliati {
 
   private int scelta;
 
-  public MenuConsigliati() {
+  public MenuConsigliati(String userID) {
 
     boolean controllo;
 
     do {
 
-
+        find(userID, header,"data/ConsigliLibri.dati.csv");
 
 
       controllo=true;
@@ -41,7 +42,7 @@ public class MenuConsigliati {
       NuovaSchermata.nuovaSchermata();
       if(true) {
 
-        MenuConsigliatiMessaggi.menuConsigliatiPresenti();
+        MenuConsigliatiMessaggi.menuConsigliati();
         scelta = SceltaMenuMessaggi.inserimentoSceltaMenu(7);
 
         if(scelta==1) {
@@ -64,23 +65,6 @@ public class MenuConsigliati {
 
       }
 
-      else {
-
-        MenuConsigliatiMessaggi.menuConsigliatiAssenti();
-        scelta = SceltaMenuMessaggi.inserimentoSceltaMenu(6);
-
-        if(scelta==1) {
-
-          var inserimentoConsigliati=new InserimentoConsigliati();
-
-          controllo=false;
-
-        }
-
-        if(scelta>=2&&scelta<=4) {
-          scelta++;
-        }
-      }
 
     } while (!controllo);
 
@@ -90,8 +74,23 @@ public class MenuConsigliati {
     return scelta;
   }
 
-
-
+  public static String find(String toFind, String header, String path) {
+    try {
+      FileReader reader = new FileReader(path);
+      CSVFormat csvFormat = CSVFormat.DEFAULT.builder()
+              .setHeader()
+              .setSkipHeaderRecord(true)
+              .build();
+      CSVParser parser = new CSVParser(reader, csvFormat);
+      for (CSVRecord record : parser) {
+        if (record.get(header).equals(toFind)) return record.get(header);
+      }
+      return null;
+    } catch (Exception e) {
+      throw new RuntimeException(e);
+    }
+  }
+/*
   private void caricamentoLibriConsigliati() throws IOException {
 
     Reader in = new FileReader("data/ConsigliLibri.dati.csv");
@@ -103,7 +102,7 @@ public class MenuConsigliati {
 
 
     }
-
+*/
 
 
   }
