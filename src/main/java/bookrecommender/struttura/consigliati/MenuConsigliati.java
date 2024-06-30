@@ -9,16 +9,17 @@ import bookrecommender.struttura.valutazione.ModificaValutazione;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
-//import bookrecommender.elaborazione.entities.utils.CSVUtils;
+import bookrecommender.elaborazione.entities.utils.CSVToHashMap;
 
 
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
-import static bookrecommender.elaborazione.entities.utils.CSVUtils.find;
+
 
 public class MenuConsigliati {
 
@@ -27,12 +28,23 @@ public class MenuConsigliati {
   public MenuConsigliati(String userID) {
 
     boolean controllo;
-    String[] HEADERS = {"id libro 1","id libro 2","id libro 3"};
+    String[] HEADERS = {"UserID","id libro consigliato 1","id libro consigliato 2","id libro consigliato 3"};
+
+
+
+
     do {
 
         //find(userID, HEADERS,"data/ConsigliLibri.dati.csv");
 
+      CSVToHashMap cons = CSVToHashMap.getInstance();
 
+       // Controlla che l'HashMap esista o meno
+        cons.hashCsv("UserID", HEADERS, "data/ConsigliLibri.dati.csv");
+
+
+   String[] utenti=cons.getValues(userID);
+      System.out.println(Arrays.toString(utenti));
       controllo=true;
 
       //verifica se sono presenti libri consigliati
