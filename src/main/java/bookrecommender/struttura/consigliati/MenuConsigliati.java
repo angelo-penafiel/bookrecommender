@@ -20,7 +20,12 @@ public class MenuConsigliati {
         String control="-1";
         String[] utenti = cons.getValues(userID);
 
+if(utenti==null)
+{
+    System.out.println("non esiste il tuo utente");
 
+
+}
 
 
 
