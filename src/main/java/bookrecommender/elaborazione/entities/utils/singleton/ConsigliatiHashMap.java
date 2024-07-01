@@ -37,6 +37,13 @@ public class ConsigliatiHashMap {
         return instance;
     }
 
+    public static ConsigliatiHashMap getInstance2() {
+            instance = new ConsigliatiHashMap();
+            instance.init();
+
+        return instance;
+    }
+
     /**
      * Questo metodo privato serve a inizializzare la hashmap
      */
