@@ -49,7 +49,7 @@ public class InserimentoValutazione {
         ValutazioniHashMap val = ValutazioniHashMap.getInstance();
 
         if (val.hasValutazione(UserID, libro.getId().toString())) {
-            System.out.println("Valutazione già esistente, premere qualsiasi tasto per uscire");
+            System.out.print("Valutazione già esistente, premere qualsiasi tasto per uscire");
             new Scanner(System.in).nextLine();
             return null;
         }
