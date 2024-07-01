@@ -30,18 +30,17 @@ public class ValutazioniHashMap {
         return instance;
     }
 
-    String[] headers = {"UserID", "Libro", "Stile", "tStile", "Contenuto", "tContenuto", "Gradevolezza", "tGradevolezza", "Originalita",
-            "tOriginalita", "Edizione", "tEdizione", "Finale", "tFinale"
-    };
-
     /**
      * Questo metodo privato serve a inizializzare la hashmap
      */
     private void init() {
+        String[] headers = {"UserID", "Libro", "Stile", "tStile", "Contenuto", "tContenuto", "Gradevolezza", "tGradevolezza", "Originalita",
+                "tOriginalita", "Edizione", "tEdizione", "Finale", "tFinale"
+        };
 
         String path = "data/ValutazioniLibri.dati.csv";
 
-        data = CsvHasher.hashCsv("UserID", headers, path);
+        data = CsvHasher.hashCsv("UserID","Libro", headers, path);
     }
 
     /**
@@ -49,80 +48,30 @@ public class ValutazioniHashMap {
      * cui è associato l'id in un'Array
      *
      * @param UserID La chiave della HashMap
+     * @param libro il libro da ottenere
      * @return l'array con i valori legati alla chiave
      */
     public String[] getValues(String UserID, String libro) {
-        for (String key : data.keySet()) {
-            String[] values = data.get(key);
-            if (key.equals(UserID) && values[1].equals(libro)) {
-                return values;
-            }
-        }
-        return null;
-    }
-    public String[] getHeaders() {return headers;}
-    /**
-     * Ritorna il Nome associato a un UserID.
-     *
-     * @param userID
-     * @return Il Nome associato al UserID.
-     */
-    public String getUserID(String userID) {
-        String[] userData = data.get(userID);
-        if (userData != null) {
-            return userData[0]; // Nome
-        }
-        return null;
-    }
-
-    /**
-     * Ritorna il Cognome associato a un UserID dall'HashMap.
-     *
-     * @param userID
-     * @return Il Cognome associato al UserID.
-     */
-    public String getLibro(String userID) {
-        String[] userData = data.get(userID);
-        if (userData != null) {
-            return userData[1]; // Cognome
-        }
-        return null;
+        return data.get(UserID + "-" + libro);
     }
 
     /**
      * Controlla se esiste giä nel database la review
+     * @param UserID l'utente che sta usando il programma
+     * @param libro il libro da cercare
      */
-    public boolean hasValutazione(String userID, String libro) {
-        for (String key : data.keySet()) {
-            String[] values = data.get(key);
-            if (key.equals(userID) && values[1].equals(libro)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    /**
-     * Ritorna {@code true} se esiste l'utente associato all'UserID in input
-     *
-     * @param UserID la chiave da cercare
-     * @return se la chiave esiste
-     */
-    public boolean hasUser(String UserID) {
-        return data.containsKey(UserID);
+    public boolean hasValutazione(String UserID, String libro) {
+        return data.containsKey(UserID + "-" + libro);
     }
 
     /**
      * Aggiunge una valutazione all'HashMap, utile per evitare di ricreare l'HashMap a ogni modifica
      *
-     * @param key    la chiave da aggiungere
+     * @param libro  la chiave da aggiungere
+     * @param UserID la seconda chiave
      * @param values l'array di stringhe da aggiungere
      */
-    public void add(String key, String[] values) {
-        data.put(key, values);
-    }
-
-    public void remove(String key) {
-        data.remove(key);
+    public void add(String UserID, String libro, String[] values) {
+        data.put(UserID + "-" + libro, values);
     }
 }

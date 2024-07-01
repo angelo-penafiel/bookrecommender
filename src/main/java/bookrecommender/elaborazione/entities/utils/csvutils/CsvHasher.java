@@ -51,4 +51,33 @@ public class CsvHasher {
 
         return data;
     }
+
+    public static HashMap<String, String[]> hashCsv(String keyColumn1, String keyColumn2, String[] headers, String path) {
+        HashMap<String, String[]> data = new HashMap<>();
+
+        try {
+            FileReader reader = new FileReader(path);
+            CSVFormat csvFormat = CSVFormat.DEFAULT.builder()
+                    .setHeader(headers)
+                    .setSkipHeaderRecord(true)
+                    .build();
+            CSVParser parser = new CSVParser(reader, csvFormat);
+
+            for (CSVRecord record : parser) {
+                String key = record.get(keyColumn1) + "-" + record.get(keyColumn2);
+                String[] values = new String[headers.length];
+                for (int i = 0; i < headers.length; i++) {
+                    values[i] = record.get(headers[i]);
+                }
+                data.put(key, values);
+            }
+
+            parser.close();
+            reader.close();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+        return data;
+    }
 }

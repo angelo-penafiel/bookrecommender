@@ -37,7 +37,7 @@ public class Valutazione {
             csvPrinter.close();
             writer.close();
 
-            val.add(UserID, valutazioni); // Aggiorna la HashMap
+            val.add(UserID, libro.getId().toString(), valutazioni); // Aggiorna la HashMap
 
         } catch (IOException e) {
             throw new RuntimeException("Errore durante la scrittura nel file CSV", e);
