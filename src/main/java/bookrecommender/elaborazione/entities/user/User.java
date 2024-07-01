@@ -5,6 +5,8 @@ import java.io.*;
 import bookrecommender.elaborazione.entities.utils.singleton.UserHashMap;
 import bookrecommender.struttura.registrazione.RegistrazioneMessaggi;
 import bookrecommender.struttura.registrazione.LoginMessaggi;
+import org.apache.commons.csv.CSVFormat;
+import org.apache.commons.csv.CSVPrinter;
 
 /**
  * Implementa alcuni metodi utili per la gestione dell'utente e dei suoi dati
@@ -17,20 +19,21 @@ import bookrecommender.struttura.registrazione.LoginMessaggi;
  */
 public class User {
     /**
-     * Registra un'utente in un file {@code .csv}
-     *
+     * Registra un'utente in un file {@code .csv} usando <a href="https://commons.apache.org/proper/commons-csv/">common-csv</a> by Apache.
+     * <br>
      * I parametri salvati sono: {@code Nome}, {@code Cognome}, {@code UserID}, {@code Taxcode}, {@code Mail}, {@code Password}
      */
     public static String register() {
         try {
             String[] user = RegistrazioneMessaggi.in();
             BufferedWriter writer = new BufferedWriter(new FileWriter("data/Database/UtentiRegistrati.dati.csv", true));
-            if (user != null) {
-                writer.write(user[0] + "," + user[1] + "," + user[2] + "," + user[3] + "," + user[4] + "," + user[5] + "\n");
-                writer.close();
-                return user[2];
-            }
-            return null;
+            CSVPrinter csvPrinter = new CSVPrinter(writer, CSVFormat.DEFAULT);
+
+            csvPrinter.printRecord((Object[]) user);
+            csvPrinter.flush();
+            csvPrinter.close();
+
+            return user[2];
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

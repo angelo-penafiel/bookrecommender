@@ -1,3 +1,2 @@
-UserID,Libro,Stile,Contenuto,Gradevolezza,Originalita,Edizione,Finale
-test,21,5,5,5,5,5,5
-test,33,1,1,1,1,1,1
+UserID,Libro,Stile,tStile,Contenuto,tContenuto,Gradevolezza,tGradevolezza,Originalita,tOriginalita,Edizione,tEdizione,Finale,tFinale
+test,21,5,roba da aggiungere per lo stile,5,roba da aggiungere per il contenuto,5,roba da aggiungere per la gradevolezza,5,roba da aggiungere per l'originalità,5,roba da aggiungere per l'edizione,5,roba da aggiungere per lo valutazione finale

@@ -26,12 +26,12 @@ public class MenuValutazione {
                 scelta = SceltaMenuMessaggi.inserimentoSceltaMenu(5);
 
                 if (scelta == 1) {
-                    var inserimentoValutazione = Valutazione.valuta(userID, l);
+                    var inserimentoValutazione = InserimentoValutazione.in(userID, l);
                     controllo = false;
                 }
 
                 if (scelta == 2) {
-                    var modificaValutazione = new ModificaValutazione();
+                    var modificaValutazione = new ModificaValutazione(userID, l);
                     controllo = false;
                 }
 
@@ -41,7 +41,7 @@ public class MenuValutazione {
                 scelta = SceltaMenuMessaggi.inserimentoSceltaMenu(4);
 
                 if (scelta == 1) {
-                    var inserimentoValutazione = new InserimentoValutazione(userID, l);
+                    var inserimentoValutazione = new InserimentoValutazione();
                     controllo = false;
                 }
 
