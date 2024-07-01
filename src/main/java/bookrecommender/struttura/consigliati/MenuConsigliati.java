@@ -6,6 +6,7 @@ import bookrecommender.interfaccia.NuovaSchermata;
 import bookrecommender.interfaccia.consigliati.MenuConsigliatiMessaggi;
 import bookrecommender.interfaccia.menu.SceltaMenuMessaggi;
 
+import java.io.IOException;
 import java.util.Arrays;
 
 public class MenuConsigliati {
@@ -14,21 +15,27 @@ public class MenuConsigliati {
 
     public MenuConsigliati(String userID, Libro l) {
 
-        boolean controllo;
+        boolean controllo=true;
+        ConsigliatiHashMap cons = ConsigliatiHashMap.getInstance();
+        String control="-1";
+        String[] utenti = cons.getValues(userID);
 
-        do {
 
-            //find(userID, HEADERS,"data/ConsigliLibri.dati.csv");
 
-            ConsigliatiHashMap cons = ConsigliatiHashMap.getInstance();
 
-            String[] utenti = cons.getValues(userID);
-            System.out.println(Arrays.toString(utenti));
+
+
+
+    do {
+        if(true==control.equals(utenti[3])) {
+            //  Arrays.toString(utenti)
+        try {
             controllo = true;
 
             //verifica se sono presenti libri consigliati
 
             NuovaSchermata.nuovaSchermata();
+
             if (true) {
 
                 MenuConsigliatiMessaggi.menuConsigliati();
@@ -49,17 +56,34 @@ public class MenuConsigliati {
                     controllo = false;
 
                 }
-
             }
-
-
-        } while (!controllo);
+        } catch (IOException e) {
+            System.out.println(" ");
+        }
 
     }
+        else
+        {
+            System.out.println("Hai già consigliato 3 libri non puoi consigliarne altri");
+        }
 
-    public int getScelta() {
+
+    } while (!controllo);
+
+
+
+
+
+
+
+
+
+    }
+    public int getScelta () {
         return scelta;
     }
+
+
 /*
   public static String find(String toFind, String[] header, String path) {
     try {
@@ -82,11 +106,8 @@ public class MenuConsigliati {
 */
 
 
+
+
+
 }
-
-
-
-
-
-
 

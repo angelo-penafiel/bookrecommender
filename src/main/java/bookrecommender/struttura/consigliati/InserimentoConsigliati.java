@@ -5,13 +5,19 @@ import bookrecommender.interfaccia.NuovaSchermata;
 import bookrecommender.interfaccia.consigliati.InserimentoConsigliatiMessaggi;
 import bookrecommender.struttura.ricercalibro.RicercaLibro;
 
-public class InserimentoConsigliati {
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 
-  public InserimentoConsigliati(String UserID, Libro l) {
+public class InserimentoConsigliati  {
+
+  public InserimentoConsigliati(String UserID, Libro l)throws IOException {
 
 
 
-
+    BufferedWriter writer = new BufferedWriter(new FileWriter("data/ConsigliLibri.dati.csv", true));
+    writer.write("");
+    writer.close();
 
    /* var ricercaLibro=new RicercaLibro(2);
     Libro libro = ricercaLibro.getLibro();
