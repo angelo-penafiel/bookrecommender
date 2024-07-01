@@ -1,7 +1,7 @@
 package bookrecommender.struttura.valutazione;
 
 import bookrecommender.elaborazione.entities.Libro;
-import bookrecommender.elaborazione.entities.valutazione.Valutazione;
+import bookrecommender.elaborazione.entities.utils.singleton.ValutazioniHashMap;
 import bookrecommender.interfaccia.NuovaSchermata;
 import bookrecommender.interfaccia.menu.SceltaMenuMessaggi;
 import bookrecommender.interfaccia.valutazione.MenuValutazioneMessaggi;
@@ -18,21 +18,20 @@ public class MenuValutazione {
 
             controllo = true;
 
-            //verifica se valutazione è presente
             NuovaSchermata.nuovaSchermata();
-            if (true) {
+
+            if (ValutazioniHashMap.getInstance().hasValutazione(userID,l.getId().toString())) {
 
                 MenuValutazioneMessaggi.menuValutazionePresente();
-                scelta = SceltaMenuMessaggi.inserimentoSceltaMenu(5);
+                scelta = SceltaMenuMessaggi.inserimentoSceltaMenu(4);
 
                 if (scelta == 1) {
-                    var inserimentoValutazione = InserimentoValutazione.in(userID, l);
+                    var visualizzaValutazione = new VisualizzaValutazione(userID,l);
                     controllo = false;
                 }
 
-                if (scelta == 2) {
-                    var modificaValutazione = new ModificaValutazione(userID, l);
-                    controllo = false;
+                if(scelta>1) {
+                    scelta++;
                 }
 
             } else {
@@ -41,7 +40,7 @@ public class MenuValutazione {
                 scelta = SceltaMenuMessaggi.inserimentoSceltaMenu(4);
 
                 if (scelta == 1) {
-                    var inserimentoValutazione = new InserimentoValutazione();
+                    var inserimentoValutazione = InserimentoValutazione.in(userID, l);
                     controllo = false;
                 }
 
