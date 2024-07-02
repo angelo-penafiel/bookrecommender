@@ -1,10 +1,15 @@
 package bookrecommender.struttura.menu;
 
+import bookrecommender.elaborazione.dao.ConsigliatiDao;
+import bookrecommender.elaborazione.dao.daoimpl.ConsigliatiDaoImpl;
+import bookrecommender.elaborazione.entities.Consigliati;
 import bookrecommender.interfaccia.NuovaSchermata;
 import bookrecommender.interfaccia.menu.MenuPrincipaleMessaggi;
 import bookrecommender.interfaccia.menu.SceltaMenuMessaggi;
+import bookrecommender.struttura.consigliati.SelezioneConsigliati;
 import bookrecommender.struttura.libreria.MenuLibreria;
 import bookrecommender.struttura.ricercalibro.RicercaLibro;
+import java.io.IOException;
 
 /**
  * Classe che ha la funzione di gestire la
@@ -71,33 +76,86 @@ public class MenuPrincipale {
             controllo = true;
 
             NuovaSchermata.nuovaSchermata();
-            MenuPrincipaleMessaggi.menuRegistrazione();
 
-            scelta = SceltaMenuMessaggi.inserimentoSceltaMenu(4);
+            Consigliati consigliato;
 
-            if(scelta==1) {
-                var ricercaLibro=new RicercaLibro(1);
+            ConsigliatiDao consigliatiDao=new ConsigliatiDaoImpl();
 
-                if(ricercaLibro.getScelta()==4) {
-                    controllo=false;
-                }
-
-                if(ricercaLibro.getScelta()==5) {
-                    scelta=3;
-                }
+            try {
+                consigliato=consigliatiDao.getByUserId(userId);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
             }
 
-            if(scelta==2) {
-                var menuLibreria=new MenuLibreria(userId);
+            if(consigliato==null||consigliato.getLibriConsigliati()[0].equals("-1")) {
 
-                if(menuLibreria.getScelta()==4) {
-                    controllo=false;
+                MenuPrincipaleMessaggi.menuRegistrazioneSenzaConsigliati();
+                scelta = SceltaMenuMessaggi.inserimentoSceltaMenu(4);
+
+                if(scelta==1) {
+                    var ricercaLibro=new RicercaLibro(1);
+
+                    if(ricercaLibro.getScelta()==4) {
+                        controllo=false;
+                    }
+
+                    if(ricercaLibro.getScelta()==5) {
+                        scelta=4;
+                    }
                 }
 
-                if(menuLibreria.getScelta()==5) {
-                    scelta=3;
+                else if(scelta==2) {
+                    var menuLibreria=new MenuLibreria(userId);
+
+                    if(menuLibreria.getScelta()==4) {
+                        controllo=false;
+                    }
+
+                    if(menuLibreria.getScelta()==5) {
+                        scelta=4;
+                    }
+
                 }
 
+                else {
+                    scelta++;
+                }
+
+            }
+
+            else {
+
+                MenuPrincipaleMessaggi.menuRegistrazioneConsigliati();
+                scelta = SceltaMenuMessaggi.inserimentoSceltaMenu(5);
+
+                if(scelta==1) {
+                    var ricercaLibro=new RicercaLibro(1);
+
+                    if(ricercaLibro.getScelta()==4) {
+                        controllo=false;
+                    }
+
+                    if(ricercaLibro.getScelta()==5) {
+                        scelta=4;
+                    }
+                }
+
+                if(scelta==2) {
+                    var menuLibreria=new MenuLibreria(userId);
+
+                    if(menuLibreria.getScelta()==4) {
+                        controllo=false;
+                    }
+
+                    if(menuLibreria.getScelta()==5) {
+                        scelta=4;
+                    }
+
+                }
+
+                if(scelta==3) {
+                    var selezioneConsigliati=new SelezioneConsigliati(userId);
+                }
             }
 
         } while(!controllo);

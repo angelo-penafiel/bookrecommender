@@ -25,16 +25,6 @@ public final class MenuPrincipaleMessaggi {
      * @param userId rappresenta l'userId
      */
 
-    public static void menu(String userId) {
-
-        System.out.println("-----Menu principale/Utente: "+userId+"-----");
-        System.out.println("| 1) Cerca libro ");
-        System.out.println("| 2) Librerie ");
-        System.out.println("| 4) Log out ");
-        System.out.println("| 5) Esci dal programma ");
-        System.out.println("----------------------------------------------------");
-    }
-
     /**
      * Stampa il menu principale nel caso in cui
      * l'utente non ha effettuato il login.
@@ -50,7 +40,7 @@ public final class MenuPrincipaleMessaggi {
         System.out.println("---------------------------");
     }
 
-    public static void menuRegistrazione() {
+    public static void menuRegistrazioneSenzaConsigliati() {
 
         System.out.println("------Menu principale------");
         System.out.println("| 1) Ricerca libro        |");
@@ -59,4 +49,16 @@ public final class MenuPrincipaleMessaggi {
         System.out.println("| 4) Esci dal programma   |");
         System.out.println("---------------------------");
     }
+
+    public static void menuRegistrazioneConsigliati() {
+
+        System.out.println("--------Menu principale--------");
+        System.out.println("| 1) Ricerca libro            |");
+        System.out.println("| 2) Librerie                 |");
+        System.out.println("| 3) Visualizza consigliati   |");
+        System.out.println("| 4) Log out                  |");
+        System.out.println("| 5) Esci dal programma       |");
+        System.out.println("-------------------------------");
+    }
+
 }

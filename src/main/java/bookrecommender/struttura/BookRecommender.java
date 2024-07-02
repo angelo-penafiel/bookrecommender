@@ -49,7 +49,7 @@ public class BookRecommender {
             if (UserID != null) {
                 System.out.println("Welcome " + UserID);
                 var menuPrincipale = new MenuPrincipale(UserID);
-                if (menuPrincipale.getScelta() == 3) controllo = false;
+                if (menuPrincipale.getScelta() == 4) controllo = false;
             }
         }
 
@@ -58,7 +58,7 @@ public class BookRecommender {
             if (UserID != null) {
                 System.out.println("Welcome " + UserID);
                 var menuPrincipale = new MenuPrincipale(UserID);
-                if (menuPrincipale.getScelta() == 3) controllo = false;
+                if (menuPrincipale.getScelta() == 4) controllo = false;
             }
         }
 
