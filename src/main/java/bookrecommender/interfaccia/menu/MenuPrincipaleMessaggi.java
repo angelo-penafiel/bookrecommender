@@ -45,7 +45,7 @@ public final class MenuPrincipaleMessaggi {
         System.out.println("------Menu principale------");
         System.out.println("| 1) Cerca libro          |");
         System.out.println("| 2) Accedi               |");
-        System.out.println("| 3) Registrati           |");
+        System.out.println("| 3) Registrazione        |");
         System.out.println("| 4) Esci dal programma   |");
         System.out.println("---------------------------");
     }

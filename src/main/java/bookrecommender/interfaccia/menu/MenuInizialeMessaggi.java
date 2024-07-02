@@ -24,10 +24,10 @@ public final class MenuInizialeMessaggi {
 
     public static void menu() {
 
-        System.out.println("-----------Menu iniziale-----------");
-        System.out.println("| 1) Accedi                       |");
-        System.out.println("| 2) Registrati                   |");
-        System.out.println("| 3) Continua senza registrarti   |");
-        System.out.println("-----------------------------------");
+        System.out.println("-----------Menu iniziale-------------");
+        System.out.println("| 1) Accedi                         |");
+        System.out.println("| 2) Registrazione                  |");
+        System.out.println("| 3) Continua senza registrazione   |");
+        System.out.println("-------------------------------------");
     }
 }
