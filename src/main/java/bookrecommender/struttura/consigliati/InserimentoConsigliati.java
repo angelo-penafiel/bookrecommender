@@ -16,10 +16,10 @@ public class InserimentoConsigliati  {
 
   public InserimentoConsigliati(String UserID, Libro l)throws IOException {
 
-/*
-    String csvFile = "path/to/your/file.csv";
-    String targetValue = "valueToFind";
-    String[] updatedRow = {"new", "updated", "values"};
+
+    String csvFile = "ConsigliLibri.dati.csv";
+    String targetValue = UserID;
+    String[] updatedRow = {UserID,"", "", ""};
 
     List<CSVRecord> records = new ArrayList<>();
 
@@ -30,7 +30,8 @@ public class InserimentoConsigliati  {
       for (CSVRecord record : csvRecords) {
         // Se la riga contiene il valore target, sostituiscila con la nuova riga
         if (record.get(0).equals(targetValue)) { // Supponendo che il valore target sia nella prima colonna
-          records.add(new CSVRecord(
+          records.add(
+                  new CSVRecord(
                   CSVFormat.DEFAULT.getRecordSeparator(),
                   updatedRow,
                   record.getComment()
@@ -55,7 +56,7 @@ public class InserimentoConsigliati  {
       e.printStackTrace();
     }
 
-    */
+
 
 
 
