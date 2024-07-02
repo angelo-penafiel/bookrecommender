@@ -43,7 +43,7 @@ public final class MenuPrincipaleMessaggi {
     public static void menuSenzaRegistrazione() {
 
         System.out.println("------Menu principale------");
-        System.out.println("| 1) Cerca libro          |");
+        System.out.println("| 1) Ricerca libro        |");
         System.out.println("| 2) Accedi               |");
         System.out.println("| 3) Registrazione        |");
         System.out.println("| 4) Esci dal programma   |");
@@ -53,7 +53,7 @@ public final class MenuPrincipaleMessaggi {
     public static void menuRegistrazione() {
 
         System.out.println("------Menu principale------");
-        System.out.println("| 1) Cerca libro          |");
+        System.out.println("| 1) Ricerca libro        |");
         System.out.println("| 2) Librerie             |");
         System.out.println("| 3) Log out              |");
         System.out.println("| 4) Esci dal programma   |");
