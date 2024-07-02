@@ -1,60 +1,59 @@
 package bookrecommender.struttura.valutazione;
 
+import bookrecommender.elaborazione.entities.Libro;
+import bookrecommender.elaborazione.entities.utils.singleton.ValutazioniHashMap;
 import bookrecommender.interfaccia.NuovaSchermata;
 import bookrecommender.interfaccia.menu.SceltaMenuMessaggi;
 import bookrecommender.interfaccia.valutazione.MenuValutazioneMessaggi;
 
 public class MenuValutazione {
 
-  private int scelta;
+    private int scelta;
 
-  public MenuValutazione() {
+    public MenuValutazione(String userID, Libro l) {
 
-    boolean controllo;
+        boolean controllo;
 
-    do {
+        do {
 
-      controllo=true;
+            controllo = true;
 
-      //verifica se valutazione è presente
-      NuovaSchermata.nuovaSchermata();
-      if(true) {
+            NuovaSchermata.nuovaSchermata();
 
-        MenuValutazioneMessaggi.menuValutazionePresente();
-        scelta = SceltaMenuMessaggi.inserimentoSceltaMenu(5);
+            if (ValutazioniHashMap.getInstance().hasValutazione(userID,l.getId().toString())) {
 
-        if(scelta==1) {
-          var inserimentoValutazione=new InserimentoValutazione();
-          controllo=false;
-        }
+                MenuValutazioneMessaggi.menuValutazionePresente();
+                scelta = SceltaMenuMessaggi.inserimentoSceltaMenu(4);
 
-        if(scelta==2) {
-          var modificaValutazione=new ModificaValutazione();
-          controllo=false;
-        }
+                if (scelta == 1) {
+                    var visualizzaValutazione = new VisualizzaValutazione(userID,l);
+                    controllo = false;
+                }
 
-      }
+                if(scelta>1) {
+                    scelta++;
+                }
 
-      else {
+            } else {
 
-        MenuValutazioneMessaggi.menuValutazioneAssente();
-        scelta = SceltaMenuMessaggi.inserimentoSceltaMenu(4);
+                MenuValutazioneMessaggi.menuValutazioneAssente();
+                scelta = SceltaMenuMessaggi.inserimentoSceltaMenu(4);
 
-        if(scelta==1) {
-          var inserimentoValutazione=new InserimentoValutazione();
-          controllo=false;
-        }
+                if (scelta == 1) {
+                    var inserimentoValutazione = InserimentoValutazione.in(userID, l);
+                    controllo = false;
+                }
 
-        if(scelta>=2&&scelta<=4) {
-          scelta++;
-        }
-      }
+                if (scelta >= 2 && scelta <= 4) {
+                    scelta++;
+                }
+            }
 
-    } while (!controllo);
+        } while (!controllo);
 
-  }
+    }
 
-  public int getScelta() {
-    return scelta;
-  }
+    public int getScelta() {
+        return scelta;
+    }
 }
