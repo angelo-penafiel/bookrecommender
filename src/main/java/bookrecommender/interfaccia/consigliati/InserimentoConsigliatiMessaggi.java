@@ -13,7 +13,7 @@ public final class InserimentoConsigliatiMessaggi {
     //METODO
 
     public static void consigliatoAggiunto() {
-        System.out.print("\n  Il libro  è stato aggiunto tra i consigliati! Inserisci qualsiasi tasto: ");
+        System.out.print("\n  Il libro è stato aggiunto tra i consigliati! Inserisci qualsiasi tasto: ");
         Scanner in=new Scanner(System.in);
         in.nextLine(  );
     }

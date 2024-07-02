@@ -10,7 +10,7 @@ import java.util.HashMap;
 /**
  * Questa classe si occupa delle operazioni di hashing di un file .csv
  *
- * @author Leonardo Basso
+ * @author Leonardo Basso, Angelo Penafiel
  */
 public class CsvHasher {
 
