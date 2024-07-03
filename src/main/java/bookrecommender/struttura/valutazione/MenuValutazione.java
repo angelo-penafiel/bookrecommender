@@ -23,30 +23,23 @@ public class MenuValutazione {
             if (ValutazioniHashMap.getInstance().hasValutazione(userID,l.getId().toString())) {
 
                 MenuValutazioneMessaggi.menuValutazionePresente();
-                scelta = SceltaMenuMessaggi.inserimentoSceltaMenu(4);
+                scelta = SceltaMenuMessaggi.inserimentoSceltaMenu(6);
 
                 if (scelta == 1) {
                     var visualizzaValutazione = new VisualizzaValutazione(userID,l);
                     controllo = false;
                 }
 
-                if(scelta>1) {
-                    scelta++;
-                }
-
             } else {
 
                 MenuValutazioneMessaggi.menuValutazioneAssente();
-                scelta = SceltaMenuMessaggi.inserimentoSceltaMenu(4);
+                scelta = SceltaMenuMessaggi.inserimentoSceltaMenu(6);
 
                 if (scelta == 1) {
                     var inserimentoValutazione = InserimentoValutazione.in(userID, l);
                     controllo = false;
                 }
 
-                if (scelta >= 2 && scelta <= 4) {
-                    scelta++;
-                }
             }
 
         } while (!controllo);

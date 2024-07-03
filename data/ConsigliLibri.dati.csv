@@ -1,2 +1,5 @@
-UserID,id libro consigliato 1,id libro consigliato 2,id libro consigliato 3
-"test",21,33,88
+UserId,LibroId
+"test",21
+"Angelo",21
+"test",33
+"test",88

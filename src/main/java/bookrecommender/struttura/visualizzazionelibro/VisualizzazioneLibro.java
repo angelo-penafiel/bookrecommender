@@ -1,8 +1,10 @@
 package bookrecommender.struttura.visualizzazionelibro;
 
 import bookrecommender.elaborazione.dao.ConsigliatoDao;
+import bookrecommender.elaborazione.dao.LibroDao;
 import bookrecommender.elaborazione.dao.ValutazioneDao;
 import bookrecommender.elaborazione.dao.daoimpl.ConsigliatoDaoImpl;
+import bookrecommender.elaborazione.dao.daoimpl.LibroDaoImpl;
 import bookrecommender.elaborazione.dao.daoimpl.ValutazioneDaoImpl;
 import bookrecommender.elaborazione.entities.Consigliato;
 import bookrecommender.elaborazione.entities.Libro;
@@ -11,7 +13,9 @@ import bookrecommender.interfaccia.NuovaSchermata;
 import bookrecommender.interfaccia.visualizzazioneLibro.VisualizzazioneLIbroMessaggi;
 import bookrecommender.interfaccia.menu.SceltaMenuMessaggi;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map.Entry;
 
 public class VisualizzazioneLibro {
 
@@ -23,14 +27,31 @@ public class VisualizzazioneLibro {
 
     this.libro=libro;
 
-    List<Consigliato> consigliati;
+    HashMap<String, Integer> consigliatiCountedId;
 
     ConsigliatoDao consigliatoDao=new ConsigliatoDaoImpl();
     try {
-      consigliati=consigliatoDao.getByLibroId(libro.getId().toString());
+      consigliatiCountedId=consigliatoDao.getLibriConsigliatiCountedByLibroId(libro.getId().toString());
     } catch (IOException e) {
       throw new RuntimeException(e);
     }
+
+    HashMap<String, Integer> consigliatiCountedTitolo = new HashMap<>();
+
+    for(Entry<String, Integer> entry:consigliatiCountedId.entrySet()) {
+
+      String titolo;
+      LibroDao libroDao=new LibroDaoImpl();
+
+      try {
+        titolo=libroDao.getTitoloById(Integer.parseInt(entry.getKey()));
+      } catch (IOException e) {
+        throw new RuntimeException(e);
+      }
+
+      consigliatiCountedTitolo.put(titolo,entry.getValue());
+    }
+
 
     List<Valutazione> valutazioni;
 
@@ -70,7 +91,7 @@ public class VisualizzazioneLibro {
 
     NuovaSchermata.nuovaSchermata();
     VisualizzazioneLIbroMessaggi.intestazione();
-    VisualizzazioneLIbroMessaggi.stampaDatiLibro(libro,consigliati.size(),media);
+    VisualizzazioneLIbroMessaggi.stampaDatiLibro(libro,consigliatiCountedTitolo,media);
 
     if(menuProvenienza==0) {
       VisualizzazioneLIbroMessaggi.menuSceltaSenzaRegistrazione();
@@ -83,8 +104,7 @@ public class VisualizzazioneLibro {
     }
 
     if(menuProvenienza==2) {
-      VisualizzazioneLIbroMessaggi.menuSceltaUtenteConsigliati();
-      scelta = SceltaMenuMessaggi.inserimentoSceltaMenu(3);
+      VisualizzazioneLIbroMessaggi.consigliati();
     }
 
   }

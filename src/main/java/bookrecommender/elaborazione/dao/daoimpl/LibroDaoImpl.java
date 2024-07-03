@@ -122,6 +122,37 @@ public class LibroDaoImpl implements LibroDao {
     return opzioniTitoloAnno;
   }
 
+  @Override
+  public String getTitoloById(Integer id) throws IOException {
+
+    String titolo="";
+
+    Reader in = new FileReader("data/Libri.dati.csv");
+
+    CSVFormat csvFormat = CSVFormat.DEFAULT.builder()
+        .setHeader(HEADERS)
+        .setSkipHeaderRecord(true)
+        .build();
+
+    List<CSVRecord> records = csvFormat.parse(in).getRecords();
+
+    int i=0;
+
+    for (CSVRecord record : records) {
+
+      String titoloL=record.get("Title").toLowerCase();
+
+      if(id==i) {
+        titolo=titoloL;
+      }
+
+      i++;
+
+    }
+
+    return titolo;
+  }
+
   /**
    * Restituisce una lista di autori correlati
    * al nome dell'autore fornito.

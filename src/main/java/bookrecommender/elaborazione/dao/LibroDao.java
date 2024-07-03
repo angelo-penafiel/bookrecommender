@@ -46,6 +46,20 @@ public interface LibroDao {
     List<Libro> getTitoloAndAnnoByIds(List<Integer> libriId) throws IOException;
 
     /**
+     * Restituisce una lista di oggetti di tipo
+     * libro, di cui sono forniti solamente i
+     * campi titolo e anno di pubblicazione,
+     * dato una lista di id di libri.
+     *
+     * @param id indica la lista di libri
+     *
+     * @return lista di titoli e anno di pubblicazione
+     *         cercati
+     */
+
+    String getTitoloById(Integer id) throws IOException;
+
+    /**
      * Restituisce una lista di autori correlati
      * al nome dell'autore fornito.
      *

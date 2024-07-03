@@ -1,8 +1,8 @@
 package bookrecommender.elaborazione.dao;
 
 import bookrecommender.elaborazione.entities.Consigliato;
-import bookrecommender.elaborazione.entities.Libro;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -12,7 +12,7 @@ import java.util.List;
  * Ha lo scopo di prelevare i dati dai file csv e
  * creare oggetti o campi di classe Libro.
  *
- * @author Angelo Penafiel, Lorenzo
+ * @author Angelo Penafiel
  * @version 1.0
  */
 
@@ -29,14 +29,15 @@ public interface ConsigliatoDao {
      * @return lista di id correlati al titolo
      */
 
-    void add(String userId) throws IOException;
+    Consigliato getByUserIdAndLibroId(String userId, String  libroId) throws IOException;
 
-    void addLibro(String userId, Libro libro) throws IOException;
+    List<String>getLibriConsigliatiById (String id) throws IOException;
 
-    List<Consigliato> getAll() throws IOException;
+    void add(String userId, String  libroId) throws IOException;
 
-    Consigliato getByUserId(String userId) throws IOException;
+    void addLibroConsigliato(String id, String  libroId) throws IOException;
 
-    List<Consigliato> getByLibroId(String libroId) throws IOException;
+    HashMap<String, Integer> getLibriConsigliatiCountedByLibroId(String libroId) throws IOException;
 
+    List<Consigliato> getAllByLibroId(String  libroId) throws IOException;
 }

@@ -62,32 +62,8 @@ public class RicercaLibro {
         cercaLibro(menuProvenienza);
     }
 
+
     //METODI
-
-    private void caricamentoLibri() throws IOException {
-
-        Reader in = new FileReader("data/Libri.dati.csv");
-
-
-        String[] HEADERS = {"Title","Authors","Description","Category","Publisher","Price Starting With ($)",
-        "Publish Date (Month)","Publish Date (Year)"};
-
-        var csvFormat = CSVFormat.DEFAULT.builder()
-                .setHeader(HEADERS)
-                .setSkipHeaderRecord(true)
-                .build();
-
-        List<CSVRecord> records = csvFormat.parse(in).getRecords();
-
-        for (CSVRecord record : records) {
-
-            String titolo=record.get("Title").toLowerCase();
-            String authors=record.get("Authors").toLowerCase();
-            Integer annoPubblicazione=Integer.parseInt(record.get("Publish Date (Year)"));
-            String editore=record.get("Publisher").toLowerCase();
-            String categories=record.get("Category").toLowerCase();
-           }
-    }
 
     /**
      * Gestisce l'indirizzamento del flusso del
@@ -112,11 +88,11 @@ public class RicercaLibro {
             }
 
             if(menuProvenienza==2) {
-                controllo=cercaLibroUtenteRegistratoConsigli(controllo, menuProvenienza);
+                controllo=cercaLibroUtenteRegistratoConsigli(controllo);
             }
 
             if(menuProvenienza==3) {
-                controllo=cercaLibroUtenteRegistratoLibroLibreria(controllo, menuProvenienza);
+                controllo=cercaLibroUtenteRegistratoLibroLibreria(controllo);
             }
 
         } while(!controllo);
@@ -272,7 +248,7 @@ public class RicercaLibro {
      * per gli utenti registrati.
      */
 
-    private boolean cercaLibroUtenteRegistratoConsigli(boolean controllo, int menuProvenienza) {
+    private boolean cercaLibroUtenteRegistratoConsigli(boolean controllo) {
 
         NuovaSchermata.nuovaSchermata();
         RicercaLibroMessaggi.menuUtenteRegistratoConsigli();
@@ -326,7 +302,7 @@ public class RicercaLibro {
      * per gli utenti registrati.
      */
 
-    private boolean cercaLibroUtenteRegistratoLibroLibreria(boolean controllo, int menuProvenienza) {
+    private boolean cercaLibroUtenteRegistratoLibroLibreria(boolean controllo) {
 
         NuovaSchermata.nuovaSchermata();
         RicercaLibroMessaggi.menuUtenteRegistratoLibroLibreria();
