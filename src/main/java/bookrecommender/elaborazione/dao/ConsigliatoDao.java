@@ -1,9 +1,8 @@
 package bookrecommender.elaborazione.dao;
 
-import bookrecommender.elaborazione.entities.Consigliati;
+import bookrecommender.elaborazione.entities.Consigliato;
 import bookrecommender.elaborazione.entities.Libro;
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -17,7 +16,7 @@ import java.util.List;
  * @version 1.0
  */
 
-public interface ConsigliatiDao {
+public interface ConsigliatoDao {
 
     //METODI
 
@@ -34,8 +33,10 @@ public interface ConsigliatiDao {
 
     void addLibro(String userId, Libro libro) throws IOException;
 
-    List<Consigliati> getAll() throws IOException;
+    List<Consigliato> getAll() throws IOException;
 
-    Consigliati getByUserId(String userId) throws IOException;
+    Consigliato getByUserId(String userId) throws IOException;
+
+    List<Consigliato> getByLibroId(String libroId) throws IOException;
 
 }

@@ -1,10 +1,10 @@
 package bookrecommender.struttura.consigliati;
 
-import bookrecommender.elaborazione.dao.ConsigliatiDao;
+import bookrecommender.elaborazione.dao.ConsigliatoDao;
 import bookrecommender.elaborazione.dao.LibroDao;
-import bookrecommender.elaborazione.dao.daoimpl.ConsigliatiDaoImpl;
+import bookrecommender.elaborazione.dao.daoimpl.ConsigliatoDaoImpl;
 import bookrecommender.elaborazione.dao.daoimpl.LibroDaoImpl;
-import bookrecommender.elaborazione.entities.Consigliati;
+import bookrecommender.elaborazione.entities.Consigliato;
 import bookrecommender.elaborazione.entities.Libro;
 import bookrecommender.interfaccia.NuovaSchermata;
 import bookrecommender.interfaccia.menu.SceltaMenuMessaggi;
@@ -19,11 +19,11 @@ public class SelezioneConsigliati {
 
   public SelezioneConsigliati(String userId) {
 
-    Consigliati consigliati;
+    Consigliato consigliati;
 
-    ConsigliatiDao consigliatiDao=new ConsigliatiDaoImpl();
+    ConsigliatoDao consigliatoDao =new ConsigliatoDaoImpl();
     try {
-      consigliati=consigliatiDao.getByUserId(userId);
+      consigliati= consigliatoDao.getByUserId(userId);
     } catch (IOException e) {
       throw new RuntimeException(e);
     }

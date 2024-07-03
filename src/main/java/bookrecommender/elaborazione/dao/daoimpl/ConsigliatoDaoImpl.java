@@ -1,19 +1,14 @@
 package bookrecommender.elaborazione.dao.daoimpl;
 
-import bookrecommender.elaborazione.dao.ConsigliatiDao;
-import bookrecommender.elaborazione.dao.LibreriaDao;
-import bookrecommender.elaborazione.entities.Consigliati;
-import bookrecommender.elaborazione.entities.Libreria;
+import bookrecommender.elaborazione.dao.ConsigliatoDao;
+import bookrecommender.elaborazione.entities.Consigliato;
 import bookrecommender.elaborazione.entities.Libro;
-import bookrecommender.elaborazione.entities.utils.singleton.ConsigliatiHashMap;
 import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Reader;
-import java.sql.Array;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVRecord;
@@ -29,7 +24,7 @@ import org.apache.commons.csv.CSVRecord;
  * @version 1.0
  */
 
-public class ConsigliatiDaoImpl implements ConsigliatiDao {
+public class ConsigliatoDaoImpl implements ConsigliatoDao {
 
 
   //CAMPO
@@ -55,7 +50,7 @@ public class ConsigliatiDaoImpl implements ConsigliatiDao {
   @Override
   public void addLibro(String userId, Libro libro) throws IOException {
 
-    List<Consigliati> consigliati=getAll();
+    List<Consigliato> consigliati=getAll();
 
     String [] libriConsigliati = getByUserId(userId).getLibriConsigliati();
 
@@ -70,7 +65,7 @@ public class ConsigliatiDaoImpl implements ConsigliatiDao {
 
     writer.write("\n");
 
-    for(Consigliati consigliato:consigliati) {
+    for(Consigliato consigliato:consigliati) {
 
       writer.write("\""+consigliato.getUserId()+"\",");
 
@@ -114,9 +109,9 @@ public class ConsigliatiDaoImpl implements ConsigliatiDao {
   }
 
   @Override
-  public List<Consigliati> getAll() throws IOException {
+  public List<Consigliato> getAll() throws IOException {
 
-    List<Consigliati> consigliati = new ArrayList<>();
+    List<Consigliato> consigliati = new ArrayList<>();
 
     Reader in = new FileReader("data/ConsigliLibri.dati.csv");
 
@@ -134,13 +129,13 @@ public class ConsigliatiDaoImpl implements ConsigliatiDao {
       String consigliato2=record.get("id libro consigliato 2");
       String consigliato3=record.get("id libro consigliato 3");
 
-      String[] consigliatiArray= new String[Consigliati.MAX_LIBRI_CONSIGLIATI];
+      String[] consigliatiArray= new String[Consigliato.MAX_LIBRI_CONSIGLIATI];
 
       consigliatiArray[0]=consigliato1;
       consigliatiArray[1]=consigliato2;
       consigliatiArray[2]=consigliato3;
 
-      consigliati.add(new Consigliati(userId, consigliatiArray));
+      consigliati.add(new Consigliato(userId, consigliatiArray));
 
     }
 
@@ -148,9 +143,9 @@ public class ConsigliatiDaoImpl implements ConsigliatiDao {
   }
 
   @Override
-  public Consigliati getByUserId(String userId) throws IOException {
+  public Consigliato getByUserId(String userId) throws IOException {
 
-    Consigliati consigliato=null;
+    Consigliato consigliato=null;
 
     Reader in = new FileReader("data/ConsigliLibri.dati.csv");
 
@@ -169,18 +164,57 @@ public class ConsigliatiDaoImpl implements ConsigliatiDao {
       String consigliato3=record.get("id libro consigliato 3");
 
       if(userIdC.equals(userId)) {
-        String[] consigliati= new String[Consigliati.MAX_LIBRI_CONSIGLIATI];
+        String[] consigliati= new String[Consigliato.MAX_LIBRI_CONSIGLIATI];
 
         consigliati[0]=consigliato1;
         consigliati[1]=consigliato2;
         consigliati[2]=consigliato3;
 
-        consigliato=new Consigliati(userIdC, consigliati);
+        consigliato=new Consigliato(userIdC, consigliati);
       }
 
     }
 
     return consigliato;
+  }
+
+  @Override
+  public List<Consigliato> getByLibroId(String libroId) throws IOException {
+
+    List<Consigliato> consigliati=new ArrayList<>();
+
+    Reader in = new FileReader("data/ConsigliLibri.dati.csv");
+
+    CSVFormat csvFormat = CSVFormat.DEFAULT.builder()
+        .setHeader(HEADERS)
+        .setSkipHeaderRecord(true)
+        .build();
+
+    List<CSVRecord> records = csvFormat.parse(in).getRecords();
+
+    for (CSVRecord record : records) {
+
+      String userIdC=record.get("UserID");
+      String consigliato1=record.get("id libro consigliato 1");
+      String consigliato2=record.get("id libro consigliato 2");
+      String consigliato3=record.get("id libro consigliato 3");
+
+      if(consigliato1.equals(libroId)||consigliato2.equals(libroId)
+          ||consigliato3.equals(libroId)) {
+
+        String[] consigliatiArray= new String[Consigliato.MAX_LIBRI_CONSIGLIATI];
+
+        consigliatiArray[0]=consigliato1;
+        consigliatiArray[1]=consigliato2;
+        consigliatiArray[2]=consigliato3;
+
+        consigliati.add(new Consigliato(userIdC,consigliatiArray));
+
+      }
+
+    }
+
+    return consigliati;
   }
 
 }

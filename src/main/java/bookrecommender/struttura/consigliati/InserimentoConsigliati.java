@@ -1,7 +1,7 @@
 package bookrecommender.struttura.consigliati;
 
-import bookrecommender.elaborazione.dao.ConsigliatiDao;
-import bookrecommender.elaborazione.dao.daoimpl.ConsigliatiDaoImpl;
+import bookrecommender.elaborazione.dao.ConsigliatoDao;
+import bookrecommender.elaborazione.dao.daoimpl.ConsigliatoDaoImpl;
 import bookrecommender.elaborazione.entities.Libro;
 import bookrecommender.interfaccia.NuovaSchermata;
 import bookrecommender.interfaccia.consigliati.InserimentoConsigliatiMessaggi;
@@ -13,10 +13,10 @@ public class InserimentoConsigliati  {
 
     NuovaSchermata.nuovaSchermata();
 
-    ConsigliatiDao consigliatiDao=new ConsigliatiDaoImpl();
+    ConsigliatoDao consigliatoDao =new ConsigliatoDaoImpl();
 
     try {
-      consigliatiDao.addLibro(UserID,libro);
+      consigliatoDao.addLibro(UserID,libro);
     } catch (IOException e) {
       throw new RuntimeException(e);
     }

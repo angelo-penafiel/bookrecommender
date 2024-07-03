@@ -1,14 +1,15 @@
 package bookrecommender.struttura.menu;
 
-import bookrecommender.elaborazione.dao.ConsigliatiDao;
-import bookrecommender.elaborazione.dao.daoimpl.ConsigliatiDaoImpl;
-import bookrecommender.elaborazione.entities.Consigliati;
+import bookrecommender.elaborazione.dao.ConsigliatoDao;
+import bookrecommender.elaborazione.dao.daoimpl.ConsigliatoDaoImpl;
+import bookrecommender.elaborazione.entities.Consigliato;
 import bookrecommender.interfaccia.NuovaSchermata;
 import bookrecommender.interfaccia.menu.MenuPrincipaleMessaggi;
 import bookrecommender.interfaccia.menu.SceltaMenuMessaggi;
 import bookrecommender.struttura.consigliati.SelezioneConsigliati;
 import bookrecommender.struttura.libreria.MenuLibreria;
 import bookrecommender.struttura.ricercalibro.RicercaLibro;
+import bookrecommender.struttura.visualizzazionelibro.VisualizzazioneLibro;
 import java.io.IOException;
 
 /**
@@ -77,12 +78,12 @@ public class MenuPrincipale {
 
             NuovaSchermata.nuovaSchermata();
 
-            Consigliati consigliato;
+            Consigliato consigliato;
 
-            ConsigliatiDao consigliatiDao=new ConsigliatiDaoImpl();
+            ConsigliatoDao consigliatoDao =new ConsigliatoDaoImpl();
 
             try {
-                consigliato=consigliatiDao.getByUserId(userId);
+                consigliato= consigliatoDao.getByUserId(userId);
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
@@ -155,6 +156,15 @@ public class MenuPrincipale {
 
                 if(scelta==3) {
                     var selezioneConsigliati=new SelezioneConsigliati(userId);
+                    var visualizzazioneLibro=new VisualizzazioneLibro(2, selezioneConsigliati.getLibro());
+
+                    if(visualizzazioneLibro.getScelta()==1) {
+                        controllo=false;
+                    }
+
+                    else {
+                        scelta=visualizzazioneLibro.getScelta()+2;
+                    }
                 }
             }
 

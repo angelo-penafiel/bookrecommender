@@ -1,8 +1,8 @@
 package bookrecommender.struttura.menu;
 
-import bookrecommender.elaborazione.dao.ConsigliatiDao;
-import bookrecommender.elaborazione.dao.daoimpl.ConsigliatiDaoImpl;
-import bookrecommender.elaborazione.entities.Consigliati;
+import bookrecommender.elaborazione.dao.ConsigliatoDao;
+import bookrecommender.elaborazione.dao.daoimpl.ConsigliatoDaoImpl;
+import bookrecommender.elaborazione.entities.Consigliato;
 import bookrecommender.elaborazione.entities.Libro;
 import bookrecommender.interfaccia.NuovaSchermata;
 import bookrecommender.interfaccia.menu.MenuAzioniLibroMessaggi;
@@ -25,24 +25,24 @@ public class MenuAzioniLibro {
 
             NuovaSchermata.nuovaSchermata();
 
-            Consigliati consigliato;
+            Consigliato consigliato;
 
-            ConsigliatiDao consigliatiDao=new ConsigliatiDaoImpl();
+            ConsigliatoDao consigliatoDao =new ConsigliatoDaoImpl();
 
             try {
-                consigliato=consigliatiDao.getByUserId(userID);
+                consigliato= consigliatoDao.getByUserId(userID);
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
 
           if(consigliato==null) {
                 try {
-                    consigliatiDao.add(userID);
+                    consigliatoDao.add(userID);
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
                 try {
-                    consigliato=consigliatiDao.getByUserId(userID);
+                    consigliato= consigliatoDao.getByUserId(userID);
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
@@ -56,7 +56,7 @@ public class MenuAzioniLibro {
                 }
             }
 
-            if("-1".equals(consigliato.getLibriConsigliati()[Consigliati.MAX_LIBRI_CONSIGLIATI-1])
+            if("-1".equals(consigliato.getLibriConsigliati()[Consigliato.MAX_LIBRI_CONSIGLIATI-1])
                 && !isLibroConsigliato) {
 
                 MenuAzioniLibroMessaggi.menuLibroDaConsigliare();

@@ -7,7 +7,7 @@ package bookrecommender.elaborazione.entities;
  * @version 1.0
  */
 
-public class Consigliati {
+public class Consigliato {
 
   public static int MAX_LIBRI_CONSIGLIATI = 3;
 
@@ -15,7 +15,7 @@ public class Consigliati {
 
   private String[] libriConsigliati;
 
-  public Consigliati(String userId, String[] libriConsigliati) {
+  public Consigliato(String userId, String[] libriConsigliati) {
     this.userId=userId;
     this.libriConsigliati=libriConsigliati;
   }
