@@ -40,18 +40,50 @@ public class InserimentoConsigliati  {
     else {
       var ricercaLibro=new RicercaLibro(2);
 
-      ConsigliatoDao consigliatoDao=new ConsigliatoDaoImpl();
+      boolean exists=false;
 
-      try {
-        consigliatoDao.addLibroConsigliato(consigliato.getId(),
-            Integer.toString(ricercaLibro.getLibro().getId()));
-
-      } catch (IOException e) {
-        throw new RuntimeException(e);
+      if(consigliato.getLibroId().equals(Integer.toString(ricercaLibro.getLibro().getId()))) {
+        exists=true;
       }
 
-      NuovaSchermata.nuovaSchermata();
-      InserimentoConsigliatiMessaggi.consigliatoAggiunto();
+      if(exists) {
+        NuovaSchermata.nuovaSchermata();
+        InserimentoConsigliatiMessaggi.erroreLibroCorrente();
+      }
+
+      else {
+
+        for(String libroConsigliato:consigliato.getLibriConsigliati()) {
+
+          if(Integer.toString(ricercaLibro.getLibro().getId()).equals(libroConsigliato)) {
+            exists=true;
+          }
+        }
+
+        if(exists) {
+          NuovaSchermata.nuovaSchermata();
+          InserimentoConsigliatiMessaggi.erroreLibroConsigliato();
+        }
+
+        else {
+
+          ConsigliatoDao consigliatoDao=new ConsigliatoDaoImpl();
+
+          try {
+            consigliatoDao.addLibroConsigliato(consigliato.getId(),
+                Integer.toString(ricercaLibro.getLibro().getId()));
+
+          } catch (IOException e) {
+            throw new RuntimeException(e);
+          }
+
+          NuovaSchermata.nuovaSchermata();
+          InserimentoConsigliatiMessaggi.consigliatoAggiunto();
+
+        }
+
+      }
+
     }
 
   }
