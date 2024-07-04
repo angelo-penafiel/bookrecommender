@@ -12,7 +12,7 @@ import java.io.IOException;
  * Classe che ha la funzione di gestire la
  * sezione di inserimento del libro cosigliato.
  *
- * @author Angelo Penafiel
+ * @author Angelo Penafiel e Lorenzo Beretta
  * @version 1.0
  */
 

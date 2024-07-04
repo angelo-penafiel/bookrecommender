@@ -22,7 +22,7 @@ import org.apache.commons.csv.CSVRecord;
  * AssegnamentoConsigliatiLibri.dati.csv) e creare
  * oggetti o campi di classe Consigliato.
  *
- * @author Angelo Penafiel
+ * @author Angelo Penafiel e Lorenzo Beretta
  * @version 1.0
  */
 

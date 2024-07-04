@@ -15,7 +15,7 @@ import java.io.IOException;
  * Classe che ha la funzione di gestire la
  * sezione del menu della libreria.
  *
- * @author Angelo Penafiel
+ * @author Angelo Penafiel e Lorenzo Beretta
  * @version 1.0
  */
 
@@ -50,11 +50,13 @@ public class MenuConsigliati {
 
   public MenuConsigliati(String userId, Libro libro) {
 
+
     boolean controllo;
 
     do {
 
       controllo = true;
+
 
       Consigliato consigliato;
       ConsigliatoDao consigliatoDao=new ConsigliatoDaoImpl();
@@ -74,6 +76,7 @@ public class MenuConsigliati {
           throw new RuntimeException(e);
         }
       }
+
 
       NuovaSchermata.nuovaSchermata();
       MenuConsigliatiMessaggi.menu();
