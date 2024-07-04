@@ -1,6 +1,15 @@
 package bookrecommender.interfaccia.valutazione;
 
+/**
+ * Classe che ha la funzione di stampare i
+ * messaggi della sezione del menu valutazione.
+ *
+ * @author Angelo Penafiel
+ * @version 1.0
+ */
+
 public final class MenuValutazioneMessaggi {
+
 
     //COSTRUTTORE
 
@@ -8,7 +17,13 @@ public final class MenuValutazioneMessaggi {
 
     }
 
-    //METODO
+
+    //METODI
+
+    /**
+     * Stampa il menu valutazione nel caso
+     * in cui la valutazione è presente.
+     */
 
     public static void menuValutazionePresente() {
 
@@ -21,6 +36,11 @@ public final class MenuValutazioneMessaggi {
         System.out.println("| 6) Esci dal programma           |");
         System.out.println("-----------------------------------");
     }
+
+    /**
+     * Stampa il menu valutazione nel caso
+     * in cui la valutazione non è presente.
+     */
 
     public static void menuValutazioneAssente() {
 

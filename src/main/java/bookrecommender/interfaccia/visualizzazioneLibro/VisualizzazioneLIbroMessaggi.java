@@ -7,6 +7,15 @@ import java.util.List;
 import java.util.Map.Entry;
 import java.util.Scanner;
 
+/**
+ * Classe che ha la funzione di stampare i
+ * messaggi della sezione di visualizzazione
+ * del libro.
+ *
+ * @author Angelo Penafiel
+ * @version 1.0
+ */
+
 public final class VisualizzazioneLIbroMessaggi {
 
     //COSTRUTTORE

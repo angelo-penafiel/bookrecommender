@@ -1,5 +1,14 @@
 package bookrecommender.interfaccia.menu;
 
+/**
+ * Classe che ha la funzione di stampare i
+ * messaggi della sezione del menu azioni
+ * libro.
+ *
+ * @author Angelo Penafiel
+ * @version 1.0
+ */
+
 public final class MenuAzioniLibroMessaggi {
 
     //COSTRUTTORE
@@ -8,7 +17,11 @@ public final class MenuAzioniLibroMessaggi {
 
     }
 
-    //METODI
+    //METODO
+
+    /**
+     * Stampa il menu azioni libro
+     */
 
     public static void menu() {
 

@@ -10,7 +10,8 @@ package bookrecommender.interfaccia;
 
 public final class NuovaSchermata {
 
-    //CAMPI
+
+    //CAMPO
 
     /**
      * Costante che indica il numero di invio/
@@ -20,13 +21,15 @@ public final class NuovaSchermata {
 
     private static final int CLS = 20;
 
+
     //COSTRUTTORE
 
     private NuovaSchermata() {
 
     }
 
-    //METODI
+
+    //METODO
 
     /**
      * Pulisce la schermata.

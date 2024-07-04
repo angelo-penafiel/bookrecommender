@@ -15,8 +15,9 @@ import org.apache.commons.csv.CSVRecord;
  * Classe che implementa il design pattern DAO.
  * La sua funzione è quella di separare la logica
  * di accesso ai dati dalla logica di business.
- * Ha lo scopo di prelevare i dati dai file csv e
- * creare oggetti o campi di classe Libro.
+ * Ha lo scopo di prelevare i dati del file csv
+ * (Libri.dati.csv) e creare oggetti o campi di classe
+ * Libro.
  *
  * @author Angelo Penafiel
  * @version 1.0

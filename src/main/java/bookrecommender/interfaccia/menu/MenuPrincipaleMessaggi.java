@@ -10,20 +10,15 @@ package bookrecommender.interfaccia.menu;
 
 public final class MenuPrincipaleMessaggi {
 
+
     //COSTRUTTORE
 
     private MenuPrincipaleMessaggi() {
 
     }
 
-    //METODI
 
-    /**
-     * Stampa il menu principale nel caso in cui
-     * l'utente è loggato.
-     *
-     * @param userId rappresenta l'userId
-     */
+    //METODI
 
     /**
      * Stampa il menu principale nel caso in cui
@@ -39,6 +34,11 @@ public final class MenuPrincipaleMessaggi {
         System.out.println("| 4) Esci dal programma   |");
         System.out.println("---------------------------");
     }
+
+    /**
+     * Stampa il menu principale nel caso in cui
+     * l'utente è loggato.
+     */
 
     public static void menuRegistrazione() {
 

@@ -16,7 +16,7 @@ public final class MenuLibreriaMessaggi {
 
     }
 
-    //METODO
+    //METODI
 
     /**
      * Stampa il menu libreria nel caso in

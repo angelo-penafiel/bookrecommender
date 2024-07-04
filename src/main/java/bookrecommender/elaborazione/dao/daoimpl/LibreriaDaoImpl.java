@@ -17,8 +17,10 @@ import org.apache.commons.csv.CSVRecord;
  * Classe che implementa il design pattern DAO.
  * La sua funzione è quella di separare la logica
  * di accesso ai dati dalla logica di business.
- * Ha lo scopo di prelevare i dati dai file csv e
- * creare oggetti o campi di classe Libreria.
+ * Ha lo scopo di prelevare e aggiugere i dati
+ * dei file csv (Librerie.dati.csv e
+ * AssegnamentoLibrerieLibri.dati.csv) e creare
+ * oggetti o campi di classe Libreria.
  *
  * @author Angelo Penafiel
  * @version 1.0
@@ -49,7 +51,7 @@ public class LibreriaDaoImpl implements LibreriaDao {
   /**
    * Restituisce un valore boolean che indica la
    * presenza di una libreria con il nome dato di
-   * un utente.
+   * un utente dato.
    *
    * @param nome indica il nome
    *
@@ -87,8 +89,8 @@ public class LibreriaDaoImpl implements LibreriaDao {
   }
 
   /**
-   * Aggiunge una libreria dati un nome e lo
-   * userId.
+   * Aggiunge al file Librerie.dati.csv una
+   * libreria dati un nome e lo userId.
    *
    * @param nome indica il nome
    *
@@ -258,7 +260,7 @@ public class LibreriaDaoImpl implements LibreriaDao {
 
   /**
    * Restituisce una lista di id dei libri correlati
-   * all'id della libreria dato.
+   * all'id dato della libreria.
    *
    * @param id indica l'id della libreria
    *
@@ -333,9 +335,10 @@ public class LibreriaDaoImpl implements LibreriaDao {
   }
 
   /**
-   * Aggiunge un libro nella libreria data.
+   * Aggiunge un libro nella libreria data
+   * al file AssegnamentoLibrerieLibri.dati.csv.
    *
-   * @param libreria indica la libreria
+   * @param libreria indica la libreriaù
    *
    * @param libro indica il libro
    */

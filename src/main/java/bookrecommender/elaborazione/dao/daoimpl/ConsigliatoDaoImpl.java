@@ -2,7 +2,6 @@ package bookrecommender.elaborazione.dao.daoimpl;
 
 import bookrecommender.elaborazione.dao.ConsigliatoDao;
 import bookrecommender.elaborazione.entities.Consigliato;
-import bookrecommender.elaborazione.entities.Libro;
 import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -11,7 +10,6 @@ import java.io.Reader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map.Entry;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVRecord;
 
@@ -19,8 +17,10 @@ import org.apache.commons.csv.CSVRecord;
  * Classe che implementa il design pattern DAO.
  * La sua funzione è quella di separare la logica
  * di accesso ai dati dalla logica di business.
- * Ha lo scopo di prelevare i dati dai file csv e
- * creare oggetti o campi di classe Libreria.
+ * Ha lo scopo di prelevare e aggiugere i dati
+ * dei file csv (ConsigliLibri.dati.csv e
+ * AssegnamentoConsigliatiLibri.dati.csv) e creare
+ * oggetti o campi di classe Consigliato.
  *
  * @author Angelo Penafiel
  * @version 1.0
@@ -29,19 +29,36 @@ import org.apache.commons.csv.CSVRecord;
 public class ConsigliatoDaoImpl implements ConsigliatoDao {
 
 
-  //CAMPO
+  //CAMPI
 
   /**
    * Costante che rappresenta l'header del file
-   * Librerie.dati.csv.
+   * ConsigliLibri.dati.csv.
    */
 
   private static final String[] HEADERS = {"UserId","LibroId"};
+
+  /**
+   * Costante che rappresenta l'header del file
+   * AssegnamentoConsigliatiLibri.dati.csv.
+   */
 
   private static final String[] HEADERS_ASSEGNAMENTO = {"ConsigliatoId","LibroId"};
 
 
   //METODI
+
+  /**
+   * Restituisce un oggetto Consigliato dato
+   * lo userId e l'id del libro corrente.
+   *
+   * @param userId indica lo userId
+   *
+   * @param libroId indica l'id del libro
+   *                corrente
+   *
+   * @return oggetto Consigliato
+   */
 
   @Override
   public Consigliato getByUserIdAndLibroId(String userId, String libroId) throws IOException {
@@ -76,6 +93,17 @@ public class ConsigliatoDaoImpl implements ConsigliatoDao {
     return consigliato;
   }
 
+  /**
+   * Restituisce una lista di id di libri
+   * consigliati dato l'id dell'oggetto
+   * Consigliato.
+   *
+   * @param id indica l'id dell'oggetto
+   *           Consigliato
+   *
+   * @return lista di id di libri consigliati
+   */
+
   @Override
   public List<String> getLibriConsigliatiById(String id) throws IOException {
 
@@ -104,6 +132,15 @@ public class ConsigliatoDaoImpl implements ConsigliatoDao {
     return consigliati;
   }
 
+  /**
+   * Aggiunge lo userId e l'id del libro
+   * corrente dati al file ConsigliLibri.dati.csv.
+   *
+   * @param userId indica lo userId
+   *
+   * @param libroId indica l'id del libro corrente
+   */
+
   @Override
   public void add(String userId, String  libroId) throws IOException {
     BufferedWriter writer = new BufferedWriter(new FileWriter("data/ConsigliLibri.dati.csv", true));
@@ -111,12 +148,38 @@ public class ConsigliatoDaoImpl implements ConsigliatoDao {
     writer.close();
   }
 
+  /**
+   * Aggiunge l'id dell'oggetto Consigliato
+   * e l'id del libro consigliato dati al file
+   * AssegnamentoConsigliatiLibri.dati.csv.
+   *
+   * @param id indica l'id dell'oggetto Consigliato
+   *
+   * @param libroConsigliatoId indica l'id del
+   *                           libro consigliato
+   */
+
   @Override
-  public void addLibroConsigliato(String id, String  libroId) throws IOException {
+  public void addLibroConsigliato(String id, String libroConsigliatoId) throws IOException {
     BufferedWriter writer = new BufferedWriter(new FileWriter("data/AssegnamentoConsigliatiLibri.dati.csv", true));
-    writer.write(id+","+libroId+"\n");
+    writer.write(id+","+ libroConsigliatoId +"\n");
     writer.close();
   }
+
+  /**
+   * Restituisce un HashMap, contente come
+   * chiave l'id del libro consigliato e come
+   * valore il numero di volte che è stato
+   * consigliato dagli utenti, dato l'id del
+   * libro corrente.
+   *
+   * @param libroId l'id del libro corrente
+   *
+   * @return HashMap contente come chiave l'id
+   * del libro consigliato e come valore il
+   * numero di volte che è stato consigliato
+   * dagli utenti
+   */
 
   @Override
   public HashMap<String, Integer> getLibriConsigliatiCountedByLibroId(String libroId) throws IOException {
@@ -141,6 +204,16 @@ public class ConsigliatoDaoImpl implements ConsigliatoDao {
 
     return consigliatiCounted;
   }
+
+  /**
+   * Restituisce una lista di oggetti
+   * Consigliato dato l'id del libro corrente.
+   *
+   * @param libroId indica l'id del libro
+   *                corrente
+   *
+   * @return lista di oggetti Consigliato
+   */
 
   @Override
   public List<Consigliato> getAllByLibroId(String libroId) throws IOException {

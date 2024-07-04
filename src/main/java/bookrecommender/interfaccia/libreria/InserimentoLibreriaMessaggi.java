@@ -23,7 +23,7 @@ public final class InserimentoLibreriaMessaggi {
 
   }
 
-  //METODO
+  //METODI
 
   /**
    * Stampa l'intestazione della sezione di

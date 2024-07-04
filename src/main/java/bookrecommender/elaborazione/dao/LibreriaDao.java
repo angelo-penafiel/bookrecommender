@@ -9,8 +9,10 @@ import java.util.List;
  * Interfaccia che implementa il design pattern DAO.
  * La sua funzione è quella di separare la logica
  * di accesso ai dati dalla logica di business.
- * Ha lo scopo di prelevare i dati dai file csv e
- * creare oggetti o campi di classe Libreria.
+ * Ha lo scopo di prelevare e aggiugere i dati
+ * dei file csv (Librerie.dati.csv e
+ * AssegnamentoLibrerieLibri.dati.csv) e creare
+ * oggetti o campi di classe Libreria.
  *
  * @author Angelo Penafiel
  * @version 1.0
@@ -23,7 +25,7 @@ public interface LibreriaDao {
     /**
      * Restituisce un valore boolean che indica la
      * presenza di una libreria con il nome dato di
-     * un utente.
+     * un utente dato.
      *
      * @param nome indica il nome
      *
@@ -35,8 +37,8 @@ public interface LibreriaDao {
     boolean existsByNome(String nome, String userId) throws IOException;
 
     /**
-     * Aggiunge una libreria dati un nome e lo
-     * userId.
+     * Aggiunge al file Librerie.dati.csv una
+     * libreria dati un nome e lo userId.
      *
      * @param nome indica il nome
      *
@@ -56,7 +58,7 @@ public interface LibreriaDao {
      * @return la lista di id
      */
 
-    List<Integer> getIdsByUserId( String userId) throws IOException;
+    List<Integer> getIdsByUserId(String userId) throws IOException;
 
     /**
      * Restituisce una lista di nomi delle
@@ -82,7 +84,7 @@ public interface LibreriaDao {
 
     /**
      * Restituisce una lista di id dei libri correlati
-     * all'id della libreria dato.
+     * all'id dato della libreria.
      *
      * @param id indica l'id della libreria
      *
@@ -105,7 +107,8 @@ public interface LibreriaDao {
     boolean existsLibro(Libreria libreria, Libro libro) throws IOException;
 
     /**
-     * Aggiunge un libro nella libreria data.
+     * Aggiunge un libro nella libreria data
+     * al file AssegnamentoLibrerieLibri.dati.csv.
      *
      * @param libreria indica la libreriaù
      *

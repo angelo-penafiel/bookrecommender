@@ -10,6 +10,18 @@ import java.util.List;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVRecord;
 
+/**
+ * Classe che implementa il design pattern DAO.
+ * La sua funzione è quella di separare la logica
+ * di accesso ai dati dalla logica di business.
+ * Ha lo scopo di prelevare i dati del file csv
+ * (ValutazioniLibri.dati.csv) e creare oggetti o
+ * campi di classe entities/Valutazione.
+ *
+ * @author Angelo Penafiel
+ * @version 1.0
+ */
+
 public class ValutazioneDaoImpl implements ValutazioneDao {
 
 
@@ -17,7 +29,7 @@ public class ValutazioneDaoImpl implements ValutazioneDao {
 
   /**
    * Costante che rappresenta l'header del file
-   * Librerie.dati.csv.
+   * ValutazioniLibri.dati.csv.
    */
 
   private static final String[] HEADERS = {"UserID","Libro",
@@ -26,6 +38,16 @@ public class ValutazioneDaoImpl implements ValutazioneDao {
 
 
   //METODI
+
+  /**
+   * Restituisce una lista di oggetti
+   * Valutazione che hanno come libroId
+   * quello dato.
+   *
+   * @param libroId indica il libroId
+   *
+   * @return lista di oggetti Valutazione
+   */
 
   @Override
   public List<Valutazione> getByLibroId(String libroId) throws IOException {
