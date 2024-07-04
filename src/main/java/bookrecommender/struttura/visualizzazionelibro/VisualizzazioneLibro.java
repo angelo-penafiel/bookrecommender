@@ -6,7 +6,6 @@ import bookrecommender.elaborazione.dao.ValutazioneDao;
 import bookrecommender.elaborazione.dao.daoimpl.ConsigliatoDaoImpl;
 import bookrecommender.elaborazione.dao.daoimpl.LibroDaoImpl;
 import bookrecommender.elaborazione.dao.daoimpl.ValutazioneDaoImpl;
-import bookrecommender.elaborazione.entities.Consigliato;
 import bookrecommender.elaborazione.entities.Libro;
 import bookrecommender.elaborazione.entities.Valutazione;
 import bookrecommender.interfaccia.NuovaSchermata;
@@ -17,15 +16,42 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map.Entry;
 
+/**
+ * Classe che ha la funzione di gestire la
+ * sezione di visualizzazione del libro.
+ *
+ * @author Angelo Penafiel
+ * @version 1.0
+ */
+
 public class VisualizzazioneLibro {
 
-  private Libro libro;
+
+  //CAMPO
+
+  /**
+   * Campo che indica il numero di scelta
+   * effettuata del menu di selezione.
+   */
 
   private int scelta;
 
-  public VisualizzazioneLibro(int menuProvenienza, Libro libro) {
 
-    this.libro=libro;
+  //COSTRUTTORE
+
+  /**
+   * Restituisce l'oggetto di tipo VisualizzazioneLibro
+   * e all'interno viene effettuata la stampa
+   * dei dati del libro, dati il libro corrente
+   * e il menu di provenienza (in base al valore del
+   * menu di provenienza stampa un menu di selezione diverso).
+   *
+   * @param menuProvenienza indica il menu di provenienza
+   *
+   * @param libro indica il libro corrente
+   */
+
+  public VisualizzazioneLibro(int menuProvenienza, Libro libro) {
 
     HashMap<String, Integer> consigliatiCountedId;
 
@@ -91,7 +117,7 @@ public class VisualizzazioneLibro {
 
     NuovaSchermata.nuovaSchermata();
     VisualizzazioneLIbroMessaggi.intestazione();
-    VisualizzazioneLIbroMessaggi.stampaDatiLibro(libro,consigliatiCountedTitolo,media);
+    VisualizzazioneLIbroMessaggi.stampaDatiLibro(libro,consigliatiCountedTitolo,media,valutazioni.size());
 
     if(menuProvenienza==0) {
       VisualizzazioneLIbroMessaggi.menuSceltaSenzaRegistrazione();

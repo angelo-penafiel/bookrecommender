@@ -1,6 +1,15 @@
 package bookrecommender.interfaccia.consigliati;
 
+/**
+ * Classe che ha la funzione di stampare i
+ * messaggi della sezione del menu consigliati.
+ *
+ * @author Angelo Penafiel
+ * @version 1.0
+ */
+
 public final class MenuConsigliatiMessaggi {
+
 
     //COSTRUTTORE
 
@@ -8,7 +17,12 @@ public final class MenuConsigliatiMessaggi {
 
     }
 
+
     //METODO
+
+    /**
+     * Stampa il menu consigliati.
+     */
 
     public static void menu() {
 

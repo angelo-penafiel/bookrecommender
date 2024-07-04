@@ -11,9 +11,42 @@ import bookrecommender.struttura.valutazione.MenuValutazione;
 import bookrecommender.struttura.visualizzazionelibro.VisualizzazioneLibro;
 import java.io.IOException;
 
+/**
+ * Classe che ha la funzione di gestire la
+ * sezione del menu della libreria.
+ *
+ * @author Angelo Penafiel
+ * @version 1.0
+ */
+
 public class MenuConsigliati {
 
+
+  //CAMPO
+
+  /**
+   * Campo che indica il numero di scelta
+   * effettuata del menu consigliati.
+   */
+
   private int scelta;
+
+
+  //METODO COSTRUTTORE
+
+  /**
+   * Restituisce l'oggetto di tipo MenuConsigliati
+   * e all'interno viene effettuata la stampa
+   * del menu e l'inserimento della scelta del
+   * menu libreria. Successivamente viene gestito
+   * il flusso del programma in base alla scelta
+   * effettuata.
+   *
+   * @param userId indica lo userId dell'utente
+   *               loggato
+   *
+   * @param libro indica il libro corrente
+   */
 
   public MenuConsigliati(String userId, Libro libro) {
 
@@ -60,6 +93,15 @@ public class MenuConsigliati {
     } while (!controllo);
 
   }
+
+  //METODO
+
+  /**
+   * Restituisce la scelta effettuata
+   * del menu consigliati.
+   *
+   * @return la scelta
+   */
 
   public int getScelta() {
     return scelta;

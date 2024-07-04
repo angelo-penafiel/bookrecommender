@@ -27,21 +27,35 @@ public final class VisualizzazioneLIbroMessaggi {
     //METODI
 
     /**
-     * Stampa l'intestazione della sezione di
-     * inserimento dell'autore.
+     * Stampa l'intestazione della sezione.
      */
 
     public static void intestazione() {
         System.out.println("---------------------------------Libro------------------------------------");
     }
 
+    /**
+     * Stampa l'intestazione della parte
+     * di valutazione.
+     */
+
     public static void intestazioneValutazione() {
         System.out.print("\n\n------------------------------Valutazione------------------------------");
     }
 
+    /**
+     * Stampa l'intestazione della parte
+     * dei libri consigliati.
+     */
+
     public static void intestazioneConsigliati() {
         System.out.print("\n\n------------------------------Consigliati------------------------------");
     }
+
+    /**
+     * Stampa il menu di scelta nel caso in cui
+     * l'utente non è registrato.
+     */
 
     public static void menuSceltaSenzaRegistrazione() {
         System.out.println("----------------------------------------------------------");
@@ -50,6 +64,12 @@ public final class VisualizzazioneLIbroMessaggi {
         System.out.println("| 3) Esci dal programma");
         System.out.println("----------------------------------------------------------");
     }
+
+    /**
+     * Stampa il menu di scelta nel caso in cui
+     * l'utente è registrato e si trova nella
+     * sezione di ricerca del libro.
+     */
 
     public static void menuSceltaUtenteRegistrato() {
         System.out.println("----------------------------------------------------------");
@@ -60,13 +80,38 @@ public final class VisualizzazioneLIbroMessaggi {
         System.out.println("----------------------------------------------------------");
     }
 
+    /**
+     * Stampa il messaggio nel caso in cui
+     * l'utente è registrato e si trova nella
+     * sezione di visualizzazione di consigliati.
+     */
+
     public static void consigliati() {
         System.out.print("\n  Inserisci qualsiasi tasto per tornare indietro: ");
         Scanner in=new Scanner(System.in);
         in.nextLine(  );
     }
 
-    public static void stampaDatiLibro(Libro libro, HashMap<String, Integer> consigliatiCounted, Valutazione media) {
+    /**
+     * Stampa i dati del libro dati il libro
+     * corrente, l'hashmap del titolo dei
+     * consigliati e il numero di utenti, la
+     * valutazione media e il numero di valutazioni.
+     *
+     * @param libro indica il libro corrente
+     *
+     * @param consigliatiCounted indica l'hashmap del titolo
+     *                           dei consigliati e il
+     *                           numero di utenti
+     *
+     * @param media indica la valutazione media
+     *
+     * @param numeroValutazioni indica il numero di
+     *                          valutazioni
+     */
+
+    public static void stampaDatiLibro(Libro libro, HashMap<String, Integer> consigliatiCounted,
+        Valutazione media, int numeroValutazioni) {
 
         System.out.print("\n  Titolo: ");
         stampaTìtolo(libro.getTitolo());
@@ -86,11 +131,18 @@ public final class VisualizzazioneLIbroMessaggi {
         stampaConsigliati(consigliatiCounted);
 
         intestazioneValutazione();
-        stampaValutazione(media);
+        stampaValutazione(media,numeroValutazioni);
 
         System.out.print("\n\n");
 
     }
+
+    /**
+     * Stampa il titolo del libro
+     * corrente dato il titolo.
+     *
+     * @param titolo indica il titolo
+     */
 
     private static void stampaTìtolo(String titolo) {
 
@@ -122,6 +174,13 @@ public final class VisualizzazioneLIbroMessaggi {
         System.out.print("\n\n");
     }
 
+    /**
+     * Stampa gli autori del libro
+     * corrente data la lista di autori.
+     *
+     * @param autori indica la lista di autori
+     */
+
     private static void stampaAutori(List<String> autori)  {
 
         for(int i=0;i<autori.size();i++) {
@@ -139,6 +198,13 @@ public final class VisualizzazioneLIbroMessaggi {
         }
     }
 
+    /**
+     * Stampa le categorie del libro
+     * corrente data la lista di categorie.
+     *
+     * @param categorie indica la lista di categorie
+     */
+
     private static void stampaCategorie(List<String> categorie)  {
 
         for(int i=0;i<categorie.size();i++) {
@@ -155,6 +221,16 @@ public final class VisualizzazioneLIbroMessaggi {
 
         }
     }
+
+    /**
+     * Stampa i libri consigliati del libro
+     * corrente dato l'hashmap del titolo dei
+     * consigliati e il numero di utenti.
+     *
+     * @param consigliatiCounted indica l'hashmap del titolo
+     *                           dei consigliati e il
+     *                           numero di utenti
+     */
 
     private static void stampaConsigliati(HashMap<String, Integer> consigliatiCounted) {
 
@@ -183,7 +259,18 @@ public final class VisualizzazioneLIbroMessaggi {
         }
     }
 
-    private static void stampaValutazione(Valutazione media) {
+    /**
+     * Stampa la valutazione del libro
+     * corrente data la valutazione media e
+     * il numero di valutazioni.
+     *
+     * @param media indica la valutazione media
+     *
+     * @param numeroValutazioni indica il numero di
+     *                          valutazioni
+     */
+
+    private static void stampaValutazione(Valutazione media, int numeroValutazioni) {
 
         if(media.getStile()==0&&media.getContenuto()==0&&media.getGradevolezza()==0
             &&media.getOriginalita()==0&&media.getEdizione()==0&&media.getFinale()==0) {
@@ -198,6 +285,7 @@ public final class VisualizzazioneLIbroMessaggi {
             System.out.print("\n\n  Originalità: "+media.getOriginalita()+"/5");
             System.out.print("\n\n  Edizione: "+media.getEdizione()+"/5");
             System.out.print("\n\n  Finale: "+media.getFinale()+"/5");
+            System.out.print("\n\n  "+numeroValutazioni+" utenti hanno valutato il libro.");
         }
 
     }

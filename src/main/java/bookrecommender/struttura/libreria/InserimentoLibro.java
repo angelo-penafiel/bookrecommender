@@ -21,7 +21,7 @@ public class InserimentoLibro {
   //COSTRUTTORE
 
   /**
-   * Restituisce l'oggetto di tipo  InserimentoLibro
+   * Restituisce l'oggetto di tipo InserimentoLibro
    * e all'interno viene effettuata la selezione
    * del libro da aggiungere alla libreria data.
    *

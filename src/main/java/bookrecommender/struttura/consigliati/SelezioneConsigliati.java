@@ -15,7 +15,30 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Classe che ha la funzione di gestire la
+ * sezione di selezione del libro consigliato.
+ *
+ * @author Angelo Penafiel
+ * @version 1.0
+ */
+
 public class SelezioneConsigliati {
+
+
+  //COSTRUTTORE
+
+  /**
+   * Restituisce l'oggetto di tipo SelezioneConsigliati
+   * e all'interno viene effettuata la stampa dei libri
+   * consigliati, dati gli id dell'utente e del libro
+   * corrente, e l'inserimento della scelta del consiglaito
+   * da selezionare.
+   *
+   * @param userId indica l'id dell'utente
+   *
+   * @param libroId indica l'id del libro corrente
+   */
 
   public SelezioneConsigliati(String userId, String libroId) {
 

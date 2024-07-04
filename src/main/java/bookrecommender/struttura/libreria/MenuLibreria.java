@@ -20,6 +20,7 @@ import java.util.List;
 
 public class MenuLibreria {
 
+
   //CAMPO
 
   /**
@@ -28,6 +29,7 @@ public class MenuLibreria {
    */
 
   private int scelta;
+
 
   //COSTRUTTORE
 
@@ -128,6 +130,7 @@ public class MenuLibreria {
     } while (!controllo);
 
   }
+
 
   //METODO
 

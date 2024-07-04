@@ -8,7 +8,26 @@ import bookrecommender.interfaccia.consigliati.InserimentoConsigliatiMessaggi;
 import bookrecommender.struttura.ricercalibro.RicercaLibro;
 import java.io.IOException;
 
+/**
+ * Classe che ha la funzione di gestire la
+ * sezione di inserimento del libro cosigliato.
+ *
+ * @author Angelo Penafiel
+ * @version 1.0
+ */
+
 public class InserimentoConsigliati  {
+
+  /**
+   * Restituisce l'oggetto di tipo
+   * InserimentoConsigliatie all'interno viene
+   * effettuata la selezione del libro da aggiungere
+   * ai consigliati.
+   *
+   * @param consigliato indica l'oggetto Consigliato
+   *                    del libro corrente
+   */
+
 
   public InserimentoConsigliati(Consigliato consigliato) {
 

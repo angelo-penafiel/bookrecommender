@@ -16,18 +16,22 @@ import bookrecommender.struttura.ricercalibro.RicercaLibro;
 
 public class MenuPrincipale {
 
+
     //CAMPO
 
     private int scelta;
 
-    //COSTRUTTORE
+
+    //COSTRUTTORI
 
     /**
      * Restituisce l'oggetto di tipo MenuPrincipale
      * e all'interno viene effettuata la stampa
      * del menu, l'inserimento della scelta del
-     * menu iniziale e l'inidirizzamento del flusso
-     * del programma in base alla scelta effettuata.
+     * menu iniziale e l'indirizzamento del flusso
+     * del programma in base alla scelta effettuata
+     * Gestisce il menu principale nel caso in cui
+     * l'utente non è registrato.
      */
 
     public MenuPrincipale() {
@@ -61,6 +65,16 @@ public class MenuPrincipale {
 
         } while(!controllo);
     }
+
+    /**
+     * Restituisce l'oggetto di tipo MenuPrincipale
+     * e all'interno viene effettuata la stampa
+     * del menu, l'inserimento della scelta del
+     * menu iniziale e l'indirizzamento del flusso
+     * del programma in base alla scelta effettuata
+     * Gestisce il menu principale nel caso in cui
+     * l'utente è registrato.
+     */
 
     public MenuPrincipale(String userId) {
 
