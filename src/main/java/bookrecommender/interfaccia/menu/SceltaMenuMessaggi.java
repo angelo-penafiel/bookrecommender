@@ -158,7 +158,7 @@ public final class SceltaMenuMessaggi {
                 }
             }
 
-            if(voce.isEmpty()) {
+            if(voce.isEmpty()||voce.length()>6) {
                 controllo=false;
             }
 
