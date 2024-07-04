@@ -1,5 +1,6 @@
 package bookrecommender.struttura.menu;
 
+import bookrecommender.elaborazione.entities.user.User;
 import bookrecommender.interfaccia.NuovaSchermata;
 import bookrecommender.interfaccia.menu.MenuPrincipaleMessaggi;
 import bookrecommender.interfaccia.menu.SceltaMenuMessaggi;
@@ -55,12 +56,22 @@ public class MenuPrincipale {
                 }
             }
 
-            if(scelta==2) {
-
+            else if(scelta==2) {
+                String UserID = User.login();
+                if (UserID != null) {
+                    System.out.println("Welcome " + UserID);
+                    var menuPrincipale = new MenuPrincipale(UserID);
+                    if (menuPrincipale.getScelta() == 4) scelta = 3;
+                }
             }
 
-            if(scelta==3) {
-
+            else if(scelta==3) {
+                String UserID = User.register();
+                if (UserID != null) {
+                    System.out.println("Welcome " + UserID);
+                    var menuPrincipale = new MenuPrincipale(UserID);
+                    if (menuPrincipale.getScelta() == 4) scelta = 3;
+                }
             }
 
         } while(!controllo);

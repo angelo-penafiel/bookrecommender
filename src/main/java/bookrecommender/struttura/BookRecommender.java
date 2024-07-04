@@ -65,6 +65,7 @@ public class BookRecommender {
 
         if (menuIniziale.getScelta() == 3) {
             var menuPrincipale = new MenuPrincipale();
+            if(menuPrincipale.getScelta()==3) controllo=false;
         }
 
         return controllo;
