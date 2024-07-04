@@ -50,6 +50,7 @@ public class MenuConsigliati {
 
   public MenuConsigliati(String userId, Libro libro) {
 
+
     boolean controllo;
 
     do {
