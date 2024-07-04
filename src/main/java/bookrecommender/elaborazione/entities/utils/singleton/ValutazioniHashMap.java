@@ -4,6 +4,13 @@ import bookrecommender.elaborazione.entities.utils.csvutils.CsvHasher;
 
 import java.util.HashMap;
 
+/**
+ * Crea un hashmap delle valutazioni usando il pattern Singleton.
+ * L'obbiettivo è migliorare le performance in fase di ricerca
+ *
+ * @author Leonardo Basso
+ */
+
 public class ValutazioniHashMap {
     private static ValutazioniHashMap instance;
     private HashMap<String, String[]> data;

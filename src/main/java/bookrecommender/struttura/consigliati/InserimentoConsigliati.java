@@ -18,18 +18,33 @@ import java.io.IOException;
 
 public class InserimentoConsigliati  {
 
+
+  //METODO COSTRUTTORE
+
   /**
    * Restituisce l'oggetto di tipo
-   * InserimentoConsigliatie all'interno viene
-   * effettuata la selezione del libro da aggiungere
-   * ai consigliati.
+   * InserimentoConsigliati.
    *
    * @param consigliato indica l'oggetto Consigliato
    *                    del libro corrente
    */
 
-
   public InserimentoConsigliati(Consigliato consigliato) {
+    inserisciSuggerimentoLibro(consigliato);
+  }
+
+
+  //METODO
+
+  /**
+   * All'interno viene effettuata la selezione del libro
+   * e viene aggiunto ai consigliati.
+   *
+   * @param consigliato indica l'oggetto Consigliato
+   *                    del libro corrente
+   */
+
+  private void inserisciSuggerimentoLibro(Consigliato consigliato) {
 
     NuovaSchermata.nuovaSchermata();
 

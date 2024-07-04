@@ -6,6 +6,12 @@ import bookrecommender.elaborazione.entities.valutazione.Valutazione;
 
 import java.util.Scanner;
 
+/**
+ * Classe che gestisce l'inserimento di una valutazione.
+ *
+ * @author Leonardo Basso
+ */
+
 public class InserimentoValutazione {
 
     /**
