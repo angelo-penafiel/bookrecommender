@@ -103,20 +103,22 @@ public class LibroDaoImpl implements LibroDao {
 
     List<CSVRecord> records = csvFormat.parse(in).getRecords();
 
-    int i=0;
+    for(Integer libroTrovato:libriId) {
 
-    for (CSVRecord record : records) {
+      int i=0;
 
-      String titolo=record.get("Title").toLowerCase();
-      Integer annoPubblicazione=Integer.parseInt(record.get("Publish Date (Year)"));;
+      for (CSVRecord record : records) {
 
-      for(Integer libroTrovato:libriId) {
+        String titolo=record.get("Title").toLowerCase();
+        Integer annoPubblicazione=Integer.parseInt(record.get("Publish Date (Year)"));
+
         if(libroTrovato==i) {
           opzioniTitoloAnno.add(new Libro(titolo,annoPubblicazione));
         }
-      }
 
-      i++;
+        i++;
+
+      }
 
     }
 

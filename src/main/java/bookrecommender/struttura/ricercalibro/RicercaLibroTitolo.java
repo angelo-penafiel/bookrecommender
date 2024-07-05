@@ -146,10 +146,9 @@ public class RicercaLibroTitolo {
             libroSelezionato = SceltaMenuMessaggi.inserimentoSceltaMenu(opzioniTitoloAnno.size());
             NuovaSchermata.nuovaSchermata();
         }
-        System.out.printf("libroSelezionato1"+libroSelezionato);
+
         libroSelezionato=libriTrovati.get(libroSelezionato-1);
-        System.out.println("libriTrovati"+libriTrovati);
-        System.out.printf("libroSelezionato2"+libroSelezionato);
+
         return libroSelezionato;
     }
 
