@@ -8,6 +8,7 @@ import java.io.Reader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map.Entry;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVRecord;
 
@@ -111,23 +112,35 @@ public class LibroDaoImpl implements LibroDao {
 
     List<CSVRecord> records = csvFormat.parse(in).getRecords();
 
-    for(Integer libroTrovato:libriId) {
+    int i=0;
 
-      int i=0;
+    HashMap<Integer, Libro> idETitoloAnno=new HashMap<>();
 
-      for (CSVRecord record : records) {
+    for (CSVRecord record : records) {
 
-        String titolo=record.get("Title").toLowerCase();
-        Integer annoPubblicazione=Integer.parseInt(record.get("Publish Date (Year)"));
+      String titolo=record.get("Title").toLowerCase();
+      Integer annoPubblicazione=Integer.parseInt(record.get("Publish Date (Year)"));
+
+      for(Integer libroTrovato:libriId) {
 
         if(libroTrovato==i) {
-          opzioniTitoloAnno.add(new Libro(titolo,annoPubblicazione));
+          idETitoloAnno.put(i,new Libro(titolo,annoPubblicazione));
         }
-
-        i++;
 
       }
 
+      i++;
+    }
+
+    for(Integer libroTrovato:libriId) {
+
+      for(Entry<Integer, Libro> entry:idETitoloAnno.entrySet()) {
+
+        if(libroTrovato.equals(entry.getKey())) {
+          opzioniTitoloAnno.add(entry.getValue());
+
+        }
+      }
     }
 
     return opzioniTitoloAnno;
