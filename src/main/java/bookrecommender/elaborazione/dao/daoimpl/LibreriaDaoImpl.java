@@ -58,6 +58,10 @@ public class LibreriaDaoImpl implements LibreriaDao {
    * @param userId indica lo userId
    *
    * @return se esiste la libreria
+   *
+   * @throws IOException nel caso in cui si
+   * verifica un errore in fase di apertura
+   * e scrittura dei file
    */
 
   @Override
@@ -97,6 +101,10 @@ public class LibreriaDaoImpl implements LibreriaDao {
    * @param userId indica lo userId
    *               
    * @return la libreria aggiunta
+   *
+   * @throws IOException nel caso in cui si
+   * verifica un errore in fase di apertura
+   * e scrittura dei file
    */
 
   @Override
@@ -142,6 +150,10 @@ public class LibreriaDaoImpl implements LibreriaDao {
    * @param userId indica lo userId
    *               
    * @return la lista di id
+   *
+   * @throws IOException nel caso in cui si
+   * verifica un errore in fase di apertura
+   * e scrittura dei file
    */
 
   @Override
@@ -182,6 +194,10 @@ public class LibreriaDaoImpl implements LibreriaDao {
    * @param ids indica gli id delle librerie
    *            
    * @return la lista di nomi
+   *
+   * @throws IOException nel caso in cui si
+   * verifica un errore in fase di apertura
+   * e scrittura dei file
    */
 
   @Override
@@ -224,6 +240,10 @@ public class LibreriaDaoImpl implements LibreriaDao {
    * @param id indica l'id 
    *
    * @return la libreria
+   *
+   * @throws IOException nel caso in cui si
+   * verifica un errore in fase di apertura
+   * e scrittura dei file
    */
 
   @Override
@@ -265,6 +285,10 @@ public class LibreriaDaoImpl implements LibreriaDao {
    * @param id indica l'id della libreria
    *
    * @return lista dei libri
+   *
+   * @throws IOException nel caso in cui si
+   * verifica un errore in fase di apertura
+   * e scrittura dei file
    */
 
   @Override
@@ -304,6 +328,10 @@ public class LibreriaDaoImpl implements LibreriaDao {
    * @param libro indica il libro
    *
    * @return se un libro è presente
+   *
+   * @throws IOException nel caso in cui si
+   * verifica un errore in fase di apertura
+   * e scrittura dei file
    */
 
   @Override
@@ -341,6 +369,10 @@ public class LibreriaDaoImpl implements LibreriaDao {
    * @param libreria indica la libreriaù
    *
    * @param libro indica il libro
+   *
+   * @throws IOException nel caso in cui si
+   * verifica un errore in fase di apertura
+   * e scrittura dei file
    */
 
   @Override

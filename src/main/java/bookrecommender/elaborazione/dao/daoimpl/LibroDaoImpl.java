@@ -44,6 +44,10 @@ public class LibroDaoImpl implements LibroDao {
    * @param titolo indica il titolo
    *
    * @return lista di id correlati al titolo
+   *
+   * @throws IOException nel caso in cui si
+   * verifica un errore in fase di apertura
+   * e scrittura dei file
    */
 
   @Override
@@ -87,6 +91,10 @@ public class LibroDaoImpl implements LibroDao {
    *
    * @return lista di titoli e anno di pubblicazione
    *         cercati
+   *
+   * @throws IOException nel caso in cui si
+   * verifica un errore in fase di apertura
+   * e scrittura dei file
    */
 
   @Override
@@ -124,6 +132,18 @@ public class LibroDaoImpl implements LibroDao {
 
     return opzioniTitoloAnno;
   }
+
+  /**
+   * Restituisce il titolo del libro dato l'id.
+   *
+   * @param id indica l'id del libro
+   *
+   * @return il titolo
+   *
+   * @throws IOException nel caso in cui si
+   * verifica un errore in fase di apertura
+   * e scrittura dei file
+   */
 
   @Override
   public String getTitoloById(Integer id) throws IOException {
@@ -164,6 +184,10 @@ public class LibroDaoImpl implements LibroDao {
    *               effettuare la ricerca
    *
    * @return lista di autori cercati
+   *
+   * @throws IOException nel caso in cui si
+   * verifica un errore in fase di apertura
+   * e scrittura dei file
    */
 
   @Override
@@ -188,6 +212,10 @@ public class LibroDaoImpl implements LibroDao {
    * Nella lista non sono presenti duplicati.
    *
    * @return hashmap degli autori globali
+   *
+   * @throws IOException nel caso in cui si
+   * verifica un errore in fase di apertura
+   * e scrittura dei file
    */
 
   @Override
@@ -265,6 +293,10 @@ public class LibroDaoImpl implements LibroDao {
    *               effettuare la ricerca
    *
    * @return lista di id di libri cercati
+   *
+   * @throws IOException nel caso in cui si
+   * verifica un errore in fase di apertura
+   * e scrittura dei file
    */
 
   @Override
@@ -340,6 +372,10 @@ public class LibroDaoImpl implements LibroDao {
    *                          -cerca
    *
    * @return lista di autori e titoli cercati
+   *
+   * @throws IOException nel caso in cui si
+   * verifica un errore in fase di apertura
+   * e scrittura dei file
    */
 
   @Override
@@ -414,6 +450,10 @@ public class LibroDaoImpl implements LibroDao {
    *               ricerca
    *
    * @return id del libro cercato
+   *
+   * @throws IOException nel caso in cui si
+   * verifica un errore in fase di apertura
+   * e scrittura dei file
    */
 
   @Override
@@ -454,6 +494,10 @@ public class LibroDaoImpl implements LibroDao {
    *           bisogna effettuare la ricerca
    *
    * @return libro correlato all'id
+   *
+   * @throws IOException nel caso in cui si
+   * verifica un errore in fase di apertura
+   * e scrittura dei file
    */
 
   @Override

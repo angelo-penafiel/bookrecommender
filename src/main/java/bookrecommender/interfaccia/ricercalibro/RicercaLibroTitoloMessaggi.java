@@ -1,5 +1,10 @@
 package bookrecommender.interfaccia.ricercalibro;
 
+import bookrecommender.elaborazione.entities.Libro;
+import bookrecommender.struttura.ricercalibro.RicercaLibro;
+import java.util.List;
+import java.util.Scanner;
+
 /**
  * Classe che ha la funzione di stampare i
  * messaggi e gestire gli inserimenti della
@@ -8,11 +13,6 @@ package bookrecommender.interfaccia.ricercalibro;
  * @author Angelo Penafiel
  * @version 1.0
  */
-
-import bookrecommender.elaborazione.entities.Libro;
-import bookrecommender.struttura.ricercalibro.RicercaLibro;
-import java.util.List;
-import java.util.Scanner;
 
 public final class RicercaLibroTitoloMessaggi {
 

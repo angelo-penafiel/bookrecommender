@@ -1,4 +1,4 @@
-package bookrecommender.struttura.registrazione;
+package bookrecommender.interfaccia.registrazione;
 
 import java.util.Scanner;
 

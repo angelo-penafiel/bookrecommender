@@ -32,6 +32,10 @@ public interface ConsigliatoDao {
      *                corrente
      *
      * @return oggetto Consigliato
+     *
+     * @throws IOException nel caso in cui si
+     * verifica un errore in fase di apertura
+     * e scrittura dei file
      */
 
     Consigliato getByUserIdAndLibroId(String userId, String  libroId) throws IOException;
@@ -45,6 +49,10 @@ public interface ConsigliatoDao {
      *           Consigliato
      *
      * @return lista di id di libri consigliati
+     *
+     * @throws IOException nel caso in cui si
+     * verifica un errore in fase di apertura
+     * e scrittura dei file
      */
 
     List<String> getLibriConsigliatiById (String id) throws IOException;
@@ -56,6 +64,10 @@ public interface ConsigliatoDao {
      * @param userId indica lo userId
      *
      * @param libroId indica l'id del libro corrente
+     *
+     * @throws IOException nel caso in cui si
+     * verifica un errore in fase di apertura
+     * e scrittura dei file
      */
 
     void add(String userId, String  libroId) throws IOException;
@@ -69,6 +81,10 @@ public interface ConsigliatoDao {
      *
      * @param libroConsigliatoId indica l'id del
      *                           libro consigliato
+     *
+     * @throws IOException nel caso in cui si
+     * verifica un errore in fase di apertura
+     * e scrittura dei file
      */
 
     void addLibroConsigliato(String id, String  libroConsigliatoId) throws IOException;
@@ -86,6 +102,10 @@ public interface ConsigliatoDao {
      * del libro consigliato e come valore il
      * numero di volte che è stato consigliato
      * dagli utenti
+     *
+     * @throws IOException nel caso in cui si
+     * verifica un errore in fase di apertura
+     * e scrittura dei file
      */
 
     HashMap<String, Integer> getLibriConsigliatiCountedByLibroId(String libroId) throws IOException;
@@ -98,6 +118,10 @@ public interface ConsigliatoDao {
      *                corrente
      *
      * @return lista di oggetti Consigliato
+     *
+     * @throws IOException nel caso in cui si
+     * verifica un errore in fase di apertura
+     * e scrittura dei file
      */
 
     List<Consigliato> getAllByLibroId(String libroId) throws IOException;

@@ -1,4 +1,4 @@
-package bookrecommender.struttura.registrazione;
+package bookrecommender.interfaccia.registrazione;
 
 import java.security.NoSuchAlgorithmException;
 import java.util.Scanner;

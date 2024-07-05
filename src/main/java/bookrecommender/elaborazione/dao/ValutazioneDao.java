@@ -26,6 +26,10 @@ public interface ValutazioneDao {
    * @param libroId indica il libroId
    *
    * @return lista di oggetti Valutazione
+   *
+   * @throws IOException nel caso in cui si
+   * verifica un errore in fase di apertura
+   * e scrittura dei file
    */
 
   List<Valutazione> getByLibroId(String libroId) throws IOException;

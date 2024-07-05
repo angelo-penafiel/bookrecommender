@@ -32,6 +32,10 @@ public interface LibreriaDao {
      * @param userId indica lo userId
      *
      * @return se esiste la libreria
+     *
+     * @throws IOException nel caso in cui si
+     * verifica un errore in fase di apertura
+     * e scrittura dei file
      */
 
     boolean existsByNome(String nome, String userId) throws IOException;
@@ -45,6 +49,10 @@ public interface LibreriaDao {
      * @param userId indica lo userId
      *
      * @return la libreria aggiunta
+     *
+     * @throws IOException nel caso in cui si
+     * verifica un errore in fase di apertura
+     * e scrittura dei file
      */
 
     Libreria add(String nome, String userId) throws IOException;
@@ -56,6 +64,10 @@ public interface LibreriaDao {
      * @param userId indica lo userId
      *
      * @return la lista di id
+     *
+     * @throws IOException nel caso in cui si
+     * verifica un errore in fase di apertura
+     * e scrittura dei file
      */
 
     List<Integer> getIdsByUserId(String userId) throws IOException;
@@ -67,6 +79,10 @@ public interface LibreriaDao {
      * @param ids indica gli id
      *
      * @return la lista di nomi
+     *
+     * @throws IOException nel caso in cui si
+     * verifica un errore in fase di apertura
+     * e scrittura dei file
      */
 
     List<String> getNomiByIds(List<Integer> ids) throws IOException;
@@ -78,6 +94,10 @@ public interface LibreriaDao {
      * @param id indica l'id
      *
      * @return la libreria
+     *
+     * @throws IOException nel caso in cui si
+     * verifica un errore in fase di apertura
+     * e scrittura dei file
      */
 
     Libreria getById(Integer id) throws IOException;
@@ -89,6 +109,10 @@ public interface LibreriaDao {
      * @param id indica l'id della libreria
      *
      * @return lista dei libri
+     *
+     * @throws IOException nel caso in cui si
+     * verifica un errore in fase di apertura
+     * e scrittura dei file
      */
 
     List<Integer> getIdsLibriByIdLibreria(Integer id) throws IOException;
@@ -102,6 +126,10 @@ public interface LibreriaDao {
      * @param libro indica il libro
      *
      * @return se un libro è presente
+     *
+     * @throws IOException nel caso in cui si
+     * verifica un errore in fase di apertura
+     * e scrittura dei file
      */
 
     boolean existsLibro(Libreria libreria, Libro libro) throws IOException;
@@ -113,6 +141,10 @@ public interface LibreriaDao {
      * @param libreria indica la libreriaù
      *
      * @param libro indica il libro
+     *
+     * @throws IOException nel caso in cui si
+     * verifica un errore in fase di apertura
+     * e scrittura dei file
      */
 
     void addLibro(Libreria libreria, Libro libro) throws IOException;

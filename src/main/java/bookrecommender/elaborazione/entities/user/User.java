@@ -3,8 +3,8 @@ package bookrecommender.elaborazione.entities.user;
 import java.io.*;
 
 import bookrecommender.elaborazione.entities.utils.singleton.UserHashMap;
-import bookrecommender.struttura.registrazione.RegistrazioneMessaggi;
-import bookrecommender.struttura.registrazione.LoginMessaggi;
+import bookrecommender.interfaccia.registrazione.RegistrazioneMessaggi;
+import bookrecommender.interfaccia.registrazione.LoginMessaggi;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVPrinter;
 
