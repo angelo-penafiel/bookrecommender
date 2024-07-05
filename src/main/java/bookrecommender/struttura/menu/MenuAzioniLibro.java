@@ -47,7 +47,8 @@ public class MenuAzioniLibro {
     public MenuAzioniLibro(String userId, Libro l) {
 
         boolean controllo;
-
+        System.out.println("**************************************************");
+        System.out.println("**************************************************"+l.getTitolo());
         do {
 
             controllo = true;

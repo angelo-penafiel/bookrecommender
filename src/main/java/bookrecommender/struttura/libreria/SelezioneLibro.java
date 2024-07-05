@@ -66,6 +66,7 @@ public class SelezioneLibro {
       try {
         LibroDao libroDao=new LibroDaoImpl();
         libro=libroDao.getById(libroSelezionato);
+        System.out.println("########"+libro.getTitolo());
       } catch (IOException e) {
         throw new RuntimeException(e);
       }
